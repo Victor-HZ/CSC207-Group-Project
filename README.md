@@ -6,10 +6,17 @@ This application will provide the following features: weather considerations, re
 
 # APIs
 
-Weather - https://www.weatherbit.io/api/weather-forecast-hourly <br>
-Resturants- [link] <br>
+Weather - http://api.weatherbit.io/v2.0/forecast/hourly <br>
+Restaurants- [link] <br>
 Cinemas- [link] <br>
-Map- [link] <br>
+Map - [link] <br>
+
+# API Documentation
+
+Weather - https://www.weatherbit.io/api/weather-forecast-hourly <br>
+Restaurants - [link] <br>
+Cinemas - [link] <br>
+Map - [link] <br>
 
 # Technical Problems
 [can delete this portion if we don't have any, but we probably will]
