@@ -6,7 +6,7 @@ This application will provide the following features: weather considerations, re
 
 # APIs
 
-Weather - [link] <br>
+Weather - https://github.com/Victor-HZ/CSC207-Group-Project.git <br>
 Resturants- [link] <br>
 Cinemas- [link] <br>
 Map- [link] <br>
