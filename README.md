@@ -12,6 +12,7 @@ Restaurants- [link] <br>
 Cinemas- [link] <br>
 Map - [link] <br>
 TicketMaster - https://app.ticketmaster.com/discovery/v2/events <br>
+Reviews - https://reviewapi.com/
 
 # API Documentation
 
@@ -20,7 +21,8 @@ Calendar - https://developers.google.com/calendar/api/guides/overview <br>
 Restaurants - [link] <br>
 Cinemas - [link] <br>
 Map - [link] <br>
-TicketMaster - https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2 <br>in
+TicketMaster - https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2 <br>
+Reviews - https://reviewapi.com/
 
 # Technical Problems
 [can delete this portion if we don't have any, but we probably will]
