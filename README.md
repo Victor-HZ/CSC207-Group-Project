@@ -7,6 +7,7 @@ This application will provide the following features: weather considerations, re
 # APIs
 
 Weather - http://api.weatherbit.io/v2.0/forecast/hourly <br>
+Calendar - https://www.googleapis.com/calendar/v3/calendars/calendarId <br>
 Restaurants- [link] <br>
 Cinemas- [link] <br>
 Map - [link] <br>
@@ -14,6 +15,7 @@ Map - [link] <br>
 # API Documentation
 
 Weather - https://www.weatherbit.io/api/weather-forecast-hourly <br>
+Calendar - https://developers.google.com/calendar/api/guides/overview <br>
 Restaurants - [link] <br>
 Cinemas - [link] <br>
 Map - [link] <br>
