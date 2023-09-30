@@ -10,3 +10,6 @@ Weather
 Resturants
 Cinemas
 Map
+
+# Technical Problems
+[can delete this portion if we don't have any, but we probably will]
