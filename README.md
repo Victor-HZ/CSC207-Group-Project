@@ -11,6 +11,7 @@ Calendar - https://www.googleapis.com/calendar/v3/calendars/calendarId <br>
 Restaurants- [link] <br>
 Cinemas- [link] <br>
 Map - [link] <br>
+TicketMaster - https://app.ticketmaster.com/discovery/v2/events <br>
 
 # API Documentation
 
@@ -19,6 +20,7 @@ Calendar - https://developers.google.com/calendar/api/guides/overview <br>
 Restaurants - [link] <br>
 Cinemas - [link] <br>
 Map - [link] <br>
+TicketMaster - https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2 <br>in
 
 # Technical Problems
 [can delete this portion if we don't have any, but we probably will]
