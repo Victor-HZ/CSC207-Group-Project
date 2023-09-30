@@ -6,7 +6,7 @@ This application will provide the following features: weather considerations, re
 
 # APIs
 
-Weather - https://github.com/Victor-HZ/CSC207-Group-Project.git <br>
+Weather - https://www.weatherbit.io/api/weather-forecast-hourly <br>
 Resturants- [link] <br>
 Cinemas- [link] <br>
 Map- [link] <br>
