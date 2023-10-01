@@ -6,7 +6,6 @@ import java.util.Arrays;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -17,11 +16,12 @@ public class ticketmaster {
     public static void main(String[] args) {
         getEvent("Toronto", "2023-10-01T23:59:00Z");
     }
-    private static String dayTimeHelper(String date){
+
+    private static String dayTimeHelper(String date) {
         return "2023-10-08T23:59:00Z";
     }
 
-    public static void getEvent(String city, String date) throws JSONException{
+    public static void getEvent(String city, String date) throws JSONException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url(String.format("https://app.ticketmaster.com/discovery/v2/events.json?apikey=%s", API_TOKEN))
@@ -35,7 +35,7 @@ public class ticketmaster {
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
 
-            if (response.code()== 200 ) {
+            if (response.code() == 200) {
                 JSONObject result = responseBody.getJSONObject("_embedded");
 
                 JSONArray membersArray = result.getJSONArray("events");
@@ -43,7 +43,7 @@ public class ticketmaster {
                 for (int i = 0; i < membersArray.length(); i++) {
                     events[i] = membersArray.getJSONObject(i).getString("name");
                 }
-                for (String eventName : events){
+                for (String eventName : events) {
                     System.out.println(eventName);
                 }
             } else {
