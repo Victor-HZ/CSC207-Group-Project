@@ -25,5 +25,7 @@ TicketMaster - https://developer.ticketmaster.com/products-and-docs/apis/discove
 Reviews - https://reviewapi.com/ <br>
 Google Search - https://apilayer.com/marketplace/google_search-api
 
+# API results from Hoppscotch.io
+![CleanShot 2023-10-01 at 17.12.50@2x.png](..%2F..%2F..%2F..%2F..%2FLibrary%2FApplication%20Support%2FCleanShot%2Fmedia%2Fmedia_0aIhkXihc1%2FCleanShot%202023-10-01%20at%2017.12.50%402x.png)
 # Technical Problems
 [can delete this portion if we don't have any, but we probably will]
