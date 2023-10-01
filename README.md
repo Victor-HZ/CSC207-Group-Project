@@ -26,4 +26,4 @@ Reviews - https://reviewapi.com/ <br>
 Google Search - https://apilayer.com/marketplace/google_search-api
 
 # Technical Problems
-[can delete this portion if we don't have any, but we probably will]
+None so far
