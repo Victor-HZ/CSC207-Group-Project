@@ -29,5 +29,8 @@ Google Search - https://apilayer.com/marketplace/google_search-api
 TicketMaster
 ![CleanShot 2023-10-01 at 17 15 53@2x](https://github.com/Victor-HZ/CSC207-Group-Project/assets/144486877/8e5dd734-e40e-4745-8a31-42094337593b)
 
+Weatherbit
+![img.png](img.png)
+
 # Technical Problems
 None so far
