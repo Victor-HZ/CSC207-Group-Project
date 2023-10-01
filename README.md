@@ -26,6 +26,7 @@ Reviews - https://reviewapi.com/ <br>
 Google Search - https://apilayer.com/marketplace/google_search-api
 
 # API results from Hoppscotch.io
-![CleanShot 2023-10-01 at 17.12.50@2x.png](..%2F..%2F..%2F..%2F..%2FLibrary%2FApplication%20Support%2FCleanShot%2Fmedia%2Fmedia_0aIhkXihc1%2FCleanShot%202023-10-01%20at%2017.12.50%402x.png)
+![CleanShot 2023-10-01 at 17 15 53@2x](https://github.com/Victor-HZ/CSC207-Group-Project/assets/144486877/8e5dd734-e40e-4745-8a31-42094337593b)
+
 # Technical Problems
 None so far
