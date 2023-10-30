@@ -6,7 +6,7 @@ This application will provide the following features: weather considerations, re
 
 # APIs
 
-Weather - http://api.weatherbit.io/v2.0/forecast/hourly <br>
+Weather - https://open-meteo.com/en/docs#start_date=2023-12-01&end_date=2024-01-12&time_mode=time_interval <br>
 Calendar - https://www.googleapis.com/calendar/v3/calendars/calendarId <br>
 Restaurants- [link] <br>
 Map - [link] <br>
@@ -16,7 +16,7 @@ Google Search - https://apilayer.com/marketplace/google_search-api
 
 # API Documentation
 
-Weather - https://www.weatherbit.io/api/weather-forecast-hourly <br>
+Weather - https://api.open-meteo.com/v1/forecast?latitude=52.520001&longitude=13.41&hourly=temperature_2m,rain&timeformat=unixtime&start_date=2023-10-31&end_date=2023-11-01 <br>
 Calendar - https://developers.google.com/calendar/api/guides/overview <br>
 Restaurants - [link] <br>
 Cinemas - [link] <br>
