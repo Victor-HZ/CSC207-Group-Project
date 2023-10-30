@@ -1,4 +1,4 @@
-package DayPlan;
+package use_case.DayPlan;
 
 public class Dayplan {
     String Date;
