@@ -4,6 +4,10 @@ This application will help the user to plan for their date. <br>
 The user should be able to input a calendar date and specifications such as time (having lunch together) or preferences (crafty activities vs. athletic ones vs. educational ones etc.). <br>
 This application will provide the following features: weather considerations, restaurant and activity suggestions, as well as maps/transit and estimated costs.
 
+# TODO List
+ - [ ] Location Entity
+
+
 # APIs
 
 Weather - http://api.weatherbit.io/v2.0/forecast/hourly <br>
@@ -34,3 +38,9 @@ Weatherbit
 
 # Technical Problems
 None so far
+
+# Use Case:
+1. getEvents -> get events from APIs by the user input
+2. addEvents -> user chose which event to be added to their schedule
+3. deleteEvents -> user chose which event to be removed from their schedul;e
+4. generateReport -> generate the final report
