@@ -1,4 +1,5 @@
 package dayinfo;
 
-public class DayInfo {
+public interface DayInfo {
+    String getInfo();
 }
