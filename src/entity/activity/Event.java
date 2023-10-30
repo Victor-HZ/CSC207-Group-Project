@@ -1,14 +1,37 @@
 package entity.activity;
 
-public class Event implements Activity {
+import entity.address.Address;
 
+public class Event implements Activity {
+    String name;
+    Address address;
+    Double cost;
+    String description;
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public Double getCost() {
-        return null;
+        return cost;
     }
+
+    @Override
+    public Address getAddress() {
+        return address;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    Event(String name, Address address, Double cost, String description){
+        this.name = name;
+        this.address = address;
+        this.cost = cost;
+        this.description = description;
+    }
+
 }
