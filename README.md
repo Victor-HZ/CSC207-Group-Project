@@ -7,6 +7,13 @@ This application will provide the following features: weather considerations, re
 # TODO List
  - [ ] Location Entity
 
+Use Cases to Implement:
+ - [ ] List 'Events' (in progress)
+ - [ ] List 'Activites' (other than 'Event')
+ - [ ] Add 'Activity'
+ - [ ] Remove 'Activity'
+ - (Add more as we come up with them!)
+
 
 # APIs
 
