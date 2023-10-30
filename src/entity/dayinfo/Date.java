@@ -1,4 +1,4 @@
-package dayinfo;
+package entity.dayinfo;
 
 public class Date implements DayInfo {
     public String start;

@@ -1,4 +1,4 @@
-package dayinfo;
+package entity.dayinfo;
 
 public interface DayInfo {
 

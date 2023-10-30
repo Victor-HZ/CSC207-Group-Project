@@ -1,4 +1,4 @@
-package dayinfo;
+package entity.dayinfo;
 
 import dayinfo.Date;
 public class Weather implements DayInfo {

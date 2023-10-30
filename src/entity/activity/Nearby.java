@@ -1,4 +1,4 @@
-package Activity;
+package entity.activity;
 
 public class Nearby implements Activity {
 

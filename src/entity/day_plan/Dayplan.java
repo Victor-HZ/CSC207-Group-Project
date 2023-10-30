@@ -1,4 +1,4 @@
-package DayPlan;
+package entity.day_plan;
 
 public class Dayplan {
     String Date;
