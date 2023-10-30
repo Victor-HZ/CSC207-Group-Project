@@ -8,6 +8,11 @@ public class Nearby implements Activity {
     }
 
     @Override
+    public void getLocation() {
+
+    }
+
+    @Override
     public Double getCost() {
         return null;
     }
