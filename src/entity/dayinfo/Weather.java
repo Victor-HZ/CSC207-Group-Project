@@ -1,8 +1,7 @@
-package dayinfo;
+package entity.dayinfo;
 
-public class Date implements DayInfo {
+public class Weather implements DayInfo {
     // TODO
     @Override
     public String getInfo() {return null;}
-
 }

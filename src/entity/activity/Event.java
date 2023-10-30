@@ -1,6 +1,6 @@
-package Activity;
+package entity.activity;
 
-public class Nearby implements Activity {
+public class Event implements Activity {
 
     @Override
     public String getName() {

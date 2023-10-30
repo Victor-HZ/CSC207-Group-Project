@@ -1,4 +1,4 @@
-package Activity;
+package entity.activity;
 
 public interface Activity {
     String getName();
