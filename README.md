@@ -47,7 +47,11 @@ Weatherbit
 None so far
 
 # Use Case:
-1. getEvents -> get events from APIs by the user input
-2. addEvents -> user chose which event to be added to their schedule
-3. deleteEvents -> user chose which event to be removed from their schedul;e
-4. generateReport -> generate the final report
+1. fetchActivity -> get events from APIs by the user input
+2. addActivity -> user chose which event to be added to their schedule
+3. deleteActivity -> user chose which event to be removed from their schedul
+3. createPlan -> create a new empty plan
+4. loadPlan -> load a plan from the database
+5. savePlan -> save the plan to external database
+6. generateReport -> generate the final report
+
