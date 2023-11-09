@@ -1,0 +1,4 @@
+package users.service.add_event;
+
+public class AddEventDataAccessInterface {
+}
