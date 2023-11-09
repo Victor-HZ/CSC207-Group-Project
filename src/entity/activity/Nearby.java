@@ -1,5 +1,7 @@
 package entity.activity;
 
+import entity.address.Address;
+
 public class Nearby implements Activity {
 
     @Override
@@ -9,6 +11,16 @@ public class Nearby implements Activity {
 
     @Override
     public Double getCost() {
+        return null;
+    }
+
+    @Override
+    public Address getAddress() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
         return null;
     }
 }

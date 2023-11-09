@@ -60,4 +60,5 @@ public class Address {
     public String getProvince(){
         return province.name();
     }
+    public String getCountry() {return country;}
 }
