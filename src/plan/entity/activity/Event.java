@@ -35,22 +35,22 @@ public class Event implements Activity {
 
     @Override
     public void setName(String name) {
-
+        this.name = name;
     }
 
     @Override
     public void setCost(Double cost) {
-
+        this.cost = cost;
     }
 
     @Override
     public void setAddress(Address address) {
-
+        this.address = address;
     }
 
     @Override
     public void setDescription(String description) {
-
+        this.description = description;
     }
 
     public Event(String name, Address address, Double cost, String description){

@@ -3,6 +3,10 @@ package plan.entity.activity;
 import plan.entity.address.Address;
 
 public class Nearby implements Activity {
+    String name;
+    Address address;
+    Double cost;
+    String description;
 
     @Override
     public String getName() {
@@ -26,21 +30,29 @@ public class Nearby implements Activity {
 
     @Override
     public void setName(String name) {
-
+        this.name = name;
     }
 
     @Override
     public void setCost(Double cost) {
-
+        this.cost = cost;
     }
 
     @Override
     public void setAddress(Address address) {
-
+        this.address = address;
     }
 
     @Override
     public void setDescription(String description) {
-
+        this.description = description;
     }
+
+    public Nearby(String name, Address address, Double cost, String description){
+        this.name = name;
+        this.address = address;
+        this.cost = cost;
+        this.description = description;
+    }
+
 }
