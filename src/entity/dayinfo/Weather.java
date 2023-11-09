@@ -1,11 +1,41 @@
 package entity.dayinfo;
 
-import dayinfo.Date;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class Weather implements DayInfo {
-    //
-    // https://open-meteo.com/en/docs#start_date=2023-12-01&end_date=2024-01-12&time_mode=time_interval
-    // https://api.open-meteo.com/v1/forecast?latitude=52.520001&longitude=13.41&hourly=temperature_2m,rain&timeformat=unixtime&start_date=2023-10-31&end_date=2023-11-01
     public String getInfo(Date dayInfo) {
-        return null;
+        try {
+            // This sample API call returns the 48-hour forecast of the city Raleigh in North Carolina.
+            String apiUrl = "https://api.weatherbit.io/v2.0/forecast/hourly?city=Raleigh,NC&key=" + apiKey + "&hours=48";
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
+
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                System.out.println(response.toString());
+            }
+
+            connection.disconnect();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
