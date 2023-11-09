@@ -1,4 +1,4 @@
-package use_case.dayinfo;
+package users.entity.day_info;
 
 public class Weather implements DayInfo {
     // TODO
