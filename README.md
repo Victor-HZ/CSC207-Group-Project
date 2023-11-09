@@ -56,4 +56,8 @@ None so far
 7. savePlan -> save the plan to external database
 8. generateReport -> generate the final report
 
+# possible use case
+1. sendPlan -> share the plan via mail api
+2. updateWeather -> update the weather data to the plan via api.
+
 
