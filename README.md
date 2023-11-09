@@ -47,11 +47,11 @@ Weatherbit
 None so far
 
 # Use Case:
-1. fetchActivity -> get events from APIs by the user input
+1. fetchActivity -> get events from APIs by the user input. victor
 2. addActivity -> user chose which event to be added to their schedule
 3. deleteActivity -> user chose which event to be removed from their schedule
 4. createPlan -> create a new empty plan
-5. deletePlan -> delete an unwanted plan.
+5. deletePlan -> delete an unwanted plan. victor
 6. loadPlan -> load a plan from the database
 7. savePlan -> save the plan to external database
 8. generateReport -> generate the final report
