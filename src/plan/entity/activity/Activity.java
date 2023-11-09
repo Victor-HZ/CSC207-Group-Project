@@ -8,4 +8,8 @@ public interface Activity {
     Double getCost();
     Address getAddress();
     String getDescription();
+    void setName(String name);
+    void setCost(Double cost);
+    void setAddress(Address address);
+    void setDescription(String description);
 }

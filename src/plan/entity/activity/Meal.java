@@ -23,4 +23,24 @@ public class Meal implements Activity {
     public String getDescription() {
         return null;
     }
+
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public void setCost(Double cost) {
+
+    }
+
+    @Override
+    public void setAddress(Address address) {
+
+    }
+
+    @Override
+    public void setDescription(String description) {
+
+    }
 }

@@ -8,6 +8,11 @@ public class Event implements Activity {
     Address address;
     Double cost;
     String description;
+
+    public Event() {
+
+    }
+
     @Override
     public String getName() {
         return name;
@@ -28,7 +33,27 @@ public class Event implements Activity {
         return description;
     }
 
-    Event(String name, Address address, Double cost, String description){
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public void setCost(Double cost) {
+
+    }
+
+    @Override
+    public void setAddress(Address address) {
+
+    }
+
+    @Override
+    public void setDescription(String description) {
+
+    }
+
+    public Event(String name, Address address, Double cost, String description){
         this.name = name;
         this.address = address;
         this.cost = cost;

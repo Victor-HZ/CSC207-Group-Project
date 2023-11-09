@@ -1,52 +1,71 @@
 package apis;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import plan.entity.activity.Activity;
+import plan.entity.activity.Event;
+import plan.entity.address.Address;
+import plan.entity.address.CanadaAddress;
+import plan.entity.day_info.Date;
+import plan.entity.day_info.DayInfo;
+import plan.entity.day_info.NotValidDateException;
 
 
 public class ticketmaster {
 
     private static final String API_TOKEN = "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL";
 
-    public static void main(String[] args) {
-        getEvent("Toronto", "2023-10-01T23:59:00Z");
+    public static void main(String[] args) throws NotValidDateException {
+        DayInfo day = new Date();
+        day.setYear(2023);
+        day.setMonth(11);
+        day.setDay(10);
+        day.setHour(15);
+        getEvent("Toronto", new Date());
     }
 
-    private static String dayTimeHelper(String date) {
-        return "2023-10-08T23:59:00Z";
+    private static String dayTimeHelper(DayInfo date) {
+        return "2023-11-08T23:59:00Z";
     }
 
-    public static void getEvent(String city, String date) throws JSONException {
+    public static void getEvent(String city, DayInfo date) throws JSONException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
-                .url(String.format("https://app.ticketmaster.com/discovery/v2/events.json?apikey=%s", API_TOKEN))
-                .addHeader("Authorization", API_TOKEN)
-                .addHeader("startDateTime", date)
-                .addHeader("endDateTime", dayTimeHelper(date))
-                .addHeader("city", city)
+                .url("https://app.ticketmaster.com/discovery/v2/events")
+                .addHeader("apikey", API_TOKEN)
+                .addHeader("startDateTime", date.getStr())
+                .addHeader("countryCode", "CA")
                 .build();
         try {
             Response response = client.newCall(request).execute();
             System.out.println(response);
-            JSONObject responseBody = new JSONObject(response.body().string());
 
             if (response.code() == 200) {
+                JSONObject responseBody = new JSONObject(response.body().string());
                 JSONObject result = responseBody.getJSONObject("_embedded");
 
                 JSONArray membersArray = result.getJSONArray("events");
-                String[] events = new String[membersArray.length()];
+                ArrayList<Activity> activities = new ArrayList<>();
                 for (int i = 0; i < membersArray.length(); i++) {
-                    events[i] = membersArray.getJSONObject(i).getString("name");
-                }
-                for (String eventName : events) {
-                    System.out.println(eventName);
+                    Activity event = new Event();
+                    Address address = new CanadaAddress();
+                    try {
+                        event.setName(membersArray.getJSONObject(i).getString("name"));
+                        event.setCost(membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("min"));
+                        event.setAddress(address);
+                        event.setDescription(membersArray.getJSONObject(i).getString("info"));
+                        activities.add(event);
+                    } catch (Exception ignored){
+
+                    }
                 }
             } else {
+                JSONObject responseBody = new JSONObject(response.body().string());
                 throw new RuntimeException(responseBody.getString("message"));
             }
         } catch (IOException | JSONException e) {
