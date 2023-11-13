@@ -5,6 +5,7 @@ import plan.entity.activity.Activity;
 import plan.entity.address.Address;
 import plan.entity.day_info.DayInfo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
@@ -25,7 +26,8 @@ public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
             activities.addAll(fetcher.getEvents(addresss.getCity(), date));
         }
         if(!activities.isEmpty()){
-            FetchActivitiesOutputData fetchActivitiesOutputData = new FetchActivitiesOutputData(activities, false);
+            LocalDateTime time = LocalDateTime.now();
+            FetchActivitiesOutputData fetchActivitiesOutputData = new FetchActivitiesOutputData(activities, false, time.toString());
             fetchActivitiesPresenter.prepareSuccessView(fetchActivitiesOutputData);
         } else {
             fetchActivitiesPresenter.prepareFailView("No activity fetched!");
