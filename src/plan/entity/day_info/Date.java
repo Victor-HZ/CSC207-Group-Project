@@ -31,7 +31,7 @@ public class Date implements DayInfo {
 
     @Override
     public String getInfo() {
-        return this.toString() + weather.toString();
+        return this + weather.toString();
     }
 
     @Override
@@ -119,6 +119,6 @@ public class Date implements DayInfo {
         day.setMonth(11);
         day.setDay(10);
         day.setHour(15);
-        System.out.println(day.toString());
+        System.out.println(day);
     }
 }
