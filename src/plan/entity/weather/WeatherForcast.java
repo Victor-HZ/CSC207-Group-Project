@@ -2,7 +2,7 @@ package plan.entity.weather;
 
 public class WeatherForcast implements Weather{
     @Override
-    public String getStr() {
+    public String toString() {
         return null;
     }
 }

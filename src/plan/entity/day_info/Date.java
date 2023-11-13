@@ -31,7 +31,7 @@ public class Date implements DayInfo {
 
     @Override
     public String getInfo() {
-        return this.toString() + weather.getStr();
+        return this.toString() + weather.toString();
     }
 
     @Override
@@ -112,22 +112,6 @@ public class Date implements DayInfo {
 
     public String start;
     public String end;
-
-    public void updateStart(String day) {
-        // Day should be in the format of year-month-day T start hour (2018-04-02)
-        start = day;
-    }
-    public void updateEnd(String day) {
-        // Day should be in the format of year-month-day T start hour (2018-04-02)
-        end = day;
-    }
-
-    public String getStart() {
-        return start;
-    }
-    public String getEnd() {
-        return end;
-    }
 
     public static void main(String[] args) throws DateTimeException {
         DayInfo day = new Date();
