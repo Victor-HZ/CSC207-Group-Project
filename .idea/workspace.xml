@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="catched a minor error that the activities list is not initialized.">
+    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="continue working on the plan interface.">
+      <change afterPath="$PROJECT_DIR$/grade-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plan/service/fetch_activities/FetchActivitiesInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/service/fetch_activities/FetchActivitiesInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plan/service/fetch_activities/FetchActivitiesOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/service/fetch_activities/FetchActivitiesOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plan/service/fetch_activities/interface_adapter/FetchActivitiesPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/service/fetch_activities/interface_adapter/FetchActivitiesPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,15 +20,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="fetch_activities" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,12 +53,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "fetch__activities",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.16920471",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -103,6 +107,7 @@
       <workItem from="1699547322907" duration="1090000" />
       <workItem from="1699567260378" duration="556000" />
       <workItem from="1699842807978" duration="4067000" />
+      <workItem from="1699896917883" duration="717000" />
     </task>
     <task id="LOCAL-00001" summary="implemented the FetchActivitiesInteractor. Primarily finished this use case. Wait for the future apis.">
       <option name="closed" value="true" />
@@ -120,7 +125,31 @@
       <option name="project" value="LOCAL" />
       <updated>1699891507396</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="include equals method for entity interfaces">
+      <option name="closed" value="true" />
+      <created>1699896649086</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699896649086</updated>
+    </task>
+    <task id="LOCAL-00004" summary="deleted Calendar.java which is no longer useful.">
+      <option name="closed" value="true" />
+      <created>1699896684276</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699896684276</updated>
+    </task>
+    <task id="LOCAL-00005" summary="continue working on the plan interface.">
+      <option name="closed" value="true" />
+      <created>1699896715236</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699896715236</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +159,10 @@
     <MESSAGE value="updated the use case" />
     <MESSAGE value="implemented the FetchActivitiesInteractor. Primarily finished this use case. Wait for the future apis." />
     <MESSAGE value="catched a minor error that the activities list is not initialized." />
-    <option name="LAST_COMMIT_MESSAGE" value="catched a minor error that the activities list is not initialized." />
+    <MESSAGE value="include equals method for entity interfaces" />
+    <MESSAGE value="deleted Calendar.java which is no longer useful." />
+    <MESSAGE value="continue working on the plan interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="continue working on the plan interface." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
