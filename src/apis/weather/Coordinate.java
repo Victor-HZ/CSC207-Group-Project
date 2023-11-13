@@ -4,7 +4,7 @@ import okhttp3.*;
 
 import java.io.IOException;
 
-public class Coordinate {
+public class Coordinate { //TODO noteL I'm not sure if this is another entity? If so probably you can create a separate entity folder under apis.
 
     private static final String key = "MOQVblMcc434KJ1J8FdvXQ==Ayp3zVUoy5vC64XQ";
     public String coordinate;

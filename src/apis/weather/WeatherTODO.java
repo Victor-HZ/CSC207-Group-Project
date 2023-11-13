@@ -7,12 +7,13 @@ import plan.entity.day_info.ToStringType;
 import java.io.IOException;
 
 public class WeatherTODO {
-
+//TODO note: I not quite sure if this class can be merged to WeatherAPI.java? Both files look like api call
     public String rain;
     public String weather;
 
     // Must be within 14 days
     public void updateWeather(DayInfo dayInfo, Coordinate coordinate) throws IOException {
+        // TODO note: if this is a user-interactive method we could certainly add a new use case which allows user to refresh and update the weather of the plan.
         String apiUrl = getString(dayInfo, coordinate);
 
 
@@ -31,13 +32,14 @@ public class WeatherTODO {
     }
 
     @NotNull // what is that
-    private static String getString(DayInfo day, Coordinate coordinate) {
+    private static String getString(DayInfo day, Coordinate coordinate) { //TODO note: should use interface instead of the actual entity from my pov. Not sure if I understand DIP correctly, we can certainly discuss about it!
         String coordinates = coordinate.getCoor();
         int divider = coordinates.indexOf(',');
         String longitude = coordinates.substring(0, divider);
         String latitude = coordinates.substring(divider + 1);
         String startDate = day.toString(ToStringType.WEATHER);
 
+        //TODO note: The date entity represents a single day. Thus if you want to have a period of time probably should use two separate initializations of date.
         Integer TIME_LENGTH = 14;
         day.addDays(TIME_LENGTH);
         String endDate = day.toString(ToStringType.WEATHER);
