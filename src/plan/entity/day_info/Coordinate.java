@@ -1,5 +1,5 @@
 package plan.entity.day_info;
-import entity.address.Address;
+import plan.entity.address.Address;
 import okhttp3.*;
 
 import java.io.IOException;
