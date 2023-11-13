@@ -47,6 +47,7 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
             System.out.println(response);
 
             if (response.code() == 200) {
+                assert response.body() != null;
                 JSONObject responseBody = new JSONObject(response.body().string());
                 JSONObject result = responseBody.getJSONObject("_embedded");
 
@@ -67,6 +68,7 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                 }
                 return activities;
             } else {
+                assert response.body() != null;
                 JSONObject responseBody = new JSONObject(response.body().string());
                 throw new RuntimeException(responseBody.getString("message"));
             }
