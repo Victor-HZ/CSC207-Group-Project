@@ -1,14 +1,10 @@
 package apis.weather;
-import apis.weather.Coordinate;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.html.HTMLImageElement;
-import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 public class WeatherTODO {
 
@@ -34,7 +30,7 @@ public class WeatherTODO {
 
     }
 
-    @NotNull
+    @NotNull // what is that
     private static String getString(DayInfo day, Coordinate coordinate) {
         String coordinates = coordinate.getCoor();
         int divider = coordinates.indexOf(',');
