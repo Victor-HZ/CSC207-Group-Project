@@ -1,8 +1,10 @@
-package apis;
+package apis.ticketmaster;
 
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 
+import apis.ActivitiesFetchInterface;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONArray;
@@ -13,14 +15,13 @@ import plan.entity.address.Address;
 import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
-import plan.entity.day_info.InvalidDateException;
 
 
-public class ticketmaster implements ActivitiesFetchInterface{
+public class TicketmasterAPI implements ActivitiesFetchInterface {
 
     private static final String API_TOKEN = "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL";
 
-    public static void main(String[] args) throws InvalidDateException {
+    public static void main(String[] args) throws DateTimeException {
         DayInfo day = new Date();
         day.setYear(2023);
         day.setMonth(11);
@@ -38,7 +39,7 @@ public class ticketmaster implements ActivitiesFetchInterface{
         Request request = new Request.Builder()
                 .url("https://app.ticketmaster.com/discovery/v2/events")
                 .addHeader("apikey", API_TOKEN)
-                .addHeader("startDateTime", date.getStr())
+                .addHeader("startDateTime", date.toString())
                 .addHeader("countryCode", "CA")
                 .build();
         try {
