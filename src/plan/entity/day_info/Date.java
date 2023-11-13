@@ -28,27 +28,27 @@ public class Date implements DayInfo {
     }
 
     @Override
-    public void setYear(Integer year) throws NotValidDateException{
+    public void setYear(Integer year) throws InvalidDateException{
         if (2000 < year && year < 2100) {
             this.year = year.toString();
             return;
         }
-        throw new NotValidDateException();
+        throw new InvalidDateException();
     }
 
     @Override
-    public void setMonth(Integer month) throws NotValidDateException{
+    public void setMonth(Integer month) throws InvalidDateException{
         if (0 < month && month < 13) {
             this.month = month.toString();
             return;
         }
-        throw new NotValidDateException();
+        throw new InvalidDateException();
     }
 
     @Override
-    public void setDay(Integer day)  throws NotValidDateException{
+    public void setDay(Integer day)  throws InvalidDateException{
         if (month == null || day <= 0){
-            throw new NotValidDateException();
+            throw new InvalidDateException();
         }
         ArrayList<String> validMonth = new ArrayList<String>(
                 Arrays.asList("1", "3", "5", "7", "8", "10", "12")
@@ -68,11 +68,11 @@ public class Date implements DayInfo {
                     this.day = day.toString();
                     return;
                 }
-                throw new NotValidDateException();
+                throw new InvalidDateException();
             }
         } else if(day == 30){
             if(month.equals(("2"))){
-                throw new NotValidDateException();
+                throw new InvalidDateException();
             }
             this.day = day.toString();
             return;
@@ -82,17 +82,17 @@ public class Date implements DayInfo {
                 this.day = day.toString();
                 return;
             }
-            throw new NotValidDateException();
+            throw new InvalidDateException();
         }
-        throw new NotValidDateException();
+        throw new InvalidDateException();
     }
 
     @Override
-    public void setHour(Integer hour)  throws NotValidDateException{
+    public void setHour(Integer hour)  throws InvalidDateException{
         if(0 <= hour && hour <= 24){
             this.hour = hour.toString();
         } else {
-            throw new NotValidDateException();
+            throw new InvalidDateException();
         }
     }
     public String start;
@@ -114,11 +114,11 @@ public class Date implements DayInfo {
         return end;
     }
     @Override
-    public void setDate(String date)  throws NotValidDateException{
-        throw new NotValidDateException();
+    public void setDate(String date)  throws InvalidDateException{
+        throw new InvalidDateException();
     }
 
-    public static void main(String[] args) throws NotValidDateException {
+    public static void main(String[] args) throws InvalidDateException {
         DayInfo day = new Date();
         day.setYear(2023);
         day.setMonth(11);

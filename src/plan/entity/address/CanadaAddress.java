@@ -26,7 +26,7 @@ public class CanadaAddress implements Address{
 
     }
 
-    CanadaAddress(String postCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country) throws IncorrectProvinceName{
+    CanadaAddress(String postCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country) throws InvalidProvinceException{
         this.postCode = postCode;
         this.businessName = businessName;
         this.streetName = streetName;
@@ -42,7 +42,7 @@ public class CanadaAddress implements Address{
             }
         }
         if (f){
-            throw new IncorrectProvinceName(province);
+            throw new InvalidProvinceException(province);
         }
     }
 
@@ -96,14 +96,14 @@ public class CanadaAddress implements Address{
     }
 
     @Override
-    public void setProvince(String province) throws IncorrectProvinceName {
+    public void setProvince(String province) throws InvalidProvinceException {
         for(Province pro: Province.values()) {
             if (province.equalsIgnoreCase(pro.name())) {
                 this.province = pro;
                 return;
             }
         }
-        throw new IncorrectProvinceName(province);
+        throw new InvalidProvinceException(province);
     }
 
     @Override

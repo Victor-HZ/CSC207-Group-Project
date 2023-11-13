@@ -3,9 +3,9 @@ package plan.entity.day_info;
 public interface DayInfo{
     String getStr();
     String getInfo();
-    void setYear(Integer year) throws NotValidDateException;
-    void setMonth(Integer month) throws NotValidDateException;
-    void setDay(Integer day) throws NotValidDateException;
-    void setHour(Integer hour) throws NotValidDateException;
-    void setDate(String date) throws NotValidDateException;
+    void setYear(Integer year) throws InvalidDateException;
+    void setMonth(Integer month) throws InvalidDateException;
+    void setDay(Integer day) throws InvalidDateException;
+    void setHour(Integer hour) throws InvalidDateException;
+    void setDate(String date) throws InvalidDateException;
 }

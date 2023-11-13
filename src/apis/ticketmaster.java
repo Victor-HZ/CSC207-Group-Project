@@ -13,14 +13,14 @@ import plan.entity.address.Address;
 import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
-import plan.entity.day_info.NotValidDateException;
+import plan.entity.day_info.InvalidDateException;
 
 
 public class ticketmaster implements ActivitiesFetchInterface{
 
     private static final String API_TOKEN = "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL";
 
-    public static void main(String[] args) throws NotValidDateException {
+    public static void main(String[] args) throws InvalidDateException {
         DayInfo day = new Date();
         day.setYear(2023);
         day.setMonth(11);

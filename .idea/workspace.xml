@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="continue working on the plan interface.">
-      <change afterPath="$PROJECT_DIR$/grade-api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" afterDir="false" />
+    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="implemented Plan interface.">
+      <change beforePath="$PROJECT_DIR$/src/apis/ticketmaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ticketmaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/activity/Meal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/activity/Meal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/activity/Nearby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/activity/Nearby.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/address/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/address/InvalidProvinceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/address/InvalidProvinceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/day_info/DayInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/day_info/DayInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/day_info/InvalidDateException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/day_info/InvalidDateException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +34,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SHOW_RECENT_BRANCHES" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -107,7 +110,7 @@
       <workItem from="1699547322907" duration="1090000" />
       <workItem from="1699567260378" duration="556000" />
       <workItem from="1699842807978" duration="4067000" />
-      <workItem from="1699896917883" duration="717000" />
+      <workItem from="1699896917883" duration="1024000" />
     </task>
     <task id="LOCAL-00001" summary="implemented the FetchActivitiesInteractor. Primarily finished this use case. Wait for the future apis.">
       <option name="closed" value="true" />
@@ -149,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699896715236</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="implemented Plan interface.">
+      <option name="closed" value="true" />
+      <created>1699897644270</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699897644270</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +173,8 @@
     <MESSAGE value="include equals method for entity interfaces" />
     <MESSAGE value="deleted Calendar.java which is no longer useful." />
     <MESSAGE value="continue working on the plan interface." />
-    <option name="LAST_COMMIT_MESSAGE" value="continue working on the plan interface." />
+    <MESSAGE value="implemented Plan interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented Plan interface." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

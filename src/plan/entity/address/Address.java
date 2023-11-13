@@ -14,7 +14,7 @@ public interface Address {
     void setStreetName(String streetName);
     void setStreetNumber(Integer streetNumber);
     void setCity(String city);
-    void setProvince(String province) throws IncorrectProvinceName;
+    void setProvince(String province) throws InvalidProvinceException;
     void setCountry(String country);
 
     boolean equals(Address other);
