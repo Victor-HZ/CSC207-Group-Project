@@ -53,6 +53,14 @@ public class Event implements Activity {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Activity other) {
+        return this.description.equals(other.getDescription()) &&
+                this.name.equals(other.getName()) &&
+                this.cost.equals(other.getCost()) &&
+                this.address.equals(other.getAddress());
+    }
+
     public Event(String name, Address address, Double cost, String description){
         this.name = name;
         this.address = address;
