@@ -7,17 +7,39 @@ import java.util.ArrayList;
 
 public class DatePlan implements Plan{
     DayInfo dayInfo;
-    ArrayList<Activity> Events;
+    ArrayList<Activity> activites;
     Double totalCost;
 
     DatePlan(DayInfo dayInfo){
         this.dayInfo = dayInfo;
-        this.Events = new ArrayList<>();
+        this.activites = new ArrayList<>();
         this.totalCost = 0.0;
     }
 
-    void addEvent(Activity event){
-        this.Events.add(event);
-        this.totalCost += event.getCost();
+
+    @Override
+    public void addActivity(Activity activity) {
+        this.activites.add(activity);
+        this.totalCost += activity.getCost();
+    }
+
+    @Override
+    public boolean deleteActivity(Activity activity) {
+        return activites.remove(activity);
+    }
+
+    @Override
+    public double getCost() {
+        return this.totalCost;
+    }
+
+    @Override
+    public ArrayList<Activity> getActivities() {
+        return null;
+    }
+
+    @Override
+    public DayInfo getDayInfo() {
+        return null;
     }
 }

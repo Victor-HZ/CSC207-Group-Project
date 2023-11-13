@@ -16,7 +16,7 @@ import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.NotValidDateException;
 
 
-public class ticketmaster {
+public class ticketmaster implements ActivitiesFetchInterface{
 
     private static final String API_TOKEN = "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL";
 
@@ -26,14 +26,14 @@ public class ticketmaster {
         day.setMonth(11);
         day.setDay(10);
         day.setHour(15);
-        getEvent("Toronto", new Date());
+//        getEvents("Toronto", new Date());
     }
 
     private static String dayTimeHelper(DayInfo date) {
         return "2023-11-08T23:59:00Z";
     }
 
-    public static void getEvent(String city, DayInfo date) throws JSONException {
+    public ArrayList<Activity> getEvents(String city, DayInfo date) throws JSONException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url("https://app.ticketmaster.com/discovery/v2/events")
@@ -64,6 +64,7 @@ public class ticketmaster {
 
                     }
                 }
+                return activities;
             } else {
                 JSONObject responseBody = new JSONObject(response.body().string());
                 throw new RuntimeException(responseBody.getString("message"));

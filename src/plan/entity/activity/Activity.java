@@ -13,4 +13,6 @@ public interface Activity {
     void setCost(Double cost);
     void setAddress(Address address);
     void setDescription(String description);
+
+    boolean equals(Activity other);
 }

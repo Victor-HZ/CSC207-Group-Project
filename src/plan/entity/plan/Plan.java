@@ -1,5 +1,14 @@
 package plan.entity.plan;
 
-public interface Plan {
+import plan.entity.activity.Activity;
+import plan.entity.day_info.DayInfo;
 
+import java.util.ArrayList;
+
+public interface Plan {
+    void addActivity(Activity activity);
+    boolean deleteActivity(Activity activity);
+    double getCost();
+    ArrayList<Activity> getActivities();
+    DayInfo getDayInfo();
 }

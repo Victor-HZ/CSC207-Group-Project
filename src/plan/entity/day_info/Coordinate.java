@@ -1,5 +1,5 @@
 package plan.entity.day_info;
-import entity.address.Address;
+import plan.entity.address.Address;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -24,6 +24,7 @@ public class Coordinate {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            assert response.body() != null;
             String temp = response.body().string();
             int latStart = temp.indexOf("latitude") + 11;
             int latEnd = latStart + 7;

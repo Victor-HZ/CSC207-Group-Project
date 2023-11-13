@@ -2,6 +2,7 @@ package plan.entity.day_info;
 
 import plan.entity.weather.Weather;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -10,12 +11,16 @@ public class Date implements DayInfo {
     private String month;
     private String day;
     private String hour;
+    private LocalDateTime time;
     private Weather weather;
 
     @Override
     public String getStr() {
         return String.format("%s-%s-%sT%s:00:00Z", year, month, day, hour);
     }
+//    public String getStr(){
+//        return time.toString();
+//    }
 
     @Override
     public String getInfo() {
