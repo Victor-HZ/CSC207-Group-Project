@@ -1,4 +1,4 @@
-package plan.entity.day_info;
+package apis.weather;
 import plan.entity.address.Address;
 import okhttp3.*;
 

@@ -1,11 +1,32 @@
 package plan.entity.day_info;
 
+import plan.entity.weather.Weather;
+
+import java.time.*;
+
 public interface DayInfo{
-    String getStr();
+
+    @Override
+    String toString();
+
+    String toString(ToStringType type);
+
     String getInfo();
-    void setYear(Integer year) throws NotValidDateException;
-    void setMonth(Integer month) throws NotValidDateException;
-    void setDay(Integer day) throws NotValidDateException;
-    void setHour(Integer hour) throws NotValidDateException;
-    void setDate(String date) throws NotValidDateException;
+    void setYear(Integer year) throws DateTimeException;
+    void setMonth(Integer month) throws DateTimeException;
+    void setDay(Integer day) throws DateTimeException;
+    void setHour(Integer hour) throws DateTimeException;
+
+    void addDays(Integer days);
+    void addMonths(Integer months);
+    void addYears(Integer years);
+
+    LocalDateTime getDate();
+    Integer getYear();
+    Integer getMonth();
+    Integer getDayOfMonth();
+    DayOfWeek getDayofWeek();
+
+    void setWeather(Weather weather);
+    Weather getWeather();
 }

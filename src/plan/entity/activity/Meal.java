@@ -48,6 +48,14 @@ public class Meal implements Activity {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Activity other) {
+        return this.name.equals(other.getName()) &&
+                this.address.equals(other.getAddress()) &&
+                this.cost.equals(other.getCost()) &&
+                this.description.equals(other.getDescription());
+    }
+
     public Meal(String name, Address address, Double cost, String description){
         this.name = name;
         this.address = address;

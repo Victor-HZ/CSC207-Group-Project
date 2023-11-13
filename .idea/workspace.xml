@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="continue working on the plan interface.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grade-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="fetch_activities" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,7 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "addactivity",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,8 +89,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ticketmaster" />
-        <item itemvalue="Application.ticketmaster" />
         <item itemvalue="Application.ticketmaster" />
       </list>
     </recent_temporary>
