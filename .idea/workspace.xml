@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/main/main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="Fixed Maven dependencies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grade-api.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/plan/entity/day_info/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/day_info/Coordinate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/day_info/Weather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/day_info/Weather.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,11 +112,24 @@
       <workItem from="1698679158369" duration="5886000" />
       <workItem from="1699547322907" duration="1090000" />
       <workItem from="1699547419977" duration="169000" />
-      <workItem from="1699889619740" duration="1199000" />
+      <workItem from="1699889619740" duration="2285000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixed Maven dependencies">
+      <option name="closed" value="true" />
+      <created>1699890858772</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699890858772</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed Maven dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Maven dependencies" />
   </component>
 </project>
