@@ -111,6 +111,17 @@ public class CanadaAddress implements Address{
         this.country = country;
     }
 
+    @Override
+    public boolean equals(Address other) {
+        return this.country.equals(other.getCountry()) &&
+                this.city.equals(other.getCity()) &&
+                this.streetNumber.toString().equals(other.getStreetNumber()) &&
+                this.streetName.equals(other.getStreetName()) &&
+                this.businessName.equals(other.getBusinessName()) &&
+                this.postCode.equals(other.getPostCode()) &&
+                this.province.name().equals(other.getProvince());
+    }
+
 //    public String getString(){
 //        return
 //    }
