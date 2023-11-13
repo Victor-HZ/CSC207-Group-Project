@@ -110,9 +110,6 @@ public class Date implements DayInfo {
         return weather;
     }
 
-    public String start;
-    public String end;
-
     public static void main(String[] args) throws DateTimeException {
         DayInfo day = new Date();
         day.setYear(2023);
