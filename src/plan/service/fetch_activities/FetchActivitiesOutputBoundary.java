@@ -5,7 +5,7 @@ import plan.entity.activity.Activity;
 import java.util.ArrayList;
 
 public interface FetchActivitiesOutputBoundary {
-    void prepareSuccessView(FetchActivitiesOutputData user);
+    void prepareSuccessView(FetchActivitiesOutputData activitiesOutputData);
 
     void prepareFailView(String error);
 }
