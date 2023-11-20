@@ -1,43 +1,72 @@
 package apis.weather;
-import java.io.BufferedReader;
+import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import plan.entity.day_info.Date;
+import plan.entity.day_info.DayInfo;
+import plan.entity.day_info.ToStringType;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.Objects;
 
 public class WeatherAPI {
-    public static void main(String[] args) {
-        try {
-            String apiKey = "9fdb34ff07b541a686873a61eb61c9b1";
+    public String rain;
+    public JSONObject weather;
 
-            // This sample API call returns the 48-hour forecast of the city Raleigh in North Carolina.
-            String apiUrl = "https://api.weatherbit.io/v2.0/forecast/hourly?city=Raleigh,NC&key=" + apiKey + "&hours=48";
+    // Must be within 14 days
+    public void updateWeather(Date dayInfo, Coordinate coordinate) throws IOException {
+        String apiUrl = getString(dayInfo, coordinate);
 
-            URL url = new URL(apiUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        Request request = new Request.Builder()
+                .url(apiUrl)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            assert response.body() != null;
 
-            connection.setRequestMethod("GET");
-
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                StringBuilder response = new StringBuilder();
-
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                System.out.println(response.toString());
+            JSONObject responseObject = new JSONObject(response);
+            JSONArray jsonArray = responseObject.getJSONArray("hourly");
+            JSONObject timeTempRain = null;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                timeTempRain = jsonArray.getJSONObject(i);
             }
-
-            connection.disconnect();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            weather = timeTempRain;
         }
+
+        setRain();
+
+    }
+
+    public void setRain() {
+        JSONArray rainArray = weather.getJSONArray("rain");
+        for (int i = 0; i < rainArray.length(); i++ ) {
+            float rainMeter = rainArray.getFloat(i);
+            if (2.5 >= rainMeter && rainMeter > 0) {
+                if (!Objects.equals(rain, "Moderate Rain") | !Objects.equals(rain, "Heavy Rain")) {
+                    rain = "Light Rain";
+                }
+            } else if (7.6 >= rainMeter && 2.5 > rainMeter) {
+                if (!Objects.equals(rain, "Heavy Rain")) {
+                    rain = "Moderate Rain";
+                }
+            } else if (rainMeter > 7.6) {
+                rain = "Heavy Rain";
+            }
+        }
+    }
+
+    @NotNull
+    private static String getString(DayInfo day, Coordinate coordinate) {
+        String coordinates = coordinate.getCoor();
+        int divider = coordinates.indexOf(',');
+        String longitude = coordinates.substring(0, divider);
+        String latitude = coordinates.substring(divider + 1);
+        String date = day.toString(ToStringType.WEATHER);
+
+        return "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
+                "&hourly=temperature_2m,rain&start_date=" + date + "&end_date=" + date;
     }
 }
 
