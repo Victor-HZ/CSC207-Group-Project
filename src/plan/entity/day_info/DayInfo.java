@@ -21,7 +21,7 @@ public interface DayInfo{
     void addMonths(Integer months);
     void addYears(Integer years);
 
-    LocalDateTime getDate();
+    ZonedDateTime getDate();
     Integer getYear();
     Integer getMonth();
     Integer getDayOfMonth();

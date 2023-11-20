@@ -15,33 +15,22 @@ import plan.entity.address.Address;
 import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
+import plan.entity.day_info.ToStringType;
 
 
 public class TicketmasterAPI implements ActivitiesFetchInterface {
 
-    private static final String API_TOKEN = "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL";
+    private static final String API_TOKEN = System.getenv("TICKETMASTER_API_TOKEN"); // "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL"
 
-    public static void main(String[] args) throws DateTimeException {
-        DayInfo day = new Date();
-        day.setYear(2023);
-        day.setMonth(11);
-        day.setDay(10);
-        day.setHour(15);
-//        getEvents("Toronto", new Date());
-    }
-
-    private static String dayTimeHelper(DayInfo date) {
-        return "2023-11-08T23:59:00Z";
-    }
-
+    @Override
     public ArrayList<Activity> getEvents(String city, DayInfo date) throws JSONException {
+        final String API_TOKEN = System.getenv("TICKETMASTER_API_TOKEN");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
-        Request request = new Request.Builder()
-                .url("https://app.ticketmaster.com/discovery/v2/events")
-                .addHeader("apikey", API_TOKEN)
-                .addHeader("startDateTime", date.toString())
-                .addHeader("countryCode", "CA")
-                .build();
+        HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
+                .addQueryParameter("apikey", API_TOKEN)
+                .addQueryParameter("startDateTime", date.toString(ToStringType.TICKETMASTER))
+                .addQueryParameter("countryCode", "CA");
+        Request request = new Request.Builder().url(httpBuilder.build()).build();
         try {
             Response response = client.newCall(request).execute();
             System.out.println(response);
@@ -62,7 +51,7 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         event.setAddress(address);
                         event.setDescription(membersArray.getJSONObject(i).getString("info"));
                         activities.add(event);
-                    } catch (Exception ignored){
+                    } catch (Exception ignored) {
 
                     }
                 }
