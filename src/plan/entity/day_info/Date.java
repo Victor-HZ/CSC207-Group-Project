@@ -4,13 +4,18 @@ import plan.entity.weather.Weather;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
 
 public class Date implements DayInfo {
-    private LocalDateTime time;
+    private ZonedDateTime time;
     private Weather weather;
 
     public Date(){
-        time = LocalDateTime.now();
+        time = ZonedDateTime.now();
+        time = time.withHour(0);
+        time = time.withMinute(0);
+        time = time.withSecond(0);
+        time = time.withNano(0);
     }
 
     @Override
@@ -23,7 +28,7 @@ public class Date implements DayInfo {
             case TICKETMASTER:
                 return this.toString();
             case WEATHER:
-                this.time.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                return this.time.format(DateTimeFormatter.ISO_LOCAL_DATE);
             default:
                 return this.toString();
         }
@@ -76,7 +81,7 @@ public class Date implements DayInfo {
     }
 
     @Override
-    public LocalDateTime getDate() {
+    public ZonedDateTime getDate() {
         return this.time;
     }
 
