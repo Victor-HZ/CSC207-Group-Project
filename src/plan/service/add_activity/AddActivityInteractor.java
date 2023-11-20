@@ -1,6 +1,7 @@
 package plan.service.add_activity;
 import plan.entity.activity.Activity;
 import plan.entity.plan.Plan;
+import plan.service.add_activity.interface_adapter.AddActivityPresenter;
 
 public class AddActivityInteractor implements AddActivityInputBoundary {
 
@@ -13,5 +14,12 @@ public class AddActivityInteractor implements AddActivityInputBoundary {
     public void execute(AddActivityInputData addActivityInputData) {
         Plan plan = addActivityInputData.getPlan();
         Activity activity = addActivityInputData.getActivity();
+
+        for (Activity this_activity : plan.getActivities()) {
+            if (this_activity.equals(activity)) {
+                System.out.println("This activity is already in your planner.");
+            }
+        }
+        plan.addActivity(activity);
     }
 }

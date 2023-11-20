@@ -4,9 +4,9 @@ import okhttp3.*;
 
 import java.io.IOException;
 
-public class Coordinate { //TODO noteL I'm not sure if this is another entity? If so probably you can create a separate entity folder under apis.
+public class Coordinate {
 
-    private static final String key = "MOQVblMcc434KJ1J8FdvXQ==Ayp3zVUoy5vC64XQ";
+    private static final String key = System.getenv("WEATHER_API_TOKEN");
     public String coordinate;
 
     public void updateCoor(Address address) throws IOException {
