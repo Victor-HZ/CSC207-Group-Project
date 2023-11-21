@@ -1,6 +1,5 @@
 package user.service.login.interface_adapter;
 
-import interface_adapter.*;
 import user.service.logged_in.interface_adaper.*;
 import user.service.login.*;
 import view.interface_adapter.ViewManagerModel;
