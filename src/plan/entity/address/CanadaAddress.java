@@ -1,5 +1,12 @@
 package plan.entity.address;
 
+import apis.weather.Coordinate;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 enum Province {
     ON,
     QC,
@@ -22,17 +29,20 @@ public class CanadaAddress implements Address{
     Province province;
     String country = "Canada";
 
-    public CanadaAddress(){
+    Double latitude;
+    Double longtitude;
 
-    }
+    public CanadaAddress(){}
 
-    CanadaAddress(String postCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country) throws InvalidProvinceException{
+    public CanadaAddress(String postCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country, Double longtitude, Double latitude) throws InvalidProvinceException{
         this.postCode = postCode;
         this.businessName = businessName;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.city = city;
         this.country = country;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
         boolean f = true;
         for(Province pro: Province.values()) {
             if (province.equalsIgnoreCase(pro.name())) {
@@ -68,6 +78,31 @@ public class CanadaAddress implements Address{
     @Override
     public String getCountry() {
         return country;
+    }
+
+    @Override
+    public Double getLongtitude() {
+        return longtitude;
+    }
+
+    @Override
+    public String getCoordinates() {
+        return latitude.toString() + ',' + longtitude.toString();
+    }
+
+    @Override
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    @Override
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    @Override
+    public void setLongtitude(Double longtitude) {
+        this.longtitude = longtitude;
     }
 
     @Override
@@ -112,6 +147,15 @@ public class CanadaAddress implements Address{
     }
 
     @Override
+    public void updateCoordinates() throws IOException {
+        Coordinate coordinate = new Coordinate();
+        HashMap<String,Double> result = coordinate.updateCoordinates(this);
+        this.longtitude = result.get("Longtitude");
+        this.longtitude = result.get("Latitude");
+    }
+
+
+    @Override
     public boolean equals(Address other) {
         return this.country.equals(other.getCountry()) &&
                 this.city.equals(other.getCity()) &&
@@ -119,7 +163,9 @@ public class CanadaAddress implements Address{
                 this.streetName.equals(other.getStreetName()) &&
                 this.businessName.equals(other.getBusinessName()) &&
                 this.postCode.equals(other.getPostCode()) &&
-                this.province.name().equals(other.getProvince());
+                this.province.name().equals(other.getProvince()) &&
+                this.latitude.equals(other.getLatitude()) &&
+                this.longtitude.equals(other.getLongtitude());
     }
 
 //    public String getString(){
