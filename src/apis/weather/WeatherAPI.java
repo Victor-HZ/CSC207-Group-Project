@@ -3,6 +3,7 @@ import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import plan.entity.address.Address;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
@@ -15,11 +16,16 @@ public class WeatherAPI {
     public JSONObject weather;
 
     // Must be within 14 days
-    public void updateWeather(Date dayInfo, Coordinate coordinate) throws IOException {
-        String apiUrl = getString(dayInfo, coordinate);
+    public void updateWeather(Date day, Address address) throws IOException {
+        String coordinates = address.getCoordinates();
+        int divider = coordinates.indexOf(',');
+        String longitude = coordinates.substring(0, divider);
+        String latitude = coordinates.substring(divider + 1);
+        String date = day.toString(ToStringType.WEATHER);
+        String apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
+                "&hourly=temperature_2m,rain&start_date=" + date + "&end_date=" + date;
 
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url(apiUrl)
                 .build();
@@ -55,18 +61,6 @@ public class WeatherAPI {
                 rain = "Heavy Rain";
             }
         }
-    }
-
-    @NotNull
-    private static String getString(DayInfo day, Coordinate coordinate) {
-        String coordinates = coordinate.getCoor();
-        int divider = coordinates.indexOf(',');
-        String longitude = coordinates.substring(0, divider);
-        String latitude = coordinates.substring(divider + 1);
-        String date = day.toString(ToStringType.WEATHER);
-
-        return "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
-                "&hourly=temperature_2m,rain&start_date=" + date + "&end_date=" + date;
     }
 }
 
