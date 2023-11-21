@@ -3,6 +3,7 @@ import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import plan.entity.address.Address;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
@@ -15,11 +16,17 @@ public class WeatherAPI {
     public JSONObject weather;
 
     // Must be within 14 days
-    public void updateWeather(Date dayInfo, Coordinate coordinate) throws IOException {
-        String apiUrl = getString(dayInfo, coordinate);
-
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
+    public void updateWeather(Date day, Address address) throws IOException {
+        //initialize the url
+        String coordinates = address.getCoordinates();
+        Integer divider = coordinates.indexOf(',');
+        String longitude = coordinates.substring(0, divider);
+        String latitude = coordinates.substring(divider + 1);
+        String date = day.toString(ToStringType.WEATHER);
+        String apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
+                "&hourly=temperature_2m,rain&start_date=" + date + "&end_date=" + date;
+        //url call
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url(apiUrl)
                 .build();
@@ -39,7 +46,7 @@ public class WeatherAPI {
 
     }
 
-    public void setRain() {
+    public void setRain() { // will this method be called individually? Otherwise could be included in the updateWeather.
         JSONArray rainArray = weather.getJSONArray("rain");
         for (int i = 0; i < rainArray.length(); i++ ) {
             float rainMeter = rainArray.getFloat(i);
@@ -55,18 +62,6 @@ public class WeatherAPI {
                 rain = "Heavy Rain";
             }
         }
-    }
-
-    @NotNull
-    private static String getString(DayInfo day, Coordinate coordinate) {
-        String coordinates = coordinate.getCoor();
-        int divider = coordinates.indexOf(',');
-        String longitude = coordinates.substring(0, divider);
-        String latitude = coordinates.substring(divider + 1);
-        String date = day.toString(ToStringType.WEATHER);
-
-        return "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
-                "&hourly=temperature_2m,rain&start_date=" + date + "&end_date=" + date;
     }
 }
 

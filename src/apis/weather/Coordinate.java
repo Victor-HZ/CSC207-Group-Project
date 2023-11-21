@@ -3,13 +3,14 @@ import plan.entity.address.Address;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Coordinate {
-
     private static final String key = System.getenv("WEATHER_API_TOKEN");
-    public String coordinate;
 
-    public void updateCoor(Address address) throws IOException {
+    public HashMap<String, Double> updateCoordinates(Address address) throws IOException{
         String city = address.getCity();
         String country = address.getCountry();
 
@@ -26,15 +27,14 @@ public class Coordinate {
         try (Response response = client.newCall(request).execute()) {
             assert response.body() != null;
             String temp = response.body().string();
+            HashMap<String,Double> result = new HashMap();
             int latStart = temp.indexOf("latitude") + 11;
             int latEnd = latStart + 7;
             int longStart = temp.indexOf("longitude") + 12;
             int longEnd = longStart + 7;
-            coordinate = temp.substring(latStart, latEnd) + "," + temp.substring(longStart, longEnd);
+            result.put("Latitude", Double.parseDouble(temp.substring(latStart, latEnd)));
+            result.put("Longtitude", Double.parseDouble(temp.substring(longStart, longEnd)));
+            return result;
         }
-    }
-
-    public String getCoor() {
-        return coordinate;
     }
 }
