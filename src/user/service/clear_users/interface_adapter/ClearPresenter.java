@@ -1,7 +1,7 @@
 package user.service.clear_users.interface_adapter;
 
 
-import interface_adapter.ViewManagerModel;
+import view.interface_adapter.ViewManagerModel;
 import user.service.clear_users.ClearOutputBoundary;
 import user.service.clear_users.ClearOutputData;
 

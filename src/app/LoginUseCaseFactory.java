@@ -1,6 +1,6 @@
 package app;
 
-import interface_adapter.ViewManagerModel;
+import view.interface_adapter.ViewManagerModel;
 import user.entity.CommonUserFactory;
 import user.entity.UserFactory;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
@@ -12,7 +12,6 @@ import user.service.login.interface_adapter.LoginController;
 import user.service.login.interface_adapter.LoginPresenter;
 import user.service.login.interface_adapter.LoginViewModel;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class LoginUseCaseFactory {
