@@ -12,9 +12,13 @@ public class SignupViewModel extends ViewModel {
     public static final String USERNAME_LABEL = "Choose username";
     public static final String PASSWORD_LABEL = "Choose password";
     public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
+    public static final String TICKETMAST_API_TOKEN_LABEL = "Enter Ticketmaster API Token";
+    public static final String TRIPADVISOR_API_TOKEN_LABEL = "Enter Trip Advisor API Token";
+    public static final String COORDINATE_API_TOKEN_LABEL = "Enter Coordinate API Token";
 
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
+    public static final String LOAD_FROM_ENVIRONMENT = "Load from environment";
 
     private SignupState state = new SignupState();
 
