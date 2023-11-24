@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="continue working on the plan interface.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grade-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/DatePlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan/entity/plan/Plan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +40,7 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2XAj5xJPqsSila2YeL1xk1WgpJ9" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -61,7 +64,7 @@
     "project.structure.side.proportion": "0.16920471",
     "vue.rearranger.settings.migration": "true"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\starw\IdeaProjects\CSC207-Group-Project\src\Activity Files" />
@@ -85,6 +88,9 @@
       </method>
     </configuration>
     <configuration name="ticketmaster" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="WEATHER_API_TOKEN" value="MOQVblMcc434KJ1J8FdvXQ==Ayp3zVUoy5vC64XQ" />
+      </envs>
       <option name="MAIN_CLASS_NAME" value="apis.ticketmaster" />
       <module name="grade-api" />
       <extension name="coverage">
@@ -122,6 +128,9 @@
       <workItem from="1699567260378" duration="556000" />
       <workItem from="1699842807978" duration="4067000" />
       <workItem from="1699896917883" duration="717000" />
+      <workItem from="1700499728776" duration="395000" />
+      <workItem from="1700500213361" duration="15000" />
+      <workItem from="1700500234697" duration="1573000" />
     </task>
     <task id="LOCAL-00001" summary="implemented the FetchActivitiesInteractor. Primarily finished this use case. Wait for the future apis.">
       <option name="closed" value="true" />
@@ -163,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699896715236</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated to restructure files">
+      <option name="closed" value="true" />
+      <created>1700499658269</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700499658269</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +193,8 @@
     <MESSAGE value="include equals method for entity interfaces" />
     <MESSAGE value="deleted Calendar.java which is no longer useful." />
     <MESSAGE value="continue working on the plan interface." />
-    <option name="LAST_COMMIT_MESSAGE" value="continue working on the plan interface." />
+    <MESSAGE value="Updated to restructure files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to restructure files" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
