@@ -29,6 +29,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         headers.put("username", 0);
         headers.put("password", 1);
         headers.put("creation_time", 2);
+        int i = 3;
+        for(User.API_TOKEN apiToken: User.API_TOKEN.values()){
+            headers.put(apiToken.name(), i);
+            i ++;
+        }
 
         if (csvFile.length() == 0) {
             save();
@@ -79,6 +84,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             for (User user : accounts.values()) {
                 String line = String.format("%s,%s,%s",
                         user.getName(), user.getPassword(), user.getCreationTime());
+                String apiTokens = "";
+                for (User.API_TOKEN apiToken : User.API_TOKEN.values()){
+                    apiTokens = apiTokens.concat(user.getAPIToken(apiToken).concat(","));
+                }
+                line = line.concat(",".concat(apiTokens));
                 writer.write(line);
                 writer.newLine();
             }
