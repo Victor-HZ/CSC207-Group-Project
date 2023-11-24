@@ -1,7 +1,7 @@
 package plan.service.add_activity;
 
 public interface AddActivityOutputBoundary {
-    void prepareSuccessView(AddActivityOutputData plan);
+    void prepareSuccessView();
 
     void prepareFailView(String error);
 }

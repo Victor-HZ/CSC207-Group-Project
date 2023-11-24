@@ -5,10 +5,10 @@ import plan.service.add_activity.interface_adapter.AddActivityPresenter;
 
 public class AddActivityInteractor implements AddActivityInputBoundary {
 
-    private final AddActivityOutputBoundary addActivityOutputBoundary;
+    private final AddActivityOutputBoundary addActivityPresenter;
 
     public AddActivityInteractor (AddActivityOutputBoundary addActivityOutputBoundary) {
-        this.addActivityOutputBoundary = addActivityOutputBoundary;
+        this.addActivityPresenter = addActivityOutputBoundary;
     }
     @Override
     public void execute(AddActivityInputData addActivityInputData) {
@@ -17,9 +17,10 @@ public class AddActivityInteractor implements AddActivityInputBoundary {
 
         for (Activity this_activity : plan.getActivities()) {
             if (this_activity.equals(activity)) {
-                System.out.println("This activity is already in your planner.");
+                addActivityPresenter.prepareFailView("This activity is already in your planner.");
             }
         }
         plan.addActivity(activity);
+        addActivityPresenter.prepareSuccessView();
     }
 }
