@@ -1,12 +1,9 @@
 package view;
 
-import interface_adapter.clear_users.ClearController;
-import interface_adapter.clear_users.ClearState;
-import interface_adapter.clear_users.ClearViewModel;
-import interface_adapter.signup.SignupController;
-import interface_adapter.signup.SignupState;
-import interface_adapter.signup.SignupViewModel;
-import use_case.clear_users.ClearInteractor;
+import user.service.clear_users.interface_adapter.ClearController;
+import user.service.clear_users.interface_adapter.ClearState;
+import user.service.clear_users.interface_adapter.ClearViewModel;
+import user.service.signup.interface_adapter.*;
 
 import javax.swing.*;
 import java.awt.*;

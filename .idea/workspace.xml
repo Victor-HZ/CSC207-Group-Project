@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="Refactor the view model interfaces.">
-      <change afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
+    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="implements the api token into user sign up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/CommonUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/entity/CommonUserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/CommonUserFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/entity/UserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/UserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/LoggedInView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoggedInView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ViewManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ViewManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +180,7 @@
       <workItem from="1700496563008" duration="24000" />
       <workItem from="1700496598660" duration="7407000" />
       <workItem from="1700593606144" duration="5150000" />
-      <workItem from="1700842385103" duration="1370000" />
+      <workItem from="1700842385103" duration="3291000" />
     </task>
     <task id="LOCAL-00001" summary="implemented the FetchActivitiesInteractor. Primarily finished this use case. Wait for the future apis.">
       <option name="closed" value="true" />
@@ -399,7 +398,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700607509074</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="implements the api token into user system">
+      <option name="closed" value="true" />
+      <created>1700843997948</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1700843997948</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implements the api token into user sign up">
+      <option name="closed" value="true" />
+      <created>1700844396898</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1700844396898</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +443,9 @@
     <MESSAGE value="Streamlined the structure. Removed the unnecessary helper function." />
     <MESSAGE value="Updated the Address entity to implement the coordinates system. Streamlined the Coordinate.java to only focus on the api call." />
     <MESSAGE value="Refactor the view model interfaces." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor the view model interfaces." />
+    <MESSAGE value="implements the api token into user system" />
+    <MESSAGE value="implements the api token into user sign up" />
+    <option name="LAST_COMMIT_MESSAGE" value="implements the api token into user sign up" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
