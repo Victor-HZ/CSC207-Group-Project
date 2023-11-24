@@ -1,5 +1,6 @@
 package app;
 
+import view.SignupView;
 import view.interface_adapter.ViewManagerModel;
 import user.entity.CommonUserFactory;
 import user.entity.UserFactory;
@@ -19,6 +20,7 @@ import user.service.signup.interface_adapter.SignupController;
 import user.service.signup.interface_adapter.SignupPresenter;
 import user.service.signup.interface_adapter.SignupViewModel;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class SignupUseCaseFactory {
@@ -26,19 +28,19 @@ public class SignupUseCaseFactory {
     /** Prevent instantiation. */
     private SignupUseCaseFactory() {}
 
-//    public static SignupView create(
-//            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, SignupUserDataAccessInterface signupUserDataAccessObject, ClearUserDataAccessInterface clearUserDataAccessInterface, ClearViewModel clearViewModel) {
-//
-//        try {
-//            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, signupUserDataAccessObject);
-//            ClearController clearController = createClearUseCase(clearViewModel, viewManagerModel, clearUserDataAccessInterface);
-//            return new SignupView(signupController, signupViewModel, clearController, clearViewModel);
-//        } catch (IOException e) {
-//            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-//        }
-//
-//        return null;
-//    }
+    public static SignupView create(
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, SignupUserDataAccessInterface signupUserDataAccessObject, ClearUserDataAccessInterface clearUserDataAccessInterface, ClearViewModel clearViewModel) {
+
+        try {
+            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, signupUserDataAccessObject);
+            ClearController clearController = createClearUseCase(clearViewModel, viewManagerModel, clearUserDataAccessInterface);
+            return new SignupView(signupController, signupViewModel, clearController, clearViewModel);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Could not open user data file.");
+        }
+
+        return null;
+    }
 
     private static SignupController createUserSignupUseCase(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel, SignupUserDataAccessInterface userDataAccessObject) throws IOException {
 
