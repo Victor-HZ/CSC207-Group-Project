@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="Updated the Address entity to implement the coordinates system. Streamlined the Coordinate.java to only focus on the api call.">
+    <list default="true" id="9ccd7d19-da44-4757-a50e-5821a71ac31e" name="Changes" comment="Refactor the view model interfaces.">
       <change afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grade-api.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/LoginUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/SignupUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/SignupUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/ViewManagerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/interface_adapter/ViewManagerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interface_adapter/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/interface_adapter/ViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/clear_users/interface_adapter/ClearPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/clear_users/interface_adapter/ClearPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/clear_users/interface_adapter/ClearViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/clear_users/interface_adapter/ClearViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/logged_in/interface_adaper/LoggedInViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/logged_in/interface_adaper/LoggedInViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/login/interface_adapter/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/login/interface_adapter/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/login/interface_adapter/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/login/interface_adapter/LoginViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/signup/interface_adapter/SignupPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/signup/interface_adapter/SignupPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/service/signup/interface_adapter/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/service/signup/interface_adapter/SignupViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/apis/ticketmaster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/apis/weather.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/CommonUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/entity/CommonUserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/CommonUserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user/entity/UserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/entity/UserFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Coordinates&amp;TripAdviosrAPIs" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,9 +52,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "user",
     "jdk.selected.JAVA_MODULE": "openjdk-20",
     "last_directory_selection": "/Users/heyaozhang/Documents/Education/University of Toronto/CSC207/Group-Project/src",
     "node.js.detected.package.eslint": "true",
@@ -192,7 +180,8 @@
       <workItem from="1699904221596" duration="4938000" />
       <workItem from="1700496563008" duration="24000" />
       <workItem from="1700496598660" duration="7407000" />
-      <workItem from="1700593606144" duration="4320000" />
+      <workItem from="1700593606144" duration="5150000" />
+      <workItem from="1700842385103" duration="1370000" />
     </task>
     <task id="LOCAL-00001" summary="implemented the FetchActivitiesInteractor. Primarily finished this use case. Wait for the future apis.">
       <option name="closed" value="true" />
@@ -394,7 +383,23 @@
       <option name="project" value="LOCAL" />
       <updated>1700607111820</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Refactor the view model interfaces.">
+      <option name="closed" value="true" />
+      <created>1700607441541</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1700607441541</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Refactor the view model interfaces.">
+      <option name="closed" value="true" />
+      <created>1700607509074</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1700607509074</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +427,8 @@
     <MESSAGE value="Include TripAdvisorAPI." />
     <MESSAGE value="Streamlined the structure. Removed the unnecessary helper function." />
     <MESSAGE value="Updated the Address entity to implement the coordinates system. Streamlined the Coordinate.java to only focus on the api call." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the Address entity to implement the coordinates system. Streamlined the Coordinate.java to only focus on the api call." />
+    <MESSAGE value="Refactor the view model interfaces." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor the view model interfaces." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
