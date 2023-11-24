@@ -1,5 +1,6 @@
 package view;
 
+import user.entity.User;
 import user.service.clear_users.interface_adapter.ClearController;
 import user.service.clear_users.interface_adapter.ClearState;
 import user.service.clear_users.interface_adapter.ClearViewModel;
@@ -11,8 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.PathIterator;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashMap;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "sign up";
@@ -74,11 +77,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         loadFromEnv = new JButton(SignupViewModel.LOAD_FROM_ENVIRONMENT);
         buttons.add(loadFromEnv);
 
-
-
-        // TODO Note: the following line instantiates the "clear" button; it uses
-        //      a CLEAR_BUTTON_LABEL constant which is defined in the SignupViewModel class.
-        //      You need to add this "clear" button to the "buttons" panel.
         clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
         buttons.add(clear);
 
@@ -100,9 +98,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        // TODO Add the body to the actionPerformed method of the action listener below
-        //      for the "clear" button. You'll need to write the signupController before
-        //      you can complete this.
         clear.addActionListener(
                 new ActionListener() {
                     @Override
@@ -125,13 +120,25 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if (e.getSource().equals(clear)){
-                            ticketMasterAPITokenInputField.setText(System.getenv("TICKETMAST_API_TOKEN"));
-                            tripAdvisorAPITokenInputField.setText(System.getenv("TRIPADVISOR_API_TOKWN"));
+                        if (e.getSource().equals(loadFromEnv)){
+                            System.out.println("loadFromEnv clicked");
+                            ticketMasterAPITokenInputField.setText(System.getenv("TICKETMASTER_API_TOKEN"));
+                            tripAdvisorAPITokenInputField.setText(System.getenv("TRIPADVISOR_API_TOKEN"));
                             coordinateAPITokenInputField.setText(System.getenv("COORDINATE_API_TOKEN"));
                             usernameInputField.setText(System.getenv("NAME"));
                             passwordInputField.setText(System.getenv("PASSWORD"));
-                            repeatPasswordInputField.setText(System.getenv("REPEATPASSWORD"));
+                            repeatPasswordInputField.setText(System.getenv("REPEAT_PASSWORD"));
+                            SignupState currentState = signupViewModel.getState();
+                            currentState.setUsername(usernameInputField.getText());
+                            currentState.setPassword(passwordInputField.getText());
+                            currentState.setRepeatPassword(repeatPasswordInputField.getText());
+
+                            HashMap<User.API_TOKEN, String> apiTokens = new HashMap<>();
+                            apiTokens.put(User.API_TOKEN.Ticketmaster, ticketMasterAPITokenInputField.getText());
+                            apiTokens.put(User.API_TOKEN.TripAdvisor,tripAdvisorAPITokenInputField.getText());
+                            apiTokens.put(User.API_TOKEN.Coordinate, coordinateAPITokenInputField.getText());
+
+                            currentState.setApiTokens(apiTokens);
                         }
                     }
                 }
@@ -204,12 +211,75 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
+        ticketMasterAPITokenInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState currentState = signupViewModel.getState();
+                        currentState.setRepeatPassword(ticketMasterAPITokenInputField.getText() + e.getKeyChar());
+                        signupViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+
+                    }
+                });
+
+        tripAdvisorAPITokenInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState currentState = signupViewModel.getState();
+                        currentState.setRepeatPassword(tripAdvisorAPITokenInputField.getText() + e.getKeyChar());
+                        signupViewModel.setState(currentState);
+                    }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        coordinateAPITokenInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState currentState = signupViewModel.getState();
+                        currentState.setRepeatPassword(coordinateAPITokenInputField.getText() + e.getKeyChar());
+                        signupViewModel.setState(currentState);
+                    }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
+        this.add(ticketMasterAPITokenInfo);
+        this.add(tripAdvisorAPITokenInfo);
+        this.add(coordinateAPITokenInfo);
         this.add(buttons);
     }
 

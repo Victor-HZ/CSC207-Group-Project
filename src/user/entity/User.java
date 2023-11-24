@@ -6,7 +6,7 @@ public interface User {
 
     enum API_TOKEN{
     Ticketmaster,
-    Weather,
+    Coordinate,
     TripAdvisor;
     }
 
