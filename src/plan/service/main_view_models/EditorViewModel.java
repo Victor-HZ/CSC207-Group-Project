@@ -1,11 +1,11 @@
-package plan.service.fetch_activities.interface_adapter;
+package plan.service.main_view_models;
 
 import view.interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 
-public class FetchActivitiesViewModel extends ViewModel {
-    public FetchActivitiesViewModel(String viewName) {
+public class EditorViewModel extends ViewModel {
+    public EditorViewModel(String viewName) {
         super(viewName);
     }
 
