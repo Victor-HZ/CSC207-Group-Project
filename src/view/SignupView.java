@@ -23,12 +23,18 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
     private final SignupController signupController;
 
+    private final JPasswordField ticketMasterAPITokenInputField = new JPasswordField(15);
+    private final JPasswordField tripAdvisorAPITokenInputField = new JPasswordField(15);
+    private final JPasswordField coordinateAPITokenInputField = new JPasswordField(15);
+
     private final ClearViewModel clearViewModel;
     private final ClearController clearController;
 
 
     private final JButton signUp;
     private final JButton cancel;
+
+    private final JButton loadFromEnv;
 
     // TODO Note: this is the new JButton for clearing the users file
     private final JButton clear;
@@ -51,11 +57,24 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
+        LabelTextPanel ticketMasterAPITokenInfo = new LabelTextPanel(
+                new JLabel(SignupViewModel.TICKETMAST_API_TOKEN_LABEL), ticketMasterAPITokenInputField);
+        LabelTextPanel tripAdvisorAPITokenInfo = new LabelTextPanel(
+                new JLabel(SignupViewModel.TRIPADVISOR_API_TOKEN_LABEL), tripAdvisorAPITokenInputField);
+        LabelTextPanel coordinateAPITokenInfo = new LabelTextPanel(
+                new JLabel(SignupViewModel.COORDINATE_API_TOKEN_LABEL), coordinateAPITokenInputField);
+
+
         JPanel buttons = new JPanel();
         signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
         cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
+
+        loadFromEnv = new JButton(SignupViewModel.LOAD_FROM_ENVIRONMENT);
+        buttons.add(loadFromEnv);
+
+
 
         // TODO Note: the following line instantiates the "clear" button; it uses
         //      a CLEAR_BUTTON_LABEL constant which is defined in the SignupViewModel class.
@@ -73,7 +92,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                             SignupView.this.signupController.execute(
                                     currentState.getUsername(),
                                     currentState.getPassword(),
-                                    currentState.getRepeatPassword()
+                                    currentState.getRepeatPassword(),
+                                    currentState.getApiTokens()
                             );
                         }
                     }
@@ -97,6 +117,22 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                             JOptionPane.showMessageDialog(null, message);
                         }
 
+                    }
+                }
+        );
+
+        loadFromEnv.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(clear)){
+                            ticketMasterAPITokenInputField.setText(System.getenv("TICKETMAST_API_TOKEN"));
+                            tripAdvisorAPITokenInputField.setText(System.getenv("TRIPADVISOR_API_TOKWN"));
+                            coordinateAPITokenInputField.setText(System.getenv("COORDINATE_API_TOKEN"));
+                            usernameInputField.setText(System.getenv("NAME"));
+                            passwordInputField.setText(System.getenv("PASSWORD"));
+                            repeatPasswordInputField.setText(System.getenv("REPEATPASSWORD"));
+                        }
                     }
                 }
         );

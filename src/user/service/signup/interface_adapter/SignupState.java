@@ -1,5 +1,10 @@
 package user.service.signup.interface_adapter;
 
+import user.entity.User;
+
+import java.util.HashMap;
+import java.util.SortedMap;
+
 public class SignupState {
     private String username = "";
     private String usernameError = null;
@@ -8,6 +13,8 @@ public class SignupState {
     private String repeatPassword = "";
     private String repeatPasswordError = null;
 
+    private HashMap<User.API_TOKEN, String> apiTokens = null;
+
     public SignupState(SignupState copy) {
         username = copy.username;
         usernameError = copy.usernameError;
@@ -15,6 +22,7 @@ public class SignupState {
         passwordError = copy.passwordError;
         repeatPassword = copy.repeatPassword;
         repeatPasswordError = copy.repeatPasswordError;
+        apiTokens = copy.apiTokens;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -67,6 +75,22 @@ public class SignupState {
 
     public void setRepeatPasswordError(String repeatPasswordError) {
         this.repeatPasswordError = repeatPasswordError;
+    }
+
+    public void addAPIToken(User.API_TOKEN apiTokenName, String apiToken){
+        this.apiTokens.put(apiTokenName, apiToken);
+    }
+
+    public void setApiTokens(HashMap<User.API_TOKEN, String> apiTokens){
+        this.apiTokens = apiTokens;
+    }
+
+    public String getApiToken(User.API_TOKEN apiTokenName){
+        return apiTokens.get(apiTokenName);
+    }
+
+    public HashMap<User.API_TOKEN, String> getApiTokens(){
+        return apiTokens;
     }
 
     @Override
