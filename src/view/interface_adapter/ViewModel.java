@@ -4,13 +4,13 @@ import java.beans.PropertyChangeListener;
 
 public abstract class ViewModel {
 
-    private String viewName;
+    private static String viewName;
 
     public ViewModel(String viewName) {
         this.viewName = viewName;
     }
-    public String getViewName() {
-        return this.viewName;
+    public static String getViewName() {
+        return viewName;
     }
 
     public abstract void firePropertyChanged();
