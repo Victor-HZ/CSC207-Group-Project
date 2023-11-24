@@ -46,8 +46,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
                     String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
+                    HashMap<User.API_TOKEN, String> apiTokenResults = new HashMap<>();
+                    for (User.API_TOKEN apiToken:User.API_TOKEN.values()){
+                        apiTokenResults.put(apiToken, String.valueOf(col[headers.get(apiToken.name())]));
+                    }
                     LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
-                    User user = userFactory.create(username, password, ldt);
+                    User user = userFactory.create(username, password, ldt, apiTokenResults);
                     accounts.put(username, user);
                 }
             }
