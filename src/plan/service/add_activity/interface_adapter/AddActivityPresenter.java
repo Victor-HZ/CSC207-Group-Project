@@ -19,7 +19,14 @@ public class AddActivityPresenter implements AddActivityOutputBoundary {
     }
     @Override
     public void prepareSuccessView() {
+        // on success, switch back to plan editor view!
+        LoggedInState loggedInState = loggedInViewModel.getState();
+        loggedInState.setUsername(response.getUsername());
+        this.loggedInViewModel.setState(loggedInState);
+        this.loggedInViewModel.firePropertyChanged();
 
+        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
