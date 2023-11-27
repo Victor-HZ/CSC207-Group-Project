@@ -20,6 +20,13 @@ public class LoginViewModel extends ViewModel {
         super("log in");
     }
 
+    private static final String thisViewName = "log in";
+
+    @Override
+    public String getViewName() {
+        return thisViewName;
+    }
+
     public void setState(LoginState state) {
         this.state = state;
     }

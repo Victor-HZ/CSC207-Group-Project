@@ -13,6 +13,13 @@ public class StartUpViewModel extends ViewModel {
     public StartUpViewModel() {
         super("planner startup");
     }
+
+    private static final String thisViewName = "planner startup";
+
+    @Override
+    public String getViewName() {
+        return thisViewName;
+    }
     public void setState(StartUpState state) {
         this.state = state;
     }

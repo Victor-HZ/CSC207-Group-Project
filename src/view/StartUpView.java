@@ -59,16 +59,23 @@ public class StartUpView extends JPanel implements ActionListener, PropertyChang
         login.addActionListener(
                 new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
-                        LoginState loginState = loginViewModel.getState();
-                        loginViewModel.setState(loginState);
-                        loginViewModel.firePropertyChanged();
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(login)) {
+                            LoginState loginState = loginViewModel.getState();
+                            loginViewModel.setState(loginState);
+                            loginViewModel.firePropertyChanged();
 
-                        viewManagerModel.setActiveView(loginViewModel.getViewName());
-                        viewManagerModel.firePropertyChanged();
+                            viewManagerModel.setActiveView(loginViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
+                        }
                     }
                 }
         );
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        this.add(title);
+        this.add(buttons);
     }
 
     @Override
