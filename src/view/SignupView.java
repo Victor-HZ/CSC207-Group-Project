@@ -1,5 +1,6 @@
 package view;
 
+import plan.service.main_view_models.EditorState;
 import user.entity.User;
 import user.service.clear_users.interface_adapter.ClearController;
 import user.service.clear_users.interface_adapter.ClearState;
@@ -144,7 +145,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        cancel.addActionListener(this);
+        cancel.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(cancel)) {
+                            System.exit(0);
+                        }
+                    }
+                }
+        );
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.
