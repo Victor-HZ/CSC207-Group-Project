@@ -1,15 +1,13 @@
 package app;
 
+import plan.service.main_view_models.StartUpViewModel;
 import user.data_access.FileUserDataAccessObject;
 import user.entity.CommonUserFactory;
 import user.service.clear_users.interface_adapter.ClearViewModel;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
 import user.service.login.interface_adapter.LoginViewModel;
 import user.service.signup.interface_adapter.SignupViewModel;
-import view.LoggedInView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import view.*;
 import view.interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
@@ -39,6 +37,7 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
+        StartUpViewModel startupViewModel = new StartUpViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -51,6 +50,9 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        StartUpView startupView = new StartUpView(startupViewModel);
+        views.add(startupView, startupView.viewName);
+
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, userDataAccessObject, clearViewModel);
         views.add(signupView, signupView.viewName);
 
@@ -60,7 +62,7 @@ public class Main {
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName);
 
-        viewManagerModel.setActiveView(signupView.viewName);
+        viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
