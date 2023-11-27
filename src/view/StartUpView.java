@@ -1,11 +1,11 @@
 package view;
 
 import plan.service.main_view_models.StartUpViewModel;
-import user.service.login.interface_adapter.LoginController;
+import user.service.login.interface_adapter.LoginState;
 import user.service.login.interface_adapter.LoginViewModel;
-import user.service.signup.interface_adapter.SignupController;
 import user.service.signup.interface_adapter.SignupState;
 import user.service.signup.interface_adapter.SignupViewModel;
+import view.interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,21 +16,28 @@ import java.beans.PropertyChangeListener;
 
 public class StartUpView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "planner startup";
+    private final ViewManagerModel viewManagerModel;
     private final StartUpViewModel startupViewModel;
+    private final LoginViewModel loginViewModel;
+    private final SignupViewModel signupViewModel;
 
     private final JButton signUp;
     private final JButton login;
 
-    public StartUpView(StartUpViewModel startupViewModel) {
-        this.startupViewModel = startupViewModel;
+    public StartUpView(ViewManagerModel vmModel, StartUpViewModel suViewModel,
+                       LoginViewModel logViewModel, SignupViewModel sigViewModel) {
+        this.viewManagerModel = vmModel;
+        this.startupViewModel = suViewModel;
+        this.loginViewModel = logViewModel;
+        this.signupViewModel = sigViewModel;
 
-        JLabel title = new JLabel(StartUpViewModel.TITLE_LABEL);
+        JLabel title = new JLabel(startupViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel buttons = new JPanel();
-        login = new JButton(StartUpViewModel.LOGIN_BUTTON_LABEL);
+        login = new JButton(startupViewModel.LOGIN_BUTTON_LABEL);
         buttons.add(login);
-        signUp = new JButton(StartUpViewModel.SIGNUP_BUTTON_LABEL);
+        signUp = new JButton(startupViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
 
         signUp.addActionListener(
@@ -38,7 +45,12 @@ public class StartUpView extends JPanel implements ActionListener, PropertyChang
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(signUp)) {
+                            SignupState signupState = signupViewModel.getState();
+                            signupViewModel.setState(signupState);
+                            signupViewModel.firePropertyChanged();
 
+                            viewManagerModel.setActiveView(signupViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
                         }
                     }
                 }
@@ -48,7 +60,12 @@ public class StartUpView extends JPanel implements ActionListener, PropertyChang
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        LoginState loginState = loginViewModel.getState();
+                        loginViewModel.setState(loginState);
+                        loginViewModel.firePropertyChanged();
 
+                        viewManagerModel.setActiveView(loginViewModel.getViewName());
+                        viewManagerModel.firePropertyChanged();
                     }
                 }
         );
@@ -56,7 +73,7 @@ public class StartUpView extends JPanel implements ActionListener, PropertyChang
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        System.out.println("Click " + e.getActionCommand());
     }
 
     @Override

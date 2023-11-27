@@ -50,7 +50,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        StartUpView startupView = new StartUpView(startupViewModel);
+        StartUpView startupView = new StartUpView(viewManagerModel, startupViewModel, loginViewModel, signupViewModel);
         views.add(startupView, startupView.viewName);
 
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, userDataAccessObject, clearViewModel);
