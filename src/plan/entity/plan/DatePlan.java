@@ -24,8 +24,8 @@ public class DatePlan implements Plan{
     }
 
     @Override
-    public boolean deleteActivity(Activity activity) {
-        return activites.remove(activity);
+    public void deleteActivity(Activity activity) {
+        activites.remove(activity);
     }
 
     @Override
