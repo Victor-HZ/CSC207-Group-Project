@@ -16,6 +16,11 @@ public class LoggedInViewModel extends ViewModel {
     public LoggedInViewModel() {
         super("logged in");
     }
+    private static final String thisViewName = "logged in";
+    @Override
+    public String getViewName() {
+        return thisViewName;
+    }
 
     public void setState(LoggedInState state) {
         this.state = state;

@@ -1,6 +1,9 @@
 package view;
 
+import plan.service.main_view_models.StartUpState;
+import plan.service.main_view_models.StartUpViewModel;
 import user.service.logged_in.interface_adaper.*;
+import view.interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +16,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     public final String viewName = "logged in";
     private final LoggedInViewModel loggedInViewModel;
+    private final ViewManagerModel viewManagerModel;
+    private final StartUpViewModel startupViewModel;
 
     JLabel username;
 
@@ -21,9 +26,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     /**
      * A window with a title and a JButton.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, ViewManagerModel vMM, StartUpViewModel suVM) {
         this.loggedInViewModel = loggedInViewModel;
         this.loggedInViewModel.addPropertyChangeListener(this);
+        this.viewManagerModel = vMM;
+        this.startupViewModel = suVM;
 
         JLabel title = new JLabel("Logged In Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -35,10 +42,23 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         logOut = new JButton(loggedInViewModel.LOGOUT_BUTTON_LABEL);
         buttons.add(logOut);
 
-        logOut.addActionListener(this);
+        logOut.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(logOut)) {
+                            StartUpState startupState = startupViewModel.getState();
+                            startupViewModel.setState(startupState);
+                            startupViewModel.firePropertyChanged();
+
+                            viewManagerModel.setActiveView(startupViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
+                        }
+                    }
+                }
+        );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        buttons.setBackground(Color.PINK);
         this.add(title);
         this.add(usernameInfo);
         this.add(username);
