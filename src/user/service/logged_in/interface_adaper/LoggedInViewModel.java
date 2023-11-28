@@ -10,6 +10,8 @@ public class LoggedInViewModel extends ViewModel {
 
     private LoggedInState state = new LoggedInState();
 
+    public static final String CREATE_PLAN_BUTTON_LABEL = "Create New Plan";
+    public static final String LOAD_PLAN_BUTTON_LABEL = "Load Plan";
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
     private String loggedInUser;
 

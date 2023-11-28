@@ -21,6 +21,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     JLabel username;
 
+    final JButton createPlan;
+    final JButton loadPlan;
     final JButton logOut;
 
     /**
@@ -32,15 +34,51 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         this.viewManagerModel = vMM;
         this.startupViewModel = suVM;
 
-        JLabel title = new JLabel("Logged In Screen");
+        JLabel title = new JLabel("User Home");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
         username = new JLabel();
+        usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        username.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JPanel buttons = new JPanel();
+        createPlan = new JButton(loggedInViewModel.CREATE_PLAN_BUTTON_LABEL);
+        buttons.add(createPlan);
+        loadPlan = new JButton(loggedInViewModel.LOAD_PLAN_BUTTON_LABEL);
+        buttons.add(loadPlan);
         logOut = new JButton(loggedInViewModel.LOGOUT_BUTTON_LABEL);
         buttons.add(logOut);
+
+        createPlan.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(createPlan)) {
+//                            StartUpState startupState = startupViewModel.getState();
+//                            startupViewModel.setState(startupState);
+//                            startupViewModel.firePropertyChanged();
+//
+//                            viewManagerModel.setActiveView(startupViewModel.getViewName());
+//                            viewManagerModel.firePropertyChanged();
+                        }
+                    }
+                }
+        );
+
+        loadPlan.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(loadPlan)) {
+//                            StartUpState startupState = startupViewModel.getState();
+//                            startupViewModel.setState(startupState);
+//                            startupViewModel.firePropertyChanged();
+//
+//                            viewManagerModel.setActiveView(startupViewModel.getViewName());
+//                            viewManagerModel.firePropertyChanged();
+                        }
+                    }
+                }
+        );
 
         logOut.addActionListener(
                 new ActionListener() {
