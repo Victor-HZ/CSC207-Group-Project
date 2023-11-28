@@ -9,7 +9,10 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import plan.service.main_view_models.StartUpState;
+import plan.service.main_view_models.StartUpViewModel;
 import user.service.login.interface_adapter.*;
+import view.interface_adapter.ViewManagerModel;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -25,12 +28,17 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     final JButton logIn;
     final JButton cancel;
     private final LoginController loginController;
+    private final ViewManagerModel viewManagerModel;
+    private final StartUpViewModel startupViewModel;
 
-    public LoginView(LoginViewModel loginViewModel, LoginController controller) {
+    public LoginView(LoginViewModel logViewModel, LoginController controller,
+                     ViewManagerModel vManagerModel, StartUpViewModel strtViewModel) {
 
         this.loginController = controller;
-        this.loginViewModel = loginViewModel;
+        this.loginViewModel = logViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
+        this.viewManagerModel = vManagerModel;
+        this.startupViewModel = strtViewModel;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -61,7 +69,20 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
-        cancel.addActionListener(this);
+        cancel.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(cancel)) {
+                            StartUpState startupState = startupViewModel.getState();
+                            startupViewModel.setState(startupState);
+                            startupViewModel.firePropertyChanged();
+
+                            viewManagerModel.setActiveView(startupViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
+                        }
+                    }
+                }
+        );
 
         usernameInputField.addKeyListener(new KeyListener() {
             @Override

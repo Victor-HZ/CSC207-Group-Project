@@ -1,5 +1,6 @@
 package app;
 
+import plan.service.main_view_models.StartUpViewModel;
 import view.SignupView;
 import view.interface_adapter.ViewManagerModel;
 import user.entity.CommonUserFactory;
@@ -28,13 +29,15 @@ public class SignupUseCaseFactory {
     /** Prevent instantiation. */
     private SignupUseCaseFactory() {}
 
-    public static SignupView create(
-            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel, SignupUserDataAccessInterface signupUserDataAccessObject, ClearUserDataAccessInterface clearUserDataAccessInterface, ClearViewModel clearViewModel) {
+    public static SignupView create(ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
+                                    SignupViewModel signupViewModel, SignupUserDataAccessInterface signupUserDataAccessObject,
+                                    ClearUserDataAccessInterface clearUserDataAccessInterface,
+                                    ClearViewModel clearViewModel, StartUpViewModel startupViewModel) {
 
         try {
             SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, signupUserDataAccessObject);
             ClearController clearController = createClearUseCase(clearViewModel, viewManagerModel, clearUserDataAccessInterface);
-            return new SignupView(signupController, signupViewModel, clearController, clearViewModel);
+            return new SignupView(signupController, signupViewModel, clearController, clearViewModel, startupViewModel, viewManagerModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
