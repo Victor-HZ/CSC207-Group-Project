@@ -73,9 +73,10 @@ public class StartUpView extends JPanel implements ActionListener, PropertyChang
         );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        buttons.setBackground(Color.PINK);
         this.add(title);
         this.add(buttons);
+
     }
 
     @Override

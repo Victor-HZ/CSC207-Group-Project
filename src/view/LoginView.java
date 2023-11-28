@@ -120,6 +120,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     }
                 });
 
+        buttons.setBackground(Color.PINK);
         this.add(title);
         this.add(usernameInfo);
         this.add(usernameErrorField);
