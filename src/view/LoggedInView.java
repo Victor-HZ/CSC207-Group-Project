@@ -34,7 +34,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         this.viewManagerModel = vMM;
         this.startupViewModel = suVM;
 
-        JLabel title = new JLabel("User Home");
+        JLabel title = new JLabel(loggedInViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
@@ -54,12 +54,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createPlan)) {
-//                            StartUpState startupState = startupViewModel.getState();
-//                            startupViewModel.setState(startupState);
-//                            startupViewModel.firePropertyChanged();
+//                            CreatePlanState createPlanState = createPlanViewModel.getState();
+//                            createPlanViewModel.setState(createPlanState);
+//                            createPlanViewModel.firePropertyChanged();
 //
-//                            viewManagerModel.setActiveView(startupViewModel.getViewName());
-//                            viewManagerModel.firePropertyChanged();
+//                            createPlanController.execute();
                         }
                     }
                 }
@@ -69,12 +68,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(loadPlan)) {
-//                            StartUpState startupState = startupViewModel.getState();
-//                            startupViewModel.setState(startupState);
-//                            startupViewModel.firePropertyChanged();
+//                            LoadPlanState loadPlanState = loadPlanViewModel.getState();
+//                            loadPlanViewModel.setState(loadPlanState);
+//                            loadPlanViewModel.firePropertyChanged();
 //
-//                            viewManagerModel.setActiveView(startupViewModel.getViewName());
-//                            viewManagerModel.firePropertyChanged();
+//                            loadPlanController.execute();
                         }
                     }
                 }
