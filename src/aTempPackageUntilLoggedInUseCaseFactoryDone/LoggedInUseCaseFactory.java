@@ -1,0 +1,2 @@
+package aTempPackageUntilLoggedInUseCaseFactoryDone;public class LoggedInUseCaseFactory {
+}

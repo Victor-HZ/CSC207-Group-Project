@@ -1,4 +1,4 @@
 package plan.service.load_plan;
 
-public class LoadPlanInteractor {
+public class LoadPlanInteractor implements LoadPlanInputBoundary {
 }

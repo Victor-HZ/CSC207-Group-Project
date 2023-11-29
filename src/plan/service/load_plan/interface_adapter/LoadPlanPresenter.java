@@ -1,4 +1,6 @@
 package plan.service.load_plan.interface_adapter;
 
-public class LoadPlanPresenter {
+import plan.service.load_plan.LoadPlanOutputBoundary;
+
+public class LoadPlanPresenter implements LoadPlanOutputBoundary {
 }
