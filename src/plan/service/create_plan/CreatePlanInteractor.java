@@ -1,9 +1,5 @@
 package plan.service.create_plan;
 
-import plan.service.fetch_activities.FetchActivitiesOutputData;
-import user.entity.User;
-import user.entity.UserFactory;
-
 import java.time.LocalDateTime;
 
 public class CreatePlanInteractor implements CreatePlanInputBoundary{

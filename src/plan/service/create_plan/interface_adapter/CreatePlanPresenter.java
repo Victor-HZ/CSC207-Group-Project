@@ -2,17 +2,9 @@ package plan.service.create_plan.interface_adapter;
 
 import plan.service.create_plan.CreatePlanOutputBoundary;
 import plan.service.create_plan.CreatePlanOutputData;
-import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.EditorViewModel;
-import plan.service.main_view_models.StartUpState;
-import plan.service.main_view_models.StartUpViewModel;
-import user.entity.User;
 import user.service.logged_in.interface_adaper.LoggedInState;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
-import user.service.signup.SignupOutputBoundary;
-import user.service.signup.SignupOutputData;
-import view.LoggedInView;
-import view.ViewManager;
 import view.interface_adapter.ViewManagerModel;
 
 public class CreatePlanPresenter implements CreatePlanOutputBoundary {
