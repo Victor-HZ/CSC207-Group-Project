@@ -1,4 +1,6 @@
 package plan.service.load_plan.interface_adapter;
+import plan.service.load_plan.LoadPlanInputBoundary;
+import plan.service.load_plan.LoadPlanInputData;
 
 public class LoadPlanController {
     private final LoadPlanInputBoundary loadPlanInteractor;
@@ -7,10 +9,8 @@ public class LoadPlanController {
         this.loadPlanInteractor = loadPlanInteractor;
     }
 
-    public void execute(Plan plan) {
-
-        LoadPlanInputData inputData = new LoadPlanInputData(plan);
-
+    public void execute(DatePlan datePlan) {
+        LoadPlanInputData inputData = new LoadPlanInputData(datePlan);
         loadPlanInteractor.loadPlan(inputData);
     }
 }

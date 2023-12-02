@@ -1,15 +1,30 @@
 package plan.service.load_plan;
-import plan.entity.plan.Plan
-import java.util.ArrayList;
+import plan.entity.activity.Activity;
+import plan.entity.day_info.DayInfo;
+import plan.entity.plan.DatePlan;
+
+import java.util.List;
 
 public class LoadPlanInputData {
-    private final Plan plan;
+    private DatePlan datePlan;
 
-    public LoadPlanInputData(Plan plan) {
-        this.plan = plan;
+    public LoadPlanInputData(DatePlan datePlan) {
+        this.datePlan = datePlan;
     }
 
-    public Plan getPlan() {
-        return plan;
+    public DatePlan getDatePlan() {
+        return datePlan;
+    }
+
+    public List<Activity> getActivities() {
+        return datePlan.getActivities();
+    }
+
+    public double getTotalCost() {
+        return datePlan.getCost();
+    }
+
+    public DayInfo getDayInfo() {
+        return datePlan.getDayInfo();
     }
 }

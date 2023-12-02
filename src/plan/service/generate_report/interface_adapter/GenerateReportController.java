@@ -2,6 +2,7 @@ package plan.service.generate_report.interface_adapter;
 import plan.service.generate_report.GenerateReportInputBoundary;
 import plan.service.generate_report.GenerateReportInputData;
 
+
 public class GenerateReportController {
     private final GenerateReportInputBoundary generateReportInteractor;
 
