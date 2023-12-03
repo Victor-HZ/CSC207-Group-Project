@@ -15,6 +15,7 @@ public class DeleteActivityInteractor implements DeleteActivityInputBoundary {
     public void execute(DeleteActivityInputData deleteActivityInputData) {
         Plan plan = deleteActivityInputData.getPlan();
         Activity activity = deleteActivityInputData.getActivity();
+        // Cycles though activities in plan to ensure activity exists in plan
         for (Activity this_activity : plan.getActivities()) {
             if (this_activity.equals(activity)) {
                 plan.deleteActivity(activity);
