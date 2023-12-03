@@ -19,11 +19,10 @@ import plan.entity.day_info.ToStringType;
 
 public class TicketmasterAPI implements ActivitiesFetchInterface {
 
-    private static final String API_TOKEN = System.getenv("TICKETMASTER_API_TOKEN"); // "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL"
+    private static String API_TOKEN; // "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL"
 
     @Override
     public ArrayList<Activity> getEvents(String city, DayInfo date) throws JSONException {
-        final String API_TOKEN = System.getenv("TICKETMASTER_API_TOKEN");
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
                 .addQueryParameter("apikey", API_TOKEN)
@@ -84,5 +83,8 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void setApiToken(String  apiToken){
+        API_TOKEN = apiToken;
     }
 }
