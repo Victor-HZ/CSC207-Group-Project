@@ -24,6 +24,16 @@ public class LoggedInState {
         this.username = username;
     }
 
+    public String getDate() {
+        return date;
+    }
+    public String getCity() {
+        return city;
+    }
+    public String getCountry() {
+        return country;
+    }
+
     public void setDate(String date) {
         this.date = date;
     }
