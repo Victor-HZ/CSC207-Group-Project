@@ -12,7 +12,7 @@ class CommonUser implements User {
     private final String password;
     private final LocalDateTime creationTime;
     private final HashMap<API_TOKEN, String> apiTokens;
-    private ArrayList<Plan> plans;
+    private Plan plan;
 
     /**
      * Requires: password is valid.
