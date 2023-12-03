@@ -7,7 +7,6 @@ public class CreatePlanController {
     public CreatePlanController(CreatePlanInputBoundary planUseCaseInteractor) {
         this.planUseCaseInteractor = planUseCaseInteractor;
     }
-
-    // When executed as there is no input data, will switch view to editor view only
-    public void execute() {planUseCaseInteractor.execute();}
+    
+    public void execute() {}
 }

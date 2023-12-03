@@ -39,9 +39,11 @@ public class LoggedInUseCaseFactory {
 
     private static CreatePlanController createCreateUseCase(ViewManagerModel viewManagerModel, LoggedInViewModel loggedinViewModel, EditorViewModel editorViewModel) throws IOException {
 
-        CreatePlanOutputBoundary createOutputBoundary = new CreatePlanPresenter(loggedinViewModel, editorViewModel, viewManagerModel);
-        CreatePlanInputBoundary createPlanInteractor = new CreatePlanInteractor(createOutputBoundary);
-        return new CreatePlanController(createPlanInteractor);
+        CreatePlanOutputBoundary createOutputBoundary = new CreatePlanPresenter();
+
+        CreatePlanInputBoundary createInteractor = new CreatePlanInteractor();
+
+        return new CreatePlanController(createInteractor);
     }
 
     private static LoadPlanController createLoadUseCase(ViewManagerModel viewManagerModel, LoggedInViewModel loggedinViewModel, EditorViewModel editorViewModel) throws IOException {
