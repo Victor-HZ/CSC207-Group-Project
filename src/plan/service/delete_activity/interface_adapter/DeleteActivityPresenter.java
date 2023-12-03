@@ -28,7 +28,7 @@ public class DeleteActivityPresenter implements DeleteActivityOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         EditorState editorState = editorScreen.getState();
-        editorState.deleteActivityError(error);
+        editorState.setDeleteActivityError(error);
         editorScreen.firePropertyChanged();
     }
 }

@@ -1,6 +1,7 @@
 package plan.service.load_plan;
 import plan.entity.activity.Activity;
 import plan.entity.day_info.DayInfo;
+import plan.entity.plan.Plan;
 
 import java.util.ArrayList;
 
