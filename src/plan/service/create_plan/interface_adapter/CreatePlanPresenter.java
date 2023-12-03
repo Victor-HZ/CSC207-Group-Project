@@ -22,9 +22,9 @@ public class CreatePlanPresenter implements CreatePlanOutputBoundary {
 
     @Override
     public void prepareEditorView(CreatePlanOutputData user) {
-        // Switch to editor view from start up view
-        LoggedInState startUpState = loggedInViewModel.getState();
-        this.loggedInViewModel.setState(startUpState);
+        // Switch to editor view from logged in view
+        LoggedInState loggedInState = loggedInViewModel.getState();
+        this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
 
         this.viewManagerModel.setActiveView(editorViewModel.getViewName());

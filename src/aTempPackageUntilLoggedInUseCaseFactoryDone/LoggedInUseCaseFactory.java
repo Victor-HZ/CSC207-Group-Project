@@ -38,7 +38,8 @@ public class LoggedInUseCaseFactory {
     }
 
     private static CreatePlanController createCreateUseCase(ViewManagerModel viewManagerModel, LoggedInViewModel loggedinViewModel, EditorViewModel editorViewModel) throws IOException {
-
+        // When executing create plan, a day info must be passed down
+        // The empty plan is in the create output data
         CreatePlanOutputBoundary createOutputBoundary = new CreatePlanPresenter(loggedinViewModel, editorViewModel, viewManagerModel);
         CreatePlanInputBoundary createPlanInteractor = new CreatePlanInteractor(createOutputBoundary);
         return new CreatePlanController(createPlanInteractor);
