@@ -9,18 +9,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
-    final FetchActivitiesDataAccessInterface dataAccessObject;
     final FetchActivitiesOutputBoundary fetchActivitiesPresenter;
     final ArrayList<ActivitiesFetchInterface> activitiesFetchInterfacesCollections;
 
-    public FetchActivitiesInteractor(FetchActivitiesDataAccessInterface dataAccessObject, FetchActivitiesOutputBoundary fetchActivitiesPresenter, ArrayList<ActivitiesFetchInterface> activitiesFetchInterfacesCollections){
-        this.dataAccessObject = dataAccessObject;
+    public FetchActivitiesInteractor(FetchActivitiesOutputBoundary fetchActivitiesPresenter, ArrayList<ActivitiesFetchInterface> activitiesFetchInterfacesCollections){
         this.fetchActivitiesPresenter = fetchActivitiesPresenter;
         this.activitiesFetchInterfacesCollections = activitiesFetchInterfacesCollections;
     }
 
     @Override
-    public void execute(DayInfo date, Address addresss) {
+    public ArrayList<Activity> execute(DayInfo date, Address addresss) {
         ArrayList<Activity> activities = new ArrayList<>();
         for(ActivitiesFetchInterface fetcher : activitiesFetchInterfacesCollections){
             activities.addAll(fetcher.getEvents(addresss.getCity(), date));
@@ -32,5 +30,6 @@ public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
         } else {
             fetchActivitiesPresenter.prepareFailView("No activity fetched!");
         }
+        return activities;
     }
 }

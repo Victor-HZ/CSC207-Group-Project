@@ -16,7 +16,7 @@ public interface Address {
     Double getLatitude();
 
     void setLatitude(Double latitude);
-    void setLongtitude(Double longtitude);
+    void setLongitude(Double longtitude);
 
     void setPostCode(String postCode);
     void setBusinessName(String businessName);

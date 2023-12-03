@@ -3,6 +3,7 @@ package plan.service.fetch_activities.interface_adapter;
 import plan.service.fetch_activities.FetchActivitiesOutputBoundary;
 import plan.service.fetch_activities.FetchActivitiesOutputData;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,13 +12,14 @@ public class FetchActivitiesPresenter implements FetchActivitiesOutputBoundary {
     @Override
     public void prepareSuccessView(FetchActivitiesOutputData response) {
         LocalDateTime currentTime = LocalDateTime.now();
-        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
+        response.setCreationTime(currentTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
+
+        JOptionPane.showMessageDialog(null, response.getActivities().size());
 
     }
 
     @Override
     public void prepareFailView(String error) {
-
+        JOptionPane.showMessageDialog(null, error);
     }
 }
