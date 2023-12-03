@@ -39,7 +39,7 @@ public class EditorUseCaseFactory {
         try {
             FetchActivitiesController fetchActivitiesController = createFetchActivitiesUseCase(activitiesFetchInterfaces);
             AddActivityController addActivityController = createAddActivityController(viewManagerModel, editorViewModel);
-            DeleteActivityController deleteActivityController = createDeleteActivityController();
+            DeleteActivityController deleteActivityController = createDeleteActivityController(viewManagerModel, editorViewModel);
             return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,8 +52,8 @@ public class EditorUseCaseFactory {
         return new AddActivityController(addActivityInteractor);
     }
 
-    private static DeleteActivityController createDeleteActivityController(){
-        DeleteActivityOutputBoundary deleteActivityOutputBoundary = new DeleteActivityPresenter();
+    private static DeleteActivityController createDeleteActivityController(ViewManagerModel viewManagerModel, EditorViewModel editorScreen){
+        DeleteActivityOutputBoundary deleteActivityOutputBoundary = new DeleteActivityPresenter(viewManagerModel, editorScreen);
         DeleteActivityInputBoundary deleteActivityInteractor = new DeleteActivityInteractor(deleteActivityOutputBoundary);
         return new DeleteActivityController(deleteActivityInteractor);
 

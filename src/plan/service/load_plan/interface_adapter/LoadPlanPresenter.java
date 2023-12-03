@@ -2,43 +2,46 @@ package plan.service.load_plan.interface_adapter;
 
 import plan.service.load_plan.LoadPlanOutputBoundary;
 import plan.service.load_plan.LoadPlanOutputData;
-import plan.service.load_plan.LoadPlanLoadPlanState;
-import plan.service.load_plan.LoadPlanViewModel;
+import plan.service.main_view_models.EditorState;
+import plan.service.main_view_models.EditorViewModel;
+import user.service.logged_in.interface_adaper.LoggedInViewModel;
 import view.interface_adapter.ViewManagerModel;
 
 public class LoadPlanPresenter implements LoadPlanOutputBoundary {
 
-    private final LoadPlanViewModel loadPlanViewModel;
+    private final EditorViewModel editorViewModel;
     private final ViewManagerModel viewManagerModel;
+    private final LoggedInViewModel loggedinViewModel;
 
-    public LoadPlanPresenter(ViewManagerModel viewManagerModel, LoadPlanViewModel loadPlanViewModel) {
+    public LoadPlanPresenter(ViewManagerModel viewManagerModel, LoggedInViewModel loggerViewModel, EditorViewModel editViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loadPlanViewModel = loadPlanViewModel;
+        this.loggedinViewModel = loggerViewModel;
+        this.editorViewModel = editViewModel;
     }
 
     @Override
     public void prepareSuccessView(LoadPlanOutputData outputData) {
 
-        LoadPlanState planState = loadPlanViewModel.getState();
+        EditorState planState = editorViewModel.getState();
 
 
-        planState.setActivities(outputData.getActivities());
-        planState.setTotalCost(outputData.getTotalCost());
-        planState.setDayInfo(outputData.getDayInfo());
+//        planState.setActivities(outputData.getActivities());
+//        planState.setTotalCost(outputData.getTotalCost());
+//        planState.setDayInfo(outputData.getDayInfo());
 
         // Update the view model state
-        loadPlanViewModel.setState(planState);
-        loadPlanViewModel.firePropertyChanged();
+//        loadPlanViewModel.setState(planState);
+//        loadPlanViewModel.firePropertyChanged();
 
-        // Switch to the load plan view
-        viewManagerModel.setActiveView(loadPlanViewModel.getViewName());
+        // Switch to the editor view
+        viewManagerModel.setActiveView(editorViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
 
-        loadPlanViewModel.setErrorMessage(error);
-        loadPlanViewModel.firePropertyChanged();
+//        loadPlanViewModel.setErrorMessage(error);
+//        loadPlanViewModel.firePropertyChanged();
     }
 }

@@ -1,4 +1,8 @@
-package view.interface_adapter;
+package view;
+
+import plan.entity.activity.Activity;
+import plan.service.generate_report.interface_adapter.GenerateReportState;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +42,7 @@ public class GenerateReportView extends JPanel implements PropertyChangeListener
         updateUI();
     }
 
-    private void updateUI() {
+    public void updateUI() {
         GenerateReportState state = viewModel.getState();
 
         activitiesTextArea.setText(getActivitiesText(state));
