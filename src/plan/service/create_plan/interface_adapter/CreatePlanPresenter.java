@@ -1,11 +1,20 @@
 package plan.service.create_plan.interface_adapter;
 
+import apis.ActivitiesFetchInterface;
+import apis.ticketmaster.TicketmasterAPI;
+import apis.tripAdvisor.TripAdvisorAPI;
+import app.EditorUseCaseFactory;
+import app.Main;
 import plan.service.create_plan.CreatePlanOutputBoundary;
 import plan.service.create_plan.CreatePlanOutputData;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
 import plan.service.main_view_models.EditorViewModel;
 import user.service.logged_in.interface_adaper.LoggedInState;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
+import view.EditorView;
 import view.interface_adapter.ViewManagerModel;
+
+import java.util.ArrayList;
 
 public class CreatePlanPresenter implements CreatePlanOutputBoundary {
     private final LoggedInViewModel loggedInViewModel;
@@ -26,6 +35,12 @@ public class CreatePlanPresenter implements CreatePlanOutputBoundary {
         LoggedInState loggedInState = loggedInViewModel.getState();
         this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
+
+        ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
+        activitiesFetchInterfaces.add(new TicketmasterAPI());
+        activitiesFetchInterfaces.add(new TripAdvisorAPI());
+        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces);
+        Main.addNewView(editorView, editorView.viewName);
 
         this.viewManagerModel.setActiveView(editorViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
