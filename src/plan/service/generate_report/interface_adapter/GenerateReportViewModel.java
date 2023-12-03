@@ -37,4 +37,7 @@ public class GenerateReportViewModel extends ViewModel {
     public GenerateReportState getState() {
         return state;
     }
+
+    public void setErrorMessage(String error) {
+    }
 }

@@ -1,5 +1,9 @@
 package plan.service.generate_report.interface_adapter;
 
+import plan.entity.activity.Activity;
+
+import java.util.ArrayList;
+
 public class GenerateReportState {
 
     private ArrayList<Activity> activities;

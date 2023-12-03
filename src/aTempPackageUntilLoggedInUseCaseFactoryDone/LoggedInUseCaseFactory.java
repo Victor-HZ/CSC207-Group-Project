@@ -46,10 +46,10 @@ public class LoggedInUseCaseFactory {
     }
 
     private static LoadPlanController createLoadUseCase(ViewManagerModel viewManagerModel, LoggedInViewModel loggedinViewModel, EditorViewModel editorViewModel) throws IOException {
-        LoadPlanOutputBoundary loadOutputBoundary = new LoadPlanPresenter();
+        LoadPlanOutputBoundary loadOutputBoundary = new LoadPlanPresenter(viewManagerModel, loggedinViewModel, editorViewModel);
 
-        LoadPlanInputBoundary loadInteractor = new LoadPlanInteractor();
+        LoadPlanInputBoundary loadInteractor = new LoadPlanInteractor(loadOutputBoundary);
 
-        return new LoadPlanController();
+        return new LoadPlanController(loadInteractor);
     }
 }
