@@ -1,5 +1,10 @@
 package app;
 
+import apis.ActivitiesFetchInterface;
+import apis.ticketmaster.TicketmasterAPI;
+import apis.tripAdvisor.TripAdvisorAPI;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
+import plan.service.main_view_models.EditorViewModel;
 import plan.service.main_view_models.StartUpViewModel;
 import user.data_access.FileUserDataAccessObject;
 import user.entity.CommonUserFactory;
@@ -13,6 +18,7 @@ import view.interface_adapter.ViewManagerModel;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,6 +49,7 @@ public class Main {
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
         ClearViewModel clearViewModel = new ClearViewModel();
+        EditorViewModel editorViewModel = new EditorViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -59,6 +66,13 @@ public class Main {
 
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, startupViewModel);
         views.add(loginView, loginView.viewName);
+
+        ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
+        activitiesFetchInterfaces.add(new TicketmasterAPI());
+        activitiesFetchInterfaces.add(new TripAdvisorAPI());
+
+        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces);
+        views.add(editorView, editorView.viewName);
 
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel, startupViewModel);
         views.add(loggedInView, loggedInView.viewName);
