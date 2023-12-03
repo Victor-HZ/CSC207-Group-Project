@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
+    private static JPanel views;
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
@@ -32,7 +33,7 @@ public class Main {
         CardLayout cardLayout = new CardLayout();
 
         // The various View objects. Only one view is visible at a time.
-        JPanel views = new JPanel(cardLayout);
+        views = new JPanel(cardLayout);
         application.add(views);
 
         // This keeps track of and manages which view is currently showing.
@@ -67,13 +68,6 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, startupViewModel);
         views.add(loginView, loginView.viewName);
 
-        ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
-        activitiesFetchInterfaces.add(new TicketmasterAPI());
-        activitiesFetchInterfaces.add(new TripAdvisorAPI());
-
-        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces);
-        views.add(editorView, editorView.viewName);
-
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel, startupViewModel);
         views.add(loggedInView, loggedInView.viewName);
 
@@ -82,5 +76,9 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
+    }
+
+    public static void addNewView(JPanel view, String viewName){
+        views.add(view, viewName);
     }
 }
