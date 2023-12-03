@@ -1,4 +1,6 @@
 package plan.service.load_plan;
+import plan.entity.activity.Activity;
+import plan.entity.day_info.DayInfo;
 import plan.entity.plan.Plan;
 
 import java.util.ArrayList;
@@ -12,13 +14,13 @@ public class LoadPlanInteractor implements LoadPlanInputBoundary {
 
     @Override
     public void loadPlan(LoadPlanInputData inputData) {
-        if (inputData == null || inputData.getPlan() == null) {
+        if (inputData == null || inputData.getDatePlan() == null) {
 
             outputBoundary.prepareFailView("Invalid input for plan loading.");
             return;
         }
 
-        Plan plan = inputData.getPlan();
+        Plan plan = inputData.getDatePlan();
 
 
         ArrayList<Activity> activities = plan.getActivities();
