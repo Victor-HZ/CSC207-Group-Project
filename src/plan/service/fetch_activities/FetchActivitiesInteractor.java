@@ -18,7 +18,7 @@ public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
     }
 
     @Override
-    public void execute(DayInfo date, Address addresss) {
+    public ArrayList<Activity> execute(DayInfo date, Address addresss) {
         ArrayList<Activity> activities = new ArrayList<>();
         for(ActivitiesFetchInterface fetcher : activitiesFetchInterfacesCollections){
             activities.addAll(fetcher.getEvents(addresss.getCity(), date));
@@ -30,5 +30,6 @@ public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
         } else {
             fetchActivitiesPresenter.prepareFailView("No activity fetched!");
         }
+        return activities;
     }
 }
