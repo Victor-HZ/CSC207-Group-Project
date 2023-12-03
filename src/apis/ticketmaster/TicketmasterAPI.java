@@ -62,7 +62,7 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         address.setProvince(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("state").getString("name"));
                         address.setCity(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("city").getString("name"));
                         address.setBusinessName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("name"));
-                        address.setPostCode(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("postalCode"));
+                        address.setPostalCode(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("postalCode"));
                         address.setStreetNumber(Integer.parseInt(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("address").getString("line1").split(" ", 2)[0]));
                         address.setStreetName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("address").getString("line1").split(" ", 2)[1]);
                         address.setLatitude(Double.parseDouble(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("location").getString("latitude")));
