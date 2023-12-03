@@ -1,5 +1,7 @@
 package view;
 
+import apis.ActivitiesFetchInterface;
+import plan.entity.activity.Activity;
 import plan.service.add_activity.interface_adapter.AddActivityController;
 import plan.service.delete_activity.interface_adapter.DeleteActivityController;
 import plan.service.fetch_activities.interface_adapter.FetchActivitiesController;
@@ -15,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public class EditorView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "editor";
@@ -42,6 +45,9 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
 
         JLabel title = new JLabel(EditorViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+//        ArrayList<Activity> activities = this.fetchActivitiesController.execute();
 
         LabelTablePanel availableActivitiesTable = new LabelTablePanel(
                 new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), availableActivities);
