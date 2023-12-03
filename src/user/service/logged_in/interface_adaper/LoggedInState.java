@@ -2,6 +2,7 @@ package user.service.logged_in.interface_adaper;
 
 public class LoggedInState {
     private String username = "";
+    private String createPlanError = null;
 
     public LoggedInState(LoggedInState copy) {
         username = copy.username;
@@ -16,4 +17,10 @@ public class LoggedInState {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
+    public void setCreatePlanError(String createPlanError) {
+        this.createPlanError = createPlanError;
+    }
+
 }

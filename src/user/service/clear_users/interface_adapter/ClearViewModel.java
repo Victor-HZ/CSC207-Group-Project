@@ -14,9 +14,15 @@ public class ClearViewModel extends ViewModel {
     private ClearState state = new ClearState();
 
     public ClearViewModel(){
-        super("Clear");
+        super("clear");
     }
 
+    private static final String thisViewName = "clear";
+
+    @Override
+    public String getViewName() {
+        return thisViewName;
+    }
     public void setState(ClearState state){
         this.state = state;
     }

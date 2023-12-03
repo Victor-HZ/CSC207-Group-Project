@@ -1,5 +1,6 @@
 package app;
 
+import plan.service.main_view_models.StartUpViewModel;
 import view.LoginView;
 import view.interface_adapter.ViewManagerModel;
 import user.entity.CommonUserFactory;
@@ -25,11 +26,12 @@ public class LoginUseCaseFactory {
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             LoggedInViewModel loggedInViewModel,
-            LoginUserDataAccessInterface userDataAccessObject) {
+            LoginUserDataAccessInterface userDataAccessObject,
+            StartUpViewModel stupVM) {
 
         try {
             LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
-            return new LoginView(loginViewModel, loginController);
+            return new LoginView(loginViewModel, loginController, viewManagerModel, stupVM);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }

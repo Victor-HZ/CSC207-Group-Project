@@ -6,15 +6,22 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class LoggedInViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Logged In View";
+    public final String TITLE_LABEL = "User Home";
 
     private LoggedInState state = new LoggedInState();
 
+    public static final String CREATE_PLAN_BUTTON_LABEL = "Create New Plan";
+    public static final String LOAD_PLAN_BUTTON_LABEL = "Load Plan";
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
     private String loggedInUser;
 
     public LoggedInViewModel() {
         super("logged in");
+    }
+    private static final String thisViewName = "logged in";
+    @Override
+    public String getViewName() {
+        return thisViewName;
     }
 
     public void setState(LoggedInState state) {

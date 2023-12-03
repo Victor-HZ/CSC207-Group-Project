@@ -5,33 +5,30 @@ import view.interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class EditorViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Plan Editor View";
-    public static final String ADD_ACTIVITY_BUTTON_LABEL = "Add Activity";
-    public static final String DELETE_ACTIVITY_BUTTON_LABEL = "Delete Activity";
-    public static final String SAVE_PLAN_BUTTON_LABEL = "Save Plan";
-    private EditorState state = new EditorState();
-    public EditorViewModel() {
-        super("plan editor");
+public class StartUpViewModel extends ViewModel {
+    public static final String TITLE_LABEL = "Lovely Planner";
+    public static final String LOGIN_BUTTON_LABEL = "Login";
+    public static final String SIGNUP_BUTTON_LABEL = "Sign Up";
+    private StartUpState state = new StartUpState();
+    public StartUpViewModel() {
+        super("planner startup");
     }
 
-    private static final String thisViewName = "plan editor";
+    private static final String thisViewName = "planner startup";
 
     @Override
     public String getViewName() {
         return thisViewName;
     }
-
-    public void setState(EditorState state) {
+    public void setState(StartUpState state) {
         this.state = state;
     }
 
-    public EditorState getState() {
+    public StartUpState getState() {
         return state;
     }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-
     @Override
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
