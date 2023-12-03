@@ -21,6 +21,13 @@ public class EditorViewModel extends ViewModel {
         super("plan editor");
     }
 
+    private static final String thisViewName = "plan editor";
+
+    @Override
+    public String getViewName() {
+        return thisViewName;
+    }
+
     public void setState(EditorState state) {
         this.state = state;
     }

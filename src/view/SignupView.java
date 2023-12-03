@@ -1,11 +1,14 @@
 package view;
 
 import plan.service.main_view_models.EditorState;
+import plan.service.main_view_models.StartUpState;
+import plan.service.main_view_models.StartUpViewModel;
 import user.entity.User;
 import user.service.clear_users.interface_adapter.ClearController;
 import user.service.clear_users.interface_adapter.ClearState;
 import user.service.clear_users.interface_adapter.ClearViewModel;
 import user.service.signup.interface_adapter.*;
+import view.interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,21 +37,26 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final ClearViewModel clearViewModel;
     private final ClearController clearController;
 
+    private final StartUpViewModel startupViewModel;
+
+    private final ViewManagerModel viewManagerModel;
 
     private final JButton signUp;
     private final JButton cancel;
-
     private final JButton loadFromEnv;
-
-    // TODO Note: this is the new JButton for clearing the users file
     private final JButton clear;
 
-    public SignupView(SignupController signupController, SignupViewModel signupViewModel, ClearController clearController, ClearViewModel clearViewModel) {
+    public SignupView(SignupController signupController, SignupViewModel signupViewModel,
+                      ClearController clearController, ClearViewModel clearViewModel,
+                      StartUpViewModel startUpViewModel, ViewManagerModel vManagerModel) {
 
         this.signupController = signupController;
         this.signupViewModel = signupViewModel;
         this.clearController = clearController;
         this.clearViewModel = clearViewModel;
+        this.startupViewModel = startUpViewModel;
+        this.viewManagerModel = vManagerModel;
+
         signupViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
@@ -149,7 +157,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(cancel)) {
-                            System.exit(0);
+                            StartUpState startupState = startupViewModel.getState();
+                            startupViewModel.setState(startupState);
+                            startupViewModel.firePropertyChanged();
+                            viewManagerModel.setActiveView(startupViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
                         }
                     }
                 }
@@ -281,7 +293,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         });
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        buttons.setBackground(Color.PINK);
         this.add(title);
         this.add(usernameInfo);
         this.add(passwordInfo);
@@ -296,7 +308,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override

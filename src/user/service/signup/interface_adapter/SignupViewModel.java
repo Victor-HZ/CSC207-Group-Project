@@ -26,6 +26,13 @@ public class SignupViewModel extends ViewModel {
         super("sign up");
     }
 
+    private static final String thisViewName = "sign up";
+
+    @Override
+    public String getViewName() {
+        return thisViewName;
+    }
+
     public void setState(SignupState state) {
         this.state = state;
     }
