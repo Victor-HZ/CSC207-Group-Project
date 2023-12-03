@@ -1,5 +1,6 @@
 package plan.service.create_plan.interface_adapter;
 
+import plan.entity.day_info.DayInfo;
 import plan.service.create_plan.CreatePlanInputBoundary;
 
 public class CreatePlanController {
@@ -9,5 +10,5 @@ public class CreatePlanController {
     }
 
     // When executed as there is no input data, will switch view to editor view only
-    public void execute() {planUseCaseInteractor.execute();}
+    public void execute(DayInfo dayInfo) {planUseCaseInteractor.execute(dayInfo);}
 }
