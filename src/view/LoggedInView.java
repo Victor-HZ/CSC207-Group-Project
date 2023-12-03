@@ -110,10 +110,48 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-//                        SignupState currentState = signupViewModel.getState();
-//                        String text = usernameInputField.getText() + e.getKeyChar();
-//                        currentState.setUsername(text);
-//                        signupViewModel.setState(currentState);
+                        LoggedInState currentState = loggedInViewModel.getState();
+                        String text = dateInputField.getText() + e.getKeyChar();
+                        currentState.setDate(text);
+                        loggedInViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        cityInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        LoggedInState currentState = loggedInViewModel.getState();
+                        String text = cityInputField.getText() + e.getKeyChar();
+                        currentState.setCity(text);
+                        loggedInViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        countryInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        LoggedInState currentState = loggedInViewModel.getState();
+                        String text = countryInputField.getText() + e.getKeyChar();
+                        currentState.setCountry(text);
+                        loggedInViewModel.setState(currentState);
                     }
 
                     @Override
