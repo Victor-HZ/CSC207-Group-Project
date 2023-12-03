@@ -14,13 +14,13 @@ public class LoadPlanInteractor implements LoadPlanInputBoundary {
 
     @Override
     public void loadPlan(LoadPlanInputData inputData) {
-        if (inputData == null || inputData.getDatePlan() == null) {
+        if (inputData == null || inputData.getPlan() == null) {
 
             outputBoundary.prepareFailView("Invalid input for plan loading.");
             return;
         }
 
-        Plan plan = inputData.getDatePlan();
+        Plan plan = inputData.getPlan();
 
 
         ArrayList<Activity> activities = plan.getActivities();
