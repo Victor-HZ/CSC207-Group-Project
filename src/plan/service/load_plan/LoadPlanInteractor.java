@@ -1,4 +1,34 @@
 package plan.service.load_plan;
+import plan.entity.plan.Plan
+
+import java.util.ArrayList;
 
 public class LoadPlanInteractor implements LoadPlanInputBoundary {
+    private LoadPlanOutputBoundary outputBoundary;
+
+    public LoadPlanInteractor(LoadPlanOutputBoundary outputBoundary) {
+        this.outputBoundary = outputBoundary;
+    }
+
+    @Override
+    public void loadPlan(LoadPlanInputData inputData) {
+        if (inputData == null || inputData.getPlan() == null) {
+
+            outputBoundary.prepareFailView("Invalid input for plan loading.");
+            return;
+        }
+
+        Plan plan = inputData.getPlan();
+
+
+        ArrayList<Activity> activities = plan.getActivities();
+        double totalCost = plan.getCost();
+        DayInfo dayInfo = plan.getDayInfo();
+
+
+        LoadPlanOutputData outputData = new LoadPlanOutputData(activities, totalCost, dayInfo);
+
+
+        outputBoundary.prepareSuccessView(outputData);
+    }
 }

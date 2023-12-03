@@ -101,7 +101,7 @@ public class CanadaAddress implements Address{
     }
 
     @Override
-    public void setLongtitude(Double longtitude) {
+    public void setLongitude(Double longtitude) {
         this.longtitude = longtitude;
     }
 

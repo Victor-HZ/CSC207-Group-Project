@@ -1,15 +1,30 @@
 package plan.service.generate_report;
-import java.util.List;
 import plan.entity.activity.Activity;
+import plan.entity.day_info.DayInfo;
+import plan.entity.plan.DatePlan;
+
+import java.util.List;
 
 public class GenerateReportInputData {
-    private List<Activity> selectedActivities;
+    private DatePlan datePlan;
 
-    public GenerateReportInputData(List<Activity> selectedActivities) {
-        this.selectedActivities = selectedActivities;
+    public GenerateReportInputData(DatePlan datePlan) {
+        this.datePlan = datePlan;
     }
 
-    public List<Activity> getSelectedActivities() {
-        return selectedActivities;
+    public DatePlan getDatePlan() {
+        return datePlan;
+    }
+
+    public List<Activity> getActivities() {
+        return datePlan.getActivities();
+    }
+
+    public double getTotalCost() {
+        return datePlan.getCost();
+    }
+
+    public DayInfo getDayInfo() {
+        return datePlan.getDayInfo();
     }
 }
