@@ -16,7 +16,7 @@ public class AddActivityPresenter implements AddActivityOutputBoundary {
     }
     @Override
     public void prepareSuccessView() {
-        // on success, switch back to plan editor view!
+        // on success, reapply editor view to show updated plan!
         EditorState editorState = editorScreen.getState();
         this.editorScreen.setState(editorState);
         this.editorScreen.firePropertyChanged();

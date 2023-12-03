@@ -13,7 +13,7 @@ public class DeleteActivityController {
 
     public void execute(Plan plan, Activity activity) {
         DeleteActivityInputData deleteActivityInputData = new DeleteActivityInputData(plan, activity);
-
+        // takes plan from editor view
         deleteActivityInteractor.execute(deleteActivityInputData);
     }
 }

@@ -14,9 +14,9 @@ public class DeleteActivityInputData {
 
     Plan getPlan() {
         return plan;
-    }
+    } // get from editor view!!
 
     Activity getActivity() {
         return activity;
-    }
+    } // will be selected
 }
