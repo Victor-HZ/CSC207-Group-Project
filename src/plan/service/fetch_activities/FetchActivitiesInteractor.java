@@ -9,12 +9,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
-    final FetchActivitiesDataAccessInterface dataAccessObject;
     final FetchActivitiesOutputBoundary fetchActivitiesPresenter;
     final ArrayList<ActivitiesFetchInterface> activitiesFetchInterfacesCollections;
 
-    public FetchActivitiesInteractor(FetchActivitiesDataAccessInterface dataAccessObject, FetchActivitiesOutputBoundary fetchActivitiesPresenter, ArrayList<ActivitiesFetchInterface> activitiesFetchInterfacesCollections){
-        this.dataAccessObject = dataAccessObject;
+    public FetchActivitiesInteractor(FetchActivitiesOutputBoundary fetchActivitiesPresenter, ArrayList<ActivitiesFetchInterface> activitiesFetchInterfacesCollections){
         this.fetchActivitiesPresenter = fetchActivitiesPresenter;
         this.activitiesFetchInterfacesCollections = activitiesFetchInterfacesCollections;
     }
