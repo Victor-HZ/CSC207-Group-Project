@@ -1,24 +1,35 @@
 package plan.service.generate_report;
-import java.util.ArrayList;
-import java.util.List;
 import plan.entity.activity.Activity;
+import plan.entity.day_info.DayInfo;
+import plan.entity.plan.DatePlan;
 
-public class GenerateReportInteractor {
+import java.util.List;
 
-    public GenerateReportOutputData generateReport(GenerateReportInputData inputData) {
+public class GenerateReportInteractor implements GenerateReportInputBoundary {
+    private GenerateReportOutputBoundary outputBoundary;
 
-        List<Activity> selectedActivities = inputData.getSelectedActivities();
+    public GenerateReportInteractor(GenerateReportOutputBoundary outputBoundary) {
+        this.outputBoundary = outputBoundary;
+    }
 
-
-        List<String> reportDetails = new ArrayList<>();
-        for (Activity activity : selectedActivities) {
-            String activityInfo = String.format(
-                    "Name: %s, Cost: %.2f, Address: %s, Description: %s",
-                    activity.getName(), activity.getCost(), activity.getAddress(), activity.getDescription()
-            );
-            reportDetails.add(activityInfo);
+    @Override
+    public void generateReport(GenerateReportInputData inputData) {
+        if (inputData == null || inputData.getDatePlan() == null) {
+            // Handle invalid input
+            outputBoundary.prepareFailView("Invalid input for report generation.");
+            return;
         }
 
-        return new GenerateReportOutputData(reportDetails);
+        DatePlan datePlan = inputData.getDatePlan();
+
+
+        double totalCost = datePlan.getCost();
+
+
+        GenerateReportOutputData outputData = new GenerateReportOutputData(
+                datePlan.getActivities(),
+                totalCost,
+                datePlan.getDayInfo());
+        outputBoundary.prepareSuccessView(outputData);
     }
 }

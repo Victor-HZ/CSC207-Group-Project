@@ -1,11 +1,19 @@
 package plan.service.generate_report.interface_adapter;
 import plan.service.generate_report.GenerateReportInputBoundary;
+import plan.service.generate_report.GenerateReportInputData;
+
+
 public class GenerateReportController {
+    private final GenerateReportInputBoundary generateReportInteractor;
 
-    final GenerateReportInputBoundary userGenerateReportUseCaseInteractor;
-
-    public GenerateReportController(GenerateReportInputBoundary userGenerateReportUseCaseInteractor) {
-        this.userGenerateReportUseCaseInteractor = userGenerateReportUseCaseInteractor;
+    public GenerateReportController(GenerateReportInputBoundary generateReportInteractor) {
+        this.generateReportInteractor = generateReportInteractor;
     }
 
+    public void execute(DatePlan datePlan) {
+
+        GenerateReportInputData inputData = new GenerateReportInputData(datePlan);
+
+        generateReportInteractor.generateReport(inputData);
+    }
 }
