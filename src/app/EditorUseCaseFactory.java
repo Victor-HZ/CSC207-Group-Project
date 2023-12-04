@@ -1,6 +1,7 @@
 package app;
 
 import apis.ActivitiesFetchInterface;
+import plan.entity.address.Address;
 import plan.entity.plan.Plan;
 import plan.service.add_activity.AddActivityInputBoundary;
 import plan.service.add_activity.AddActivityInteractor;
@@ -45,14 +46,15 @@ public class EditorUseCaseFactory {
             EditorViewModel editorViewModel,
             GenerateReportViewModel generateReportViewModel,
             ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces,
-            Plan plan){
+            Plan plan,
+            Address address){
         try {
             FetchActivitiesController fetchActivitiesController = createFetchActivitiesUseCase(activitiesFetchInterfaces);
             AddActivityController addActivityController = createAddActivityController(viewManagerModel, editorViewModel);
             DeleteActivityController deleteActivityController = createDeleteActivityController(viewManagerModel, editorViewModel);
             GenerateReportController generateReportController = createGenerateReportController(viewManagerModel, generateReportViewModel);
             SavePlanController savePlanController = createSavePlanUseCase(editorViewModel);
-            return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan);
+            return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan, address);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

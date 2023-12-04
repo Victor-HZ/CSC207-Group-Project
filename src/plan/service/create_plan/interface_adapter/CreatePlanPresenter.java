@@ -5,6 +5,7 @@ import apis.ticketmaster.TicketmasterAPI;
 import apis.tripAdvisor.TripAdvisorAPI;
 import app.EditorUseCaseFactory;
 import app.Main;
+import plan.entity.address.Address;
 import plan.entity.plan.DatePlan;
 import plan.entity.plan.Plan;
 import plan.service.create_plan.CreatePlanOutputBoundary;
@@ -39,12 +40,13 @@ public class CreatePlanPresenter implements CreatePlanOutputBoundary {
         this.loggedInViewModel.firePropertyChanged();
 
         Plan plan = result.getPlan();
+        Address address = result.getAddress();
 
 
         ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
         activitiesFetchInterfaces.add(new TicketmasterAPI());
         activitiesFetchInterfaces.add(new TripAdvisorAPI());
-        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces, plan);
+        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces, plan, address);
         Main.addNewView(editorView, editorView.viewName);
 
         this.viewManagerModel.setActiveView(editorViewModel.getViewName());

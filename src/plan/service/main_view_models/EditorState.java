@@ -1,6 +1,8 @@
 package plan.service.main_view_models;
 
 import plan.entity.activity.Activity;
+import plan.entity.address.Address;
+import plan.entity.day_info.DayInfo;
 import plan.entity.plan.DatePlan;
 import plan.entity.plan.Plan;
 
@@ -18,6 +20,8 @@ public class EditorState {
     private Activity selectedAvailableTable;
     private Activity selectedSelectedTable;
     private Plan plan;
+    private DayInfo dayInfo;
+    private Address address;
 
     public EditorState() {
     }
@@ -61,4 +65,28 @@ public class EditorState {
         this.deleteActivityError = activityError;
     }
     public void savePlanError(String saveError) {this.savePlanError = saveError;}
+
+    public void setDayInfo(DayInfo dayInfo) {
+        this.dayInfo = dayInfo;
+    }
+
+    public DayInfo getDayInfo() {
+        return dayInfo;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
