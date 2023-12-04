@@ -1,9 +1,9 @@
 package user.service.login.interface_adapter;
 
 public class LoginState {
-    private String username = "";
+    private String username = "victor";
     private String usernameError = null;
-    private String password = "";
+    private String password = "12345";
     private String passwordError = null;
 
     public LoginState(LoginState copy) {

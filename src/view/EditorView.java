@@ -73,15 +73,9 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         state.setAddress(address);
         state.setUser(user);
         state.setDayInfo(plan.getDayInfo());
-
-
         state.setApiTokens(User.API_TOKEN.Ticketmaster, state.getUser().getAPIToken(User.API_TOKEN.Ticketmaster));
         state.setApiTokens(User.API_TOKEN.TripAdvisor, state.getUser().getAPIToken(User.API_TOKEN.TripAdvisor));
         state.setApiTokens(User.API_TOKEN.Coordinate, state.getUser().getAPIToken(User.API_TOKEN.Coordinate));
-
-        editorViewModel.setState(state);
-
-        state = editorViewModel.getState();
 
         ArrayList<Activity> activities = this.fetchActivitiesController.execute(state.getDayInfo(), state.getAddress(), state.getApiTokens());
         HashMap<Integer, Activity> hashActivities = new HashMap<>();
@@ -91,22 +85,22 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
             i ++;
         }
         state.setAvailableActivities(hashActivities);
+
         editorViewModel.setState(state);
 
         String[] columnNames = {"Index", "Name", "Cost", "Address", "Postal Code"};
         availableActivities = new JTable(state.getDisplayAvailableActivitiesArray(), columnNames);
         availableActivities.setCellSelectionEnabled(true);
+        availableActivities.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         availableActivities.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPaneAvailableActivities = new JScrollPane(availableActivities);
+        LabelTablePanel availableActivitiesTable = new LabelTablePanel(
+                new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), new JScrollPane(availableActivities));
+
         selectedActivities = new JTable(state.getDisplaySlectedActivitiesArray(), columnNames);
         selectedActivities.setCellSelectionEnabled(true);
         selectedActivities.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPaneSelectedActivities = new JScrollPane(selectedActivities);
-
-        LabelTablePanel availableActivitiesTable = new LabelTablePanel(
-                new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), scrollPaneAvailableActivities);
         LabelTablePanel selectedActivitiesTable = new LabelTablePanel(
-                new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), scrollPaneSelectedActivities);
+                new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), new JScrollPane(selectedActivities));
 
 
         JPanel buttons = new JPanel();
@@ -118,6 +112,13 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         buttons.add(savePlan);
         generateReport = new JButton(EditorViewModel.GENERATE_REPORT_LABEL);
         buttons.add(generateReport);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        buttons.setBackground(Color.PINK);
+        this.add(availableActivitiesTable);
+        this.add(selectedActivitiesTable);
+        this.add(buttons);
+        this.setSize(1000, 1000);
 
         availableActivities.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -220,12 +221,6 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                     }
                 }
         );
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        buttons.setBackground(Color.PINK);
-        this.add(availableActivitiesTable);
-        this.add(selectedActivitiesTable);
-        this.add(buttons);
-        this.setSize(1000, 1000);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

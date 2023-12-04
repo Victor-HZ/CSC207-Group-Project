@@ -146,7 +146,7 @@ public class EditorState {
     }
 
     public String[][] getDisplayAvailableActivitiesArray() {
-        String[][] displayAvailableActivitiesArray = new String[100][100];
+        String[][] displayAvailableActivitiesArray = new String[availableActivities.size()][4];
         ArrayList<String[]> displayActivities = new ArrayList<>();
 
         for (Integer index : availableActivities.keySet()){
@@ -162,7 +162,7 @@ public class EditorState {
     }
 
     public String[][] getDisplaySlectedActivitiesArray() {
-        String[][] displaySlectedActivitiesArray = new String[100][100];
+        String[][] displaySlectedActivitiesArray = new String[selectedActivities.size() + 1][4];
         ArrayList<String[]> displayActivities = new ArrayList<>();
 
         for (Integer index : selectedActivities.keySet()){
@@ -174,6 +174,9 @@ public class EditorState {
             displayActivities.add(item);
         }
         displayActivities.toArray(displaySlectedActivitiesArray);
+        if (selectedActivities.size() == 0){
+            displaySlectedActivitiesArray = new String[][]{{"0", "0", "0", "0", "0"}, {"0", "0", "0", "0", "0"}};
+        }
         return displaySlectedActivitiesArray;
     }
 }

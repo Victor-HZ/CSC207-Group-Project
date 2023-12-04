@@ -16,7 +16,7 @@ public class WeatherAPI {
     public JSONObject weather;
 
     // Must be within 14 days
-    public void updateWeather(Date day, Address address) throws IOException {
+    public void updateWeather(DayInfo day, Address address) throws IOException {
         //initialize the url
         String coordinates = address.getCoordinates();
         Integer divider = coordinates.indexOf(',');

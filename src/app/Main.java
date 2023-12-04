@@ -74,7 +74,7 @@ public class Main {
         viewManagerModel.setActiveView(startupView.viewName);
         viewManagerModel.firePropertyChanged();
 
-        application.pack();
+        application.setSize(1000, 700);
         application.setVisible(true);
     }
 

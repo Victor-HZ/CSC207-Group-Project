@@ -5,9 +5,7 @@ import plan.entity.address.CanadaAddress;
 import plan.entity.address.InvalidProvinceException;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
-import plan.service.create_plan.CreatePlanInteractor;
 import plan.service.create_plan.interface_adapter.CreatePlanController;
-import plan.service.create_plan.interface_adapter.CreatePlanState;
 import plan.service.load_plan.interface_adapter.LoadPlanController;
 import plan.service.main_view_models.StartUpState;
 import plan.service.main_view_models.StartUpViewModel;
@@ -67,7 +65,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         LabelTextPanel cityInfo = new LabelTextPanel(
                 new JLabel(LoggedInViewModel.CITY_INPUT_LABEL), cityInputField);
         LabelTextPanel countryInfo = new LabelTextPanel(
-                new JLabel(LoggedInViewModel.COUNTRY_INPUT_LABEL), countryInputField);
+                new JLabel(LoggedInViewModel.PROVINCE_INPUT_LABEL), countryInputField);
 
         JPanel buttons = new JPanel();
         createPlan = new JButton(loggedInViewModel.CREATE_PLAN_BUTTON_LABEL);
@@ -88,7 +86,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                             dayInfo.setDay(Integer.parseInt(loggedinState.getDate().split("-")[0]));
                             dayInfo.setHour(12);
                             Address address = new CanadaAddress();
-                            address.setCountry(loggedinState.getCountry());
+                            try {
+                                address.setProvince(loggedinState.getProvince());
+                            } catch (InvalidProvinceException e) {
+                                throw new RuntimeException(e);
+                            }
                             try {
                                 address.setProvince("ON");
                             } catch (InvalidProvinceException e) {
@@ -174,7 +176,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                     public void keyTyped(KeyEvent e) {
                         LoggedInState currentState = loggedInViewModel.getState();
                         String text = countryInputField.getText() + e.getKeyChar();
-                        currentState.setCountry(text);
+                        currentState.setProvince(text);
                         loggedInViewModel.setState(currentState);
                     }
 

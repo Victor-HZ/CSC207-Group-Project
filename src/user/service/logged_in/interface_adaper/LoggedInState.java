@@ -6,14 +6,14 @@ public class LoggedInState {
     private User user = null;
     private String date = "";
     private String city = "";
-    private String country = "";
+    private String province = "";
     private String createPlanError = null;
 
     public LoggedInState(LoggedInState copy) {
         user = copy.user;
         date = copy.date;
         city = copy.city;
-        country = copy.country;
+        province = copy.province;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -32,8 +32,8 @@ public class LoggedInState {
     public String getCity() {
         return city;
     }
-    public String getCountry() {
-        return country;
+    public String getProvince() {
+        return province;
     }
 
     public void setDate(String date) {
@@ -42,8 +42,8 @@ public class LoggedInState {
     public void setCity(String city) {
         this.city = city;
     }
-    public void setCountry(String country) {
-        this.country = country;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
 

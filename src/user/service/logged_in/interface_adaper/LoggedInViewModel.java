@@ -12,7 +12,7 @@ public class LoggedInViewModel extends ViewModel {
 
     public static final String DATE_INPUT_LABEL = "Date (DD-MM-YYYY):";
     public static final String CITY_INPUT_LABEL = "City:";
-    public static final String COUNTRY_INPUT_LABEL = "Country:";
+    public static final String PROVINCE_INPUT_LABEL = "Province:";
 
     public static final String CREATE_PLAN_BUTTON_LABEL = "Create New Plan";
     public static final String LOAD_PLAN_BUTTON_LABEL = "Load Plan";
