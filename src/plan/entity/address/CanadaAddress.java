@@ -19,16 +19,16 @@ enum Province {
 }
 
 public class CanadaAddress implements Address{
-    String postalCode;
-    String businessName;
-    String streetName;
-    Integer streetNumber;
-    String city;
-    Province province;
+    String postalCode = "";
+    String businessName = "";
+    String streetName = "";
+    Integer streetNumber = 0;
+    String city = "";
+    Province province = Province.ON;
     String country = "Canada";
 
-    Double latitude;
-    Double longtitude;
+    Double latitude = 0.0;
+    Double longitude = 0.0;
 
     public CanadaAddress(){}
 
@@ -40,7 +40,7 @@ public class CanadaAddress implements Address{
         this.city = city;
         this.country = country;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longtitude;
         boolean f = true;
         for(Province pro: Province.values()) {
             if (province.equalsIgnoreCase(pro.name())) {
@@ -79,13 +79,13 @@ public class CanadaAddress implements Address{
     }
 
     @Override
-    public Double getLongtitude() {
-        return longtitude;
+    public Double getLongitude() {
+        return longitude;
     }
 
     @Override
     public String getCoordinates() {
-        return latitude.toString() + ',' + longtitude.toString();
+        return latitude.toString() + ',' + longitude.toString();
     }
 
     @Override
@@ -100,7 +100,7 @@ public class CanadaAddress implements Address{
 
     @Override
     public void setLongitude(Double longtitude) {
-        this.longtitude = longtitude;
+        this.longitude = longtitude;
     }
 
     @Override
@@ -148,8 +148,8 @@ public class CanadaAddress implements Address{
     public void updateCoordinates() throws IOException {
         Coordinate coordinate = new Coordinate();
         HashMap<String,Double> result = coordinate.updateCoordinates(this);
-        this.longtitude = result.get("Longtitude");
-        this.longtitude = result.get("Latitude");
+        this.longitude = result.get("Longtitude");
+        this.longitude = result.get("Latitude");
     }
 
 
@@ -163,7 +163,7 @@ public class CanadaAddress implements Address{
                 this.postalCode.equals(other.getPostalCode()) &&
                 this.province.name().equals(other.getProvince()) &&
                 this.latitude.equals(other.getLatitude()) &&
-                this.longtitude.equals(other.getLongtitude());
+                this.longitude.equals(other.getLongitude());
     }
 
     public String toString(){

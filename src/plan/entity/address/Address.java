@@ -12,7 +12,7 @@ public interface Address {
     String getCountry();
 
     String getCoordinates();
-    Double getLongtitude();
+    Double getLongitude();
     Double getLatitude();
 
     void setLatitude(Double latitude);
