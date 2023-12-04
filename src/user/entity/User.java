@@ -1,5 +1,7 @@
 package user.entity;
 
+import plan.entity.plan.Plan;
+
 import java.time.LocalDateTime;
 
 public interface User {
@@ -9,6 +11,7 @@ public interface User {
     Coordinate,
     TripAdvisor;
     }
+    void updatePlan(Plan plan);
 
     String getName();
 

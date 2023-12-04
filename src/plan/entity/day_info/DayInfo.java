@@ -11,6 +11,8 @@ public interface DayInfo{
 
     String toString(ToStringType type);
 
+    String stringInfo();
+
     String getInfo();
     void setYear(Integer year) throws DateTimeException;
     void setMonth(Integer month) throws DateTimeException;

@@ -1,5 +1,7 @@
 package user.entity;
 
+import plan.entity.plan.Plan;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +12,7 @@ class CommonUser implements User {
     private final String password;
     private final LocalDateTime creationTime;
     private final HashMap<API_TOKEN, String> apiTokens;
+    private Plan plan;
 
     /**
      * Requires: password is valid.
@@ -27,6 +30,8 @@ class CommonUser implements User {
     public String getName() {
         return name;
     }
+
+    public void updatePlan(Plan newPlan) {plan = newPlan;}
 
     @Override
     public String getPassword() {

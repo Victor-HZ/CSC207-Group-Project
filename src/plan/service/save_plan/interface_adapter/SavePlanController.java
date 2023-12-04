@@ -15,7 +15,7 @@ public class SavePlanController {
         this.savePlanInteractor = savePlanInteractor;
     }
 
-    public void execute(Plan dateplan, File csvFile, User commonUser) throws FileNotFoundException {
+    public void execute(Plan dateplan, File csvFile, User commonUser) {
         SavePlanInputData savePlanInputData = new SavePlanInputData(dateplan, csvFile, commonUser);
         savePlanInteractor.execute(savePlanInputData);
     }

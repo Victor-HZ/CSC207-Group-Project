@@ -16,6 +16,12 @@ public class Event implements Activity {
     }
 
     @Override
+    public String toString() {
+        return String.format("%s, %s, %f, %s, %s", getName(), getAddress().toString(), getCost(),
+                getDescription(), getDayInfo().stringInfo());
+    }
+
+    @Override
     public String getName() {
         return name;
     }

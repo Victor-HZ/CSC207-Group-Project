@@ -23,6 +23,13 @@ public class Date implements DayInfo {
         return time.format(DateTimeFormatter.ISO_INSTANT);
     }
 
+    @Override
+    public String stringInfo() {
+        String time = toString();
+        String weather = getWeather().toString();
+        return String.format("%s, %s", time, weather);
+    }
+
     public String toString(ToStringType type){
         switch (type){
             case TICKETMASTER:

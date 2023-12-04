@@ -25,6 +25,8 @@ public class SavePlanInputData {
 
     public File getCsvFile() {return csvFile;}
 
+    public String getFilePath() {return csvFile.getPath();}
+
     public List<Activity> getActivities() {
         return plan.getActivities();
     }

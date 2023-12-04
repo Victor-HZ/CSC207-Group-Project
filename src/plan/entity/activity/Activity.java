@@ -6,6 +6,7 @@ import plan.entity.day_info.DayInfo;
 
 public interface Activity {
 
+    String toString();
     String getName();
     Double getCost();
     Address getAddress();
