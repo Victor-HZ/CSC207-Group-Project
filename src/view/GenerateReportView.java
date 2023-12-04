@@ -11,7 +11,7 @@ import java.beans.PropertyChangeListener;
 
 public class GenerateReportView extends JPanel implements PropertyChangeListener {
 
-    public final String viewName = "Generate Report";
+    public final String viewName = "generate report";
     private final GenerateReportViewModel viewModel;
 
     private JTextArea activitiesTextArea;
