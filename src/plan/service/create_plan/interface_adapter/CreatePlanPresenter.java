@@ -5,6 +5,8 @@ import apis.ticketmaster.TicketmasterAPI;
 import apis.tripAdvisor.TripAdvisorAPI;
 import app.EditorUseCaseFactory;
 import app.Main;
+import plan.entity.plan.DatePlan;
+import plan.entity.plan.Plan;
 import plan.service.create_plan.CreatePlanOutputBoundary;
 import plan.service.create_plan.CreatePlanOutputData;
 import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
@@ -30,16 +32,19 @@ public class CreatePlanPresenter implements CreatePlanOutputBoundary {
     }
 
     @Override
-    public void prepareEditorView(CreatePlanOutputData user) {
+    public void prepareEditorView(CreatePlanOutputData result) {
         // Switch to editor view from logged in view
         LoggedInState loggedInState = loggedInViewModel.getState();
         this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
 
+        Plan plan = result.getPlan();
+
+
         ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
         activitiesFetchInterfaces.add(new TicketmasterAPI());
         activitiesFetchInterfaces.add(new TripAdvisorAPI());
-        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces);
+        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces, plan);
         Main.addNewView(editorView, editorView.viewName);
 
         this.viewManagerModel.setActiveView(editorViewModel.getViewName());
