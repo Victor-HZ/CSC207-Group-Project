@@ -2,6 +2,7 @@ package plan.service.create_plan;
 
 import plan.entity.address.Address;
 import plan.entity.day_info.DayInfo;
+import user.entity.User;
 
 import java.time.LocalDateTime;
 
@@ -12,9 +13,9 @@ public class CreatePlanInteractor implements CreatePlanInputBoundary{
         this.createPlanPresenter = createPlanOutputBoundary;
     }
 
-    public void execute(DayInfo dayInfo, Address address) {
+    public void execute(DayInfo dayInfo, Address address, User user) {
         LocalDateTime time = LocalDateTime.now();
-        CreatePlanOutputData createPlanOutputData = new CreatePlanOutputData(time.toString(), false, dayInfo, address);
+        CreatePlanOutputData createPlanOutputData = new CreatePlanOutputData(time.toString(), false, dayInfo, address, user);
 
         try {
             createPlanPresenter.prepareEditorView(createPlanOutputData);
