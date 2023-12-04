@@ -1,8 +1,14 @@
 package plan.entity.weather;
 
-public class WeatherForcast implements Weather{
+import apis.weather.WeatherAPI;
+
+public class WeatherForcast extends WeatherAPI implements Weather {
+    public String weatherToString() {
+        return weather.toString();
+    }
+
     @Override
     public String toString() {
-        return null;
+        return weatherToString();
     }
 }
