@@ -13,7 +13,7 @@ public class GenerateReportViewModel extends ViewModel {
     public static final String DAY_INFO_LABEL = "Day Info:";
 
     private GenerateReportState state = new GenerateReportState();
-    private static final String VIEW_NAME = "Generate Report";
+    private static final String VIEW_NAME = "generate report";
 
     public GenerateReportViewModel() {
         super(VIEW_NAME);
