@@ -30,6 +30,7 @@ import plan.service.save_plan.SavePlanInteractor;
 import plan.service.save_plan.SavePlanOutputBoundary;
 import plan.service.save_plan.interface_adapter.SavePlanController;
 import plan.service.save_plan.interface_adapter.SavePlanPresenter;
+import user.entity.User;
 import view.EditorView;
 import view.interface_adapter.ViewManagerModel;
 import view.interface_adapter.ViewModel;
@@ -47,14 +48,15 @@ public class EditorUseCaseFactory {
             GenerateReportViewModel generateReportViewModel,
             ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces,
             Plan plan,
-            Address address){
+            Address address,
+            User user){
         try {
             FetchActivitiesController fetchActivitiesController = createFetchActivitiesUseCase(activitiesFetchInterfaces);
             AddActivityController addActivityController = createAddActivityController(viewManagerModel, editorViewModel);
             DeleteActivityController deleteActivityController = createDeleteActivityController(viewManagerModel, editorViewModel);
             GenerateReportController generateReportController = createGenerateReportController(viewManagerModel, generateReportViewModel);
             SavePlanController savePlanController = createSavePlanUseCase(editorViewModel);
-            return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan, address);
+            return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan, address, user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
