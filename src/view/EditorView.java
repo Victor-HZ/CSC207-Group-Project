@@ -181,6 +181,7 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                 }
         );
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        buttons.setBackground(Color.PINK);
         this.add(availableActivitiesTable);
         this.add(selectedActivitiesTable);
         this.add(buttons);
