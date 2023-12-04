@@ -65,9 +65,9 @@ public class EditorUseCaseFactory {
         return new FetchActivitiesController(fetchActivitiesInteractor);
     }
 
-    private static SavePlanController createSavePlanUseCase(){
-        SavePlanOutputBoundary savePlanOutputBoundary = new SavePlanPresenter();
-        SavePlanInputBoundary savePlanInteractor = new SavePlanInteractor();
-        return new SavePlanController();
+    private static SavePlanController createSavePlanUseCase(EditorViewModel editorViewModel){
+        SavePlanOutputBoundary savePlanOutputBoundary = new SavePlanPresenter(editorViewModel);
+        SavePlanInputBoundary savePlanInteractor = new SavePlanInteractor(savePlanOutputBoundary);
+        return new SavePlanController(savePlanInteractor);
     }
 }
