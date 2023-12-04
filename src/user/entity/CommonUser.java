@@ -31,6 +31,8 @@ class CommonUser implements User {
         return name;
     }
 
+    public void updatePlan(Plan newPlan) {plan = newPlan;}
+
     @Override
     public String getPassword() {
         return password;

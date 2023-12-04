@@ -10,6 +10,10 @@ public class EditorState {
     private String addActivityError = null;
     private String deleteActivityError = null;
     private ArrayList<Activity> availableActivities = new ArrayList<>();
+
+    private String savePlanError = null;
+
+    private ArrayList<Activity> avaliableActivities = new ArrayList<>();
     private ArrayList<Activity> selectedActivities = new ArrayList<>();
     private Activity selectedAvailableTable;
     private Activity selectedSelectedTable;
@@ -53,25 +57,8 @@ public class EditorState {
     public void setAddActivityError(String activityError) {
         this.addActivityError = activityError;
     }
-
-    public String getAddActivityError() {
-        return addActivityError;
-    }
-
     public void setDeleteActivityError(String activityError) {
         this.deleteActivityError = activityError;
     }
-
-    public String getDeleteActivityError() {
-        return deleteActivityError;
-    }
-
-    public void setPlan(Plan plan){
-        this.plan = plan;
-    }
-
-    public Plan getPlan(){
-        return plan;
-    }
-
+    public void savePlanError(String saveError) {this.savePlanError = saveError;}
 }

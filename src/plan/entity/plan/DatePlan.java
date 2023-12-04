@@ -35,11 +35,11 @@ public class DatePlan implements Plan{
 
     @Override
     public ArrayList<Activity> getActivities() {
-        return null;
+        return activites;
     }
 
     @Override
     public DayInfo getDayInfo() {
-        return null;
+        return dayInfo;
     }
 }
