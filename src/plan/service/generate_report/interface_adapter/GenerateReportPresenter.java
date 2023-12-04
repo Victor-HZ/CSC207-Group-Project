@@ -37,7 +37,7 @@ public class GenerateReportPresenter implements GenerateReportOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        generateReportViewModel.setErrorMessage(error);
-        generateReportViewModel.firePropertyChanged();
+
     }
+
 }

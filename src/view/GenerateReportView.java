@@ -11,21 +11,20 @@ import java.beans.PropertyChangeListener;
 
 public class GenerateReportView extends JPanel implements PropertyChangeListener {
 
-    public final String viewName = "generate report";
+    public final String viewName = "Generate Report";
     private final GenerateReportViewModel viewModel;
 
     private JTextArea activitiesTextArea;
     private JLabel totalCostLabel;
-    private JLabel dayInfoLabel;
 
     public GenerateReportView(GenerateReportViewModel viewModel) {
         this.viewModel = viewModel;
         this.viewModel.addPropertyChangeListener(this);
 
-        initUI();
+        updateUI();
     }
 
-    private void initUI() {
+    public void updateUI() {
         setLayout(new BorderLayout());
 
         activitiesTextArea = new JTextArea();
@@ -33,11 +32,8 @@ public class GenerateReportView extends JPanel implements PropertyChangeListener
 
         totalCostLabel = new JLabel("Total Cost: ");
 
-        dayInfoLabel = new JLabel("Day Info: ");
-
         add(new JScrollPane(activitiesTextArea), BorderLayout.CENTER);
         add(totalCostLabel, BorderLayout.SOUTH);
-        add(dayInfoLabel, BorderLayout.SOUTH);
 
         updateUI();
     }
@@ -45,17 +41,15 @@ public class GenerateReportView extends JPanel implements PropertyChangeListener
     public void updateUI() {
         GenerateReportState state = viewModel.getState();
 
-        activitiesTextArea.setText(getActivitiesText(state));
-        totalCostLabel.setText("Total Cost: " + state.getTotalCost());
-        dayInfoLabel.setText("Day Info: " + state.getDayInfo());
-    }
+        if (state != null) {
+            StringBuilder sb = new StringBuilder();
+            for (Activity activity : state.getActivities()) {
+                sb.append(activity.toString()).append("\n");
+            }
 
-    private String getActivitiesText(GenerateReportState state) {
-        StringBuilder sb = new StringBuilder();
-        for (Activity activity : state.getActivities()) {
-            sb.append(activity.toString()).append("\n");
+            activitiesTextArea.setText(sb.toString());
+            totalCostLabel.setText("Total Cost: " + state.getTotalCost());
         }
-        return sb.toString();
     }
 
     @Override

@@ -1,30 +1,15 @@
 package plan.service.generate_report;
-import plan.entity.activity.Activity;
-import plan.entity.day_info.DayInfo;
-import plan.entity.plan.DatePlan;
 
-import java.util.List;
+import user.entity.CommonUser;
 
 public class GenerateReportInputData {
-    private DatePlan datePlan;
+    private final CommonUser user;
 
-    public GenerateReportInputData(DatePlan datePlan) {
-        this.datePlan = datePlan;
+    public GenerateReportInputData(CommonUser user) {
+        this.user = user;
     }
 
-    public DatePlan getDatePlan() {
-        return datePlan;
-    }
-
-    public List<Activity> getActivities() {
-        return datePlan.getActivities();
-    }
-
-    public double getTotalCost() {
-        return datePlan.getCost();
-    }
-
-    public DayInfo getDayInfo() {
-        return datePlan.getDayInfo();
+    public CommonUser getUser() {
+        return user;
     }
 }
