@@ -20,4 +20,6 @@ public interface User {
     LocalDateTime getCreationTime();
 
     String getAPIToken(API_TOKEN apiToken);
+
+    Plan getPlan();
 }

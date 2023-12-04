@@ -38,19 +38,19 @@ public class GenerateReportView extends JPanel implements PropertyChangeListener
         updateUI();
     }
 
-    public void updateUI() {
-        GenerateReportState state = viewModel.getState();
-
-        if (state != null) {
-            StringBuilder sb = new StringBuilder();
-            for (Activity activity : state.getActivities()) {
-                sb.append(activity.toString()).append("\n");
-            }
-
-            activitiesTextArea.setText(sb.toString());
-            totalCostLabel.setText("Total Cost: " + state.getTotalCost());
-        }
-    }
+//    public void updateUI() {
+//        GenerateReportState state = viewModel.getState();
+//
+//        if (state != null) {
+//            StringBuilder sb = new StringBuilder();
+//            for (Activity activity : state.getActivities()) {
+//                sb.append(activity.toString()).append("\n");
+//            }
+//
+//            activitiesTextArea.setText(sb.toString());
+//            totalCostLabel.setText("Total Cost: " + state.getTotalCost());
+//        }
+//    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
