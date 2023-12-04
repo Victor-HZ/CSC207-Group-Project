@@ -13,6 +13,8 @@ import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.EditorViewModel;
 import plan.service.save_plan.interface_adapter.SavePlanController;
 import user.entity.User;
+import user.service.logged_in.interface_adaper.LoggedInState;
+import user.service.logged_in.interface_adaper.LoggedInViewModel;
 
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
@@ -20,10 +22,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -42,10 +41,13 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
     private final GenerateReportController generateReportController;
     private final SavePlanController savePlanController;
 
+    JLabel selected;
+    private final JTextField selectionInputField = new JTextField(3);
+
     private final JButton addActivity;
     private final JButton deleteActivity;
     private final JButton savePlan;
-    private final JButton generateReport;
+//    private final JButton generateReport;
 
     public EditorView(EditorViewModel editorViewModel,
                       AddActivityController addActivityController,
@@ -102,6 +104,10 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         LabelTablePanel selectedActivitiesTable = new LabelTablePanel(
                 new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), new JScrollPane(selectedActivities));
 
+        JLabel selectedInfo = new JLabel("Currently selected: ");
+        selected = new JLabel();
+        LabelTextPanel selectionInfo = new LabelTextPanel(
+                new JLabel("Activity Id"), selectionInputField);
 
         JPanel buttons = new JPanel();
         addActivity = new JButton(EditorViewModel.ADD_ACTIVITY_BUTTON_LABEL);
@@ -110,13 +116,16 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         buttons.add(deleteActivity);
         savePlan = new JButton(EditorViewModel.SAVE_PLAN_BUTTON_LABEL);
         buttons.add(savePlan);
-        generateReport = new JButton(EditorViewModel.GENERATE_REPORT_LABEL);
-        buttons.add(generateReport);
+//        generateReport = new JButton(EditorViewModel.GENERATE_REPORT_LABEL);
+//        buttons.add(generateReport);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         buttons.setBackground(Color.PINK);
         this.add(availableActivitiesTable);
-        this.add(selectedActivitiesTable);
+//        this.add(selectedActivitiesTable);
+        this.add(selectedInfo);
+        this.add(selected);
+        this.add(selectionInfo);
         this.add(buttons);
         this.setSize(1000, 1000);
 
@@ -159,11 +168,10 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(addActivity)) {
                             EditorState currentState = editorViewModel.getState();
-                            addActivityController.execute(currentState.getPlan(), currentState.getSelectedAvailableTable());
-                            currentState.addSelectedActivity(currentState.getSelectedAvailableTableID(), currentState.getSelectedAvailableTable());
-                            currentState.deleteAvailableActivity(currentState.getSelectedAvailableTableID());
-                            editorViewModel.setState(currentState);
+                            currentState.addSelected(currentState.getSelection());
+                            selected.setText(currentState.getSelected());
 
+                            addActivityController.execute(currentState.getPlan(), currentState.getActivity(currentState.getSelection()));
                         }
                     }
                 }
@@ -174,10 +182,10 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(deleteActivity)) {
                             EditorState currentState = editorViewModel.getState();
-                            deleteActivityController.execute(currentState.getPlan(), currentState.getSelectedSelectedTable());
-                            currentState.addAvailableActivity(currentState.getSelectedSelectedTableID(), currentState.getSelectedSelectedTable());
-                            currentState.deleteSelectedActivity(currentState.getSelectedSelectedTableID());
-                            editorViewModel.setState(currentState);
+                            currentState.deleteSelected(currentState.getSelection());
+                            selected.setText(currentState.getSelected());
+
+                            deleteActivityController.execute(currentState.getPlan(), currentState.getActivity(currentState.getSelection()));
                         }
                     }
                 }
@@ -186,22 +194,42 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         savePlan.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(savePlan)) {
-                            EditorState currentState = editorViewModel.getState();
-                        }
+//                        if (evt.getSource().equals(savePlan)) {
+//                            EditorState currentState = editorViewModel.getState();
+//                        }
+
                     }
                 }
         );
 
-        generateReport.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(generateReport)) {
-                            EditorState currentState = editorViewModel.getState();
-                        }
+//        generateReport.addActionListener(
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+//                        if (evt.getSource().equals(generateReport)) {
+//                            EditorState currentState = editorViewModel.getState();
+//                        }
+//                    }
+//                }
+//        );
+
+        selectionInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        EditorState currentState = editorViewModel.getState();
+                        String text = selectionInputField.getText() + e.getKeyChar();
+                        currentState.setSelection(text);
+                        editorViewModel.setState(currentState);
                     }
-                }
-        );
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
 
         availableActivitiesTable.addAncestorListener(
                 new AncestorListener() {
