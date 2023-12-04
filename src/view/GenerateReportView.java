@@ -21,41 +21,46 @@ public class GenerateReportView extends JPanel implements PropertyChangeListener
         this.viewModel = viewModel;
         this.viewModel.addPropertyChangeListener(this);
 
-        updateUI();
-    }
-
-    public void updateUI() {
-        setLayout(new BorderLayout());
-
-        activitiesTextArea = new JTextArea();
-        activitiesTextArea.setEditable(false);
-
-        totalCostLabel = new JLabel("Total Cost: ");
-
-        add(new JScrollPane(activitiesTextArea), BorderLayout.CENTER);
-        add(totalCostLabel, BorderLayout.SOUTH);
-
-        updateUI();
-    }
-
-    public void updateUI() {
-        GenerateReportState state = viewModel.getState();
-
-        if (state != null) {
-            StringBuilder sb = new StringBuilder();
-            for (Activity activity : state.getActivities()) {
-                sb.append(activity.toString()).append("\n");
-            }
-
-            activitiesTextArea.setText(sb.toString());
-            totalCostLabel.setText("Total Cost: " + state.getTotalCost());
-        }
+//        updateUI();
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if ("state".equals(evt.getPropertyName())) {
-            updateUI();
-        }
+
     }
+
+//    public void updateUI() {
+//        setLayout(new BorderLayout());
+//
+//        activitiesTextArea = new JTextArea();
+//        activitiesTextArea.setEditable(false);
+//
+//        totalCostLabel = new JLabel("Total Cost: ");
+//
+//        add(new JScrollPane(activitiesTextArea), BorderLayout.CENTER);
+//        add(totalCostLabel, BorderLayout.SOUTH);
+//
+////        updateUI();
+//    }
+
+//    public void updateUI() {
+//        GenerateReportState state = viewModel.getState();
+//
+//        if (state != null) {
+//            StringBuilder sb = new StringBuilder();
+//            for (Activity activity : state.getActivities()) {
+//                sb.append(activity.toString()).append("\n");
+//            }
+//
+//            activitiesTextArea.setText(sb.toString());
+//            totalCostLabel.setText("Total Cost: " + state.getTotalCost());
+//        }
+//    }
+//
+//    @Override
+//    public void propertyChange(PropertyChangeEvent evt) {
+//        if ("state".equals(evt.getPropertyName())) {
+//            updateUI();
+//        }
+//    }
 }
