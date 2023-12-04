@@ -1,5 +1,6 @@
 package apis.weather;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -9,7 +10,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Coordinate {
-    private static final String key = System.getenv("COORDINATE_API_TOKEN");
+    static Dotenv dotenv = Dotenv.load();
+    private static final String key = dotenv.get("COORDINATE_API_TOKEN");
 
     public HashMap<String, Double> updateCoordinates(Address address) throws IOException{
         String city = address.getCity();

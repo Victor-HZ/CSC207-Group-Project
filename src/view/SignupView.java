@@ -1,5 +1,6 @@
 package view;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.StartUpState;
 import plan.service.main_view_models.StartUpViewModel;
@@ -130,10 +131,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(loadFromEnv)){
+                            Dotenv dotenv = Dotenv.load();
                             System.out.println("loadFromEnv clicked");
-                            ticketMasterAPITokenInputField.setText(System.getenv("TICKETMASTER_API_TOKEN"));
-                            tripAdvisorAPITokenInputField.setText(System.getenv("TRIPADVISOR_API_TOKEN"));
-                            coordinateAPITokenInputField.setText(System.getenv("COORDINATE_API_TOKEN"));
+                            ticketMasterAPITokenInputField.setText(dotenv.get("TICKETMASTER_API_TOKEN"));
+                            tripAdvisorAPITokenInputField.setText(dotenv.get("TRIPADVISOR_API_TOKEN"));
+                            coordinateAPITokenInputField.setText(dotenv.get("COORDINATE_API_TOKEN"));
                             usernameInputField.setText(System.getenv("NAME"));
                             passwordInputField.setText(System.getenv("PASSWORD"));
                             repeatPasswordInputField.setText(System.getenv("REPEAT_PASSWORD"));

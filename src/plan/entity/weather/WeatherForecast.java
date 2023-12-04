@@ -2,7 +2,7 @@ package plan.entity.weather;
 
 import apis.weather.WeatherAPI;
 
-public class WeatherForcast extends WeatherAPI implements Weather {
+public class WeatherForecast extends WeatherAPI implements Weather {
     public String weatherToString() {
         return weather.toString();
     }
