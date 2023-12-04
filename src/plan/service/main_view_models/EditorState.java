@@ -13,14 +13,15 @@ import java.util.HashMap;
 public class EditorState {
     private String addActivityError = null;
     private String deleteActivityError = null;
-    private ArrayList<Activity> availableActivities = new ArrayList<>();
-
     private String savePlanError = null;
 
-    private ArrayList<Activity> avaliableActivities = new ArrayList<>();
-    private ArrayList<Activity> selectedActivities = new ArrayList<>();
+    private HashMap<Integer, Activity> availableActivities = new HashMap<>();
+    private HashMap<Integer, Activity> selectedActivities = new HashMap<>();
+
     private HashMap<User.API_TOKEN, String> apiTokens = new HashMap<>();
     private Activity selectedAvailableTable;
+    private Integer selectedAvailableTableID;
+    private Integer selectedSelectedTableID;
     private Activity selectedSelectedTable;
     private Plan plan;
     private DayInfo dayInfo;
@@ -28,6 +29,22 @@ public class EditorState {
     private User user;
 
     public EditorState() {
+    }
+
+    public void addAvailableActivity(Integer activityID, Activity activity){
+        availableActivities.put(activityID, activity);
+    }
+
+    public void addSelectedActivity(Integer activityID, Activity activity){
+        selectedActivities.put(activityID, activity);
+    }
+
+    public void deleteAvailableActivity(Integer activityID){
+        availableActivities.remove(activityID);
+    }
+
+    public void deleteSelectedActivity(Integer activityID){
+        selectedActivities.remove(activityID);
     }
 
     public void setSelectedSelectedTable(Activity activity) {
@@ -46,28 +63,30 @@ public class EditorState {
         return selectedAvailableTable;
     }
 
-    public void setAvailableActivities(ArrayList<Activity> activities){
+    public void setAvailableActivities(HashMap<Integer, Activity> activities){
         this.availableActivities = activities;
     }
 
-    public ArrayList<Activity> getAvailableActivities(){
+    public HashMap<Integer, Activity> getAvailableActivities(){
         return availableActivities;
     }
 
-    public void setSelectedActivities(ArrayList<Activity> selectedActivities) {
+    public void setSelectedActivities(HashMap<Integer, Activity> selectedActivities) {
         this.selectedActivities = selectedActivities;
     }
 
-    public ArrayList<Activity> getSelectedActivities() {
+    public HashMap<Integer, Activity> getSelectedActivities() {
         return selectedActivities;
     }
 
     public void setAddActivityError(String activityError) {
         this.addActivityError = activityError;
     }
+
     public void setDeleteActivityError(String activityError) {
         this.deleteActivityError = activityError;
     }
+
     public void savePlanError(String saveError) {this.savePlanError = saveError;}
 
     public void setDayInfo(DayInfo dayInfo) {
@@ -108,5 +127,53 @@ public class EditorState {
 
     public HashMap<User.API_TOKEN, String> getApiTokens() {
         return apiTokens;
+    }
+
+    public void setSelectedAvailableTableID(Integer selectedAvailableTableID) {
+        this.selectedAvailableTableID = selectedAvailableTableID;
+    }
+
+    public void setSelectedSelectedTableID(Integer selectedSelectedTableID) {
+        this.selectedSelectedTableID = selectedSelectedTableID;
+    }
+
+    public Integer getSelectedSelectedTableID() {
+        return selectedSelectedTableID;
+    }
+
+    public Integer getSelectedAvailableTableID() {
+        return selectedAvailableTableID;
+    }
+
+    public String[][] getDisplayAvailableActivitiesArray() {
+        String[][] displayAvailableActivitiesArray = new String[100][100];
+        ArrayList<String[]> displayActivities = new ArrayList<>();
+
+        for (Integer index : availableActivities.keySet()){
+            String[] item = {index.toString(),
+                    availableActivities.get(index).getName(),
+                    availableActivities.get(index).getCost().toString(),
+                    availableActivities.get(index).getAddress().getStreetNumber() + " " + availableActivities.get(index).getAddress().getStreetName(),
+                    availableActivities.get(index).getAddress().getPostalCode()};
+            displayActivities.add(item);
+        }
+        displayActivities.toArray(displayAvailableActivitiesArray);
+        return displayAvailableActivitiesArray;
+    }
+
+    public String[][] getDisplaySlectedActivitiesArray() {
+        String[][] displaySlectedActivitiesArray = new String[100][100];
+        ArrayList<String[]> displayActivities = new ArrayList<>();
+
+        for (Integer index : selectedActivities.keySet()){
+            String[] item = {index.toString(),
+                    selectedActivities.get(index).getName(),
+                    selectedActivities.get(index).getCost().toString(),
+                    selectedActivities.get(index).getAddress().getStreetNumber() + " " + selectedActivities.get(index).getAddress().getStreetName(),
+                    selectedActivities.get(index).getAddress().getPostalCode()};
+            displayActivities.add(item);
+        }
+        displayActivities.toArray(displaySlectedActivitiesArray);
+        return displaySlectedActivitiesArray;
     }
 }
