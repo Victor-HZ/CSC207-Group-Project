@@ -1,6 +1,5 @@
 package plan.entity.weather;
 
-import org.json.JSONObject;
 import plan.entity.address.Address;
 import plan.entity.day_info.Date;
 

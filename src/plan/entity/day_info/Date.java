@@ -4,7 +4,6 @@ import plan.entity.weather.Weather;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.TimeZone;
 
 public class Date implements DayInfo {
     private ZonedDateTime time;

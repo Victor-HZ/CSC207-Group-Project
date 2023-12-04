@@ -1,10 +1,8 @@
 package apis.weather;
 import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import plan.entity.address.Address;
-import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
 
