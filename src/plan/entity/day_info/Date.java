@@ -4,7 +4,6 @@ import plan.entity.weather.Weather;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.TimeZone;
 
 public class Date implements DayInfo {
     private ZonedDateTime time;
@@ -125,7 +124,7 @@ public class Date implements DayInfo {
     public static void main(String[] args) throws DateTimeException {
         DayInfo day = new Date();
         day.setYear(2023);
-        day.setMonth(11);
+        day.setMonth(12);
         day.setDay(10);
         day.setHour(15);
         System.out.println(day);
