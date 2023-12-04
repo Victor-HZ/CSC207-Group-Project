@@ -13,6 +13,8 @@ public interface User {
     }
     void updatePlan(Plan plan);
 
+    Plan getPlan();
+
     String getName();
 
     String getPassword();
