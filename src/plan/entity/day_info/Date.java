@@ -125,7 +125,7 @@ public class Date implements DayInfo {
     public static void main(String[] args) throws DateTimeException {
         DayInfo day = new Date();
         day.setYear(2023);
-        day.setMonth(11);
+        day.setMonth(12);
         day.setDay(10);
         day.setHour(15);
         System.out.println(day);

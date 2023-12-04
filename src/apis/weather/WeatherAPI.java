@@ -26,21 +26,22 @@ public class WeatherAPI {
         String apiUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude +
                 "&hourly=temperature_2m,rain&start_date=" + date + "&end_date=" + date;
         //url call
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(apiUrl)
                 .build();
-        try (Response response = client.newCall(request).execute()) {
-            assert response.body() != null;
+        Response responses = null;
 
-            JSONObject responseObject = new JSONObject(response);
-            JSONArray jsonArray = responseObject.getJSONArray("hourly");
-            JSONObject timeTempRain = null;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                timeTempRain = jsonArray.getJSONObject(i);
-            }
-            weather = timeTempRain;
+        try {
+            responses = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        String jsonData = responses.body().string();
+        JSONObject jsonObject = new JSONObject(jsonData);
+
+        weather = jsonObject.getJSONObject("hourly");
 
         setRain();
 
@@ -62,6 +63,10 @@ public class WeatherAPI {
                 rain = "Heavy Rain";
             }
         }
+    }
+
+    public String getRain() {
+        return rain;
     }
 }
 
