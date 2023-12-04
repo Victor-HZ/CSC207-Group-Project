@@ -1,5 +1,10 @@
 package view;
 
+import plan.entity.address.Address;
+import plan.entity.address.CanadaAddress;
+import plan.entity.address.InvalidProvinceException;
+import plan.entity.day_info.Date;
+import plan.entity.day_info.DayInfo;
 import plan.service.create_plan.CreatePlanInteractor;
 import plan.service.create_plan.interface_adapter.CreatePlanController;
 import plan.service.create_plan.interface_adapter.CreatePlanState;
@@ -41,11 +46,13 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     /**
      * A window with a title and a JButton.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel, ViewManagerModel vMM, StartUpViewModel suVM) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, ViewManagerModel vMM, StartUpViewModel suVM, CreatePlanController createPlanController, LoadPlanController loadPlanController) {
         this.loggedInViewModel = loggedInViewModel;
         this.loggedInViewModel.addPropertyChangeListener(this);
         this.viewManagerModel = vMM;
         this.startupViewModel = suVM;
+        this.createPlanController = createPlanController;
+        this.loadPlanController = loadPlanController;
 
         JLabel title = new JLabel(loggedInViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -75,13 +82,20 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createPlan)) {
                             LoggedInState loggedinState = LoggedInViewModel.getState();
-
-//                            CreatePlanState createPlanState = createPlanViewModel.getState();
-//                            createPlanViewModel.setState(createPlanState);
-//                            createPlanViewModel.firePropertyChanged();
-//
-//                            createPlanController.execute();
-
+                            DayInfo dayInfo = new Date();
+                            dayInfo.setYear(Integer.parseInt(loggedinState.getDate().split("-")[2]));
+                            dayInfo.setMonth(Integer.parseInt(loggedinState.getDate().split("-")[1]));
+                            dayInfo.setDay(Integer.parseInt(loggedinState.getDate().split("-")[0]));
+                            dayInfo.setHour(12);
+                            Address address = new CanadaAddress();
+                            address.setCountry(loggedinState.getCountry());
+                            try {
+                                address.setProvince("ON");
+                            } catch (InvalidProvinceException e) {
+                                throw new RuntimeException(e);
+                            }
+                            address.setCity(loggedinState.getCity());
+                            createPlanController.execute(dayInfo, address, loggedinState.getUser());
                         }
                     }
                 }

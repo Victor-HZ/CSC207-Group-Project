@@ -45,7 +45,7 @@ public class Main {
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
 
-        StartUpViewModel startupViewModel = new StartUpViewModel();
+        StartUpViewModel startUpViewModel = new StartUpViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -59,16 +59,16 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        StartUpView startupView = new StartUpView(viewManagerModel, startupViewModel, loginViewModel, signupViewModel);
+        StartUpView startupView = new StartUpView(viewManagerModel, startUpViewModel, loginViewModel, signupViewModel);
         views.add(startupView, startupView.viewName);
 
-        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, userDataAccessObject, clearViewModel, startupViewModel);
+        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, userDataAccessObject, clearViewModel, startUpViewModel);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, startupViewModel);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, startUpViewModel);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel, startupViewModel);
+        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel, startUpViewModel, editorViewModel);
         views.add(loggedInView, loggedInView.viewName);
 
         viewManagerModel.setActiveView(startupView.viewName);

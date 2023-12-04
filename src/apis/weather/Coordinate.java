@@ -1,14 +1,15 @@
 package apis.weather;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import plan.entity.address.Address;
-import okhttp3.*;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Coordinate {
-    private static final String key = System.getenv("WEATHER_API_TOKEN");
+    private static final String key = System.getenv("COORDINATE_API_TOKEN");
 
     public HashMap<String, Double> updateCoordinates(Address address) throws IOException{
         String city = address.getCity();

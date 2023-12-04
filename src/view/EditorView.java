@@ -68,6 +68,7 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         state.setPlan(plan);
         state.setAddress(address);
         state.setUser(user);
+        state.setDayInfo(plan.getDayInfo());
 
 
         state.setApiTokens(User.API_TOKEN.Ticketmaster, state.getUser().getAPIToken(User.API_TOKEN.Ticketmaster));
@@ -88,24 +89,27 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         ArrayList<String[]> displayActivities = new ArrayList<>();
 
         for (Integer index : hashActivities.keySet()){
-            String[] item = {index.toString(), hashActivities.get(index).getName(), hashActivities.get(index).getCost().toString(), hashActivities.get(index).getAddress().toString(), hashActivities.get(index).getDayInfo().toString()};
+            String[] item = {index.toString(), hashActivities.get(index).getName(), hashActivities.get(index).getCost().toString(), hashActivities.get(index).getAddress().toString()};
             displayActivities.add(item);
         }
 
         // Initialization of JTable
-        String[] columnNames = {"Index", "Name", "Cost", "Address", "Time"};
-        String[][] displayActivitiesArray = new String[displayActivities.size()][100];
-        String[][] selectedActivitiesArray = new String[displayActivities.size()][100];
-//        displayActivities.toArray(displayActivitiesArray);
+        String[] columnNames = {"Index", "Name", "Cost", "Address"};
+        String[][] displayActivitiesArray = new String[displayActivities.size() + 1][100];
+        String[][] selectedActivitiesArray = new String[displayActivities.size() + 1][100];
+        displayActivities.toArray(displayActivitiesArray);
         availableActivities = new JTable(displayActivitiesArray, columnNames);
         availableActivities.setCellSelectionEnabled(true);
+        JScrollPane scrollPaneAvailableActivities = new JScrollPane(availableActivities);
         selectedActivities = new JTable(selectedActivitiesArray, columnNames);
         selectedActivities.setCellSelectionEnabled(true);
+        JScrollPane scrollPaneSelectedActivities = new JScrollPane(selectedActivities);
 
         LabelTablePanel availableActivitiesTable = new LabelTablePanel(
-                new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), availableActivities);
+                new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), scrollPaneAvailableActivities);
         LabelTablePanel selectedActivitiesTable = new LabelTablePanel(
-                new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), selectedActivities);
+                new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), scrollPaneSelectedActivities);
+
 
         JPanel buttons = new JPanel();
         addActivity = new JButton(EditorViewModel.ADD_ACTIVITY_BUTTON_LABEL);

@@ -27,45 +27,46 @@ public class TripAdvisorAPI implements ActivitiesFetchInterface {
     @Override
     public ArrayList<Activity> getEvents(String city, DayInfo date, String apiToken) throws JSONException {
         setApiToken(apiToken);
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
-                .addQueryParameter("apikey", API_TOKEN)
-                .addQueryParameter("startDateTime", date.toString(ToStringType.TICKETMASTER))
-                .addQueryParameter("countryCode", "CA");
-        Request request = new Request.Builder().url(httpBuilder.build()).build();
-        try {
-            Response response = client.newCall(request).execute();
-            System.out.println(response);
-
-            if (response.code() == 200) {
-                assert response.body() != null;
-                JSONObject responseBody = new JSONObject(response.body().string());
-                JSONObject result = responseBody.getJSONObject("_embedded");
-
-                JSONArray membersArray = result.getJSONArray("events");
-                ArrayList<Activity> activities = new ArrayList<>();
-                for (int i = 0; i < membersArray.length(); i++) {
-                    Activity event = new Event();
-                    Address address = new CanadaAddress();
-                    try {
-                        event.setName(membersArray.getJSONObject(i).getString("name"));
-                        event.setCost(membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("min"));
-                        event.setAddress(address);
-                        event.setDescription(membersArray.getJSONObject(i).getString("info"));
-                        activities.add(event);
-                    } catch (Exception ignored) {
-
-                    }
-                }
-                return activities;
-            } else {
-                assert response.body() != null;
-                JSONObject responseBody = new JSONObject(response.body().string());
-                throw new RuntimeException(responseBody.getString("message"));
-            }
-        } catch (IOException | JSONException e) {
-            throw new RuntimeException(e);
-        }
+//        OkHttpClient client = new OkHttpClient().newBuilder().build();
+//        HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
+//                .addQueryParameter("apikey", API_TOKEN)
+//                .addQueryParameter("startDateTime", date.toString(ToStringType.TICKETMASTER))
+//                .addQueryParameter("countryCode", "CA");
+//        Request request = new Request.Builder().url(httpBuilder.build()).build();
+//        try {
+//            Response response = client.newCall(request).execute();
+//            System.out.println(response);
+//
+//            if (response.code() == 200) {
+//                assert response.body() != null;
+//                JSONObject responseBody = new JSONObject(response.body().string());
+//                JSONObject result = responseBody.getJSONObject("_embedded");
+//
+//                JSONArray membersArray = result.getJSONArray("events");
+//                ArrayList<Activity> activities = new ArrayList<>();
+//                for (int i = 0; i < membersArray.length(); i++) {
+//                    Activity event = new Event();
+//                    Address address = new CanadaAddress();
+//                    try {
+//                        event.setName(membersArray.getJSONObject(i).getString("name"));
+//                        event.setCost(membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("min"));
+//                        event.setAddress(address);
+//                        event.setDescription(membersArray.getJSONObject(i).getString("info"));
+//                        activities.add(event);
+//                    } catch (Exception ignored) {
+//
+//                    }
+//                }
+//                return activities;
+//            } else {
+//                assert response.body() != null;
+//                JSONObject responseBody = new JSONObject(response.body().string());
+//                throw new RuntimeException(responseBody.getString("message"));
+//            }
+//        } catch (IOException | JSONException e) {
+//            throw new RuntimeException(e);
+//        }
+        return new ArrayList<>();
     }
 
     @Override

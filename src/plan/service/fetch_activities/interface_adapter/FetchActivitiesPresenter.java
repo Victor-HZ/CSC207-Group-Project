@@ -13,8 +13,9 @@ public class FetchActivitiesPresenter implements FetchActivitiesOutputBoundary {
     public void prepareSuccessView(FetchActivitiesOutputData response) {
         LocalDateTime currentTime = LocalDateTime.now();
         response.setCreationTime(currentTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-
-        JOptionPane.showMessageDialog(null, response.getActivities().size());
+        Integer activitySize = response.getActivities().size();
+        String message = "Successfullly fetched " + activitySize.toString() + " Activities";
+        JOptionPane.showMessageDialog(null, message);
 
     }
 

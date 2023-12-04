@@ -52,8 +52,8 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         event.setAddress(address);
                         event.setDescription(membersArray.getJSONObject(i).getString("info"));
 
-                        String localDate = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localDate"); // 2023-12-01
-                        String localTime = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localTime"); // 19:30:00
+                        String localDate = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localDate");
+                        String localTime = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localTime");
                         eventDate.setYear(Integer.parseInt(localDate.substring(0, 4)));
                         eventDate.setMonth(Integer.parseInt(localDate.substring(5, 7)));
                         eventDate.setDay(Integer.parseInt(localDate.substring(8)));
@@ -73,7 +73,12 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         event.setDayInfo(eventDate);
                         activities.add(event);
                     } catch (Exception ignored) {
-
+                        try {
+                            event.getDayInfo();
+                            activities.add(event);
+                        } catch (Exception e){
+                            System.out.println("Event does not has a time associated");
+                        }
                     }
                 }
                 return activities;
