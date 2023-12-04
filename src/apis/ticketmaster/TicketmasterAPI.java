@@ -20,7 +20,7 @@ import user.entity.User;
 
 public class TicketmasterAPI implements ActivitiesFetchInterface {
 
-    private static String API_TOKEN; // "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL"
+    private static String API_TOKEN;
 
     @Override
     public ArrayList<Activity> getEvents(String city, DayInfo date, String apiToken) throws JSONException {

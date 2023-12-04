@@ -21,7 +21,7 @@ import user.entity.User;
 
 public class TripAdvisorAPI implements ActivitiesFetchInterface {
 
-    private static String API_TOKEN; // "6F44BDF370124DB2BF884B9B21666F43"
+    private static String API_TOKEN;
 
 
     @Override
