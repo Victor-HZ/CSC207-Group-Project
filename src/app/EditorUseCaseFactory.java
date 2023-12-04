@@ -80,7 +80,7 @@ public class EditorUseCaseFactory {
     private static SavePlanController createSavePlanUseCase(EditorViewModel editorViewModel){
         SavePlanOutputBoundary savePlanOutputBoundary = new SavePlanPresenter(editorViewModel);
         SavePlanInputBoundary savePlanInteractor = new SavePlanInteractor(savePlanOutputBoundary);
-        return new SavePlanController();
+        return new SavePlanController(savePlanInteractor);
     }
 
     private static GenerateReportController createGenerateReportController(ViewManagerModel viewManagerModel, GenerateReportViewModel generateReportViewModel){
