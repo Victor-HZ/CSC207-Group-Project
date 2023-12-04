@@ -32,7 +32,7 @@ public class CanadaAddress implements Address{
 
     public CanadaAddress(){}
 
-    public CanadaAddress(String postalCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country, Double longtitude, Double latitude) throws InvalidProvinceException{
+    public CanadaAddress(String postalCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country, Double longitude, Double latitude) throws InvalidProvinceException{
         this.postalCode = postalCode;
         this.businessName = businessName;
         this.streetName = streetName;
@@ -40,7 +40,7 @@ public class CanadaAddress implements Address{
         this.city = city;
         this.country = country;
         this.latitude = latitude;
-        this.longitude = longtitude;
+        this.longitude = longitude;
         boolean f = true;
         for(Province pro: Province.values()) {
             if (province.equalsIgnoreCase(pro.name())) {
@@ -99,8 +99,8 @@ public class CanadaAddress implements Address{
     }
 
     @Override
-    public void setLongitude(Double longtitude) {
-        this.longitude = longtitude;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class CanadaAddress implements Address{
     public void updateCoordinates() throws IOException {
         Coordinate coordinate = new Coordinate();
         HashMap<String,Double> result = coordinate.updateCoordinates(this);
-        this.longitude = result.get("Longtitude");
+        this.longitude = result.get("Longitude");
         this.longitude = result.get("Latitude");
     }
 

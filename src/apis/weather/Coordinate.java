@@ -12,6 +12,8 @@ import java.util.HashMap;
 public class Coordinate {
     static Dotenv dotenv = Dotenv.load();
     private static final String key = dotenv.get("COORDINATE_API_TOKEN");
+    private Double longitude;
+    private Double latitude;
 
     public HashMap<String, Double> updateCoordinates(Address address) throws IOException{
         String city = address.getCity();
@@ -35,9 +37,26 @@ public class Coordinate {
             int latEnd = latStart + 7;
             int longStart = temp.indexOf("longitude") + 12;
             int longEnd = longStart + 7;
-            result.put("Latitude", Double.parseDouble(temp.substring(latStart, latEnd)));
-            result.put("Longtitude", Double.parseDouble(temp.substring(longStart, longEnd)));
+            Double newLat = Double.parseDouble(temp.substring(latStart, latEnd));
+            Double newLong = Double.parseDouble(temp.substring(longStart, longEnd));
+            result.put("Latitude", newLat);
+            result.put("Longitude", newLong);
+            setLatitude(newLat);
+            setLongitude(newLong);
             return result;
         }
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+    public Double getLongitude() {
+        return longitude;
+    }
+    public void setLatitude(Double newLatitude) {
+        latitude = newLatitude;
+    }
+    public void setLongitude(Double newLongitude) {
+        longitude = newLongitude;
     }
 }
