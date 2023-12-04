@@ -1,4 +1,5 @@
 package plan.service.load_plan.interface_adapter;
+import plan.entity.plan.DatePlan;
 import plan.service.load_plan.LoadPlanInputBoundary;
 import plan.service.load_plan.LoadPlanInputData;
 

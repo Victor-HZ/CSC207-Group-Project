@@ -1,5 +1,4 @@
 package plan.service.save_plan.interface_adapter;
-
 import plan.service.create_plan.CreatePlanOutputData;
 import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.EditorViewModel;
@@ -25,4 +24,5 @@ public class SavePlanPresenter implements SavePlanOutputBoundary {
         editorState.savePlanError(error);
         editorViewModel.firePropertyChanged();
     }
+
 }
