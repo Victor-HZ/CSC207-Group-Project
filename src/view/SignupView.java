@@ -1,7 +1,6 @@
 package view;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.StartUpState;
 import plan.service.main_view_models.StartUpViewModel;
 import user.entity.User;
@@ -17,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.geom.PathIterator;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -115,11 +113,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                         if (e.getSource().equals(clear)){
                             ClearState currentState = clearViewModel.getState();
                             SignupView.this.clearController.execute(currentState.getUsernames());
-                            String message = "";
+                            StringBuilder message = new StringBuilder();
                             for(String user : currentState.getUsernames()){
-                                message = message + user + '\n';
+                                message.append(user).append('\n');
                             }
-                            JOptionPane.showMessageDialog(null, message);
+                            JOptionPane.showMessageDialog(null, message.toString());
                         }
 
                     }

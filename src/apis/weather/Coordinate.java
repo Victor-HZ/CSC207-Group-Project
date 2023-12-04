@@ -30,7 +30,7 @@ public class Coordinate {
         try (Response response = client.newCall(request).execute()) {
             assert response.body() != null;
             String temp = response.body().string();
-            HashMap<String,Double> result = new HashMap();
+            HashMap<String,Double> result = new HashMap<>();
             int latStart = temp.indexOf("latitude") + 11;
             int latEnd = latStart + 7;
             int longStart = temp.indexOf("longitude") + 12;
