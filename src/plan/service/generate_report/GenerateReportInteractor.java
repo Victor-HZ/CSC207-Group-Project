@@ -15,20 +15,22 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
 
     @Override
     public void execute(GenerateReportInputData inputData) {
-        if (inputData == null || inputData.getUser() == null || inputData.getUser().getPlan() == null) {
-            // Handle invalid input
-            outputBoundary.prepareFailView("Invalid input for report generation.");
-
-        }
-
-        Plan userPlan = inputData.getUser().getPlan();
-
-        List<Activity> activities = userPlan.getActivities();
-        double totalCost = userPlan.getCost();
-        DayInfo dayInfo = userPlan.getDayInfo();
-
-        GenerateReportOutputData outputData = new GenerateReportOutputData(activities, totalCost, dayInfo);
-        outputBoundary.prepareSuccessView(outputData);
-
     }
 }
+//        if (inputData == null || inputData.getUser() == null || inputData.getUser().getPlan() == null) {
+//            // Handle invalid input
+//            outputBoundary.prepareFailView("Invalid input for report generation.");
+//
+//        }
+//
+//        Plan userPlan = inputData.getUser().getPlan();
+//
+//        List<Activity> activities = userPlan.getActivities();
+//        double totalCost = userPlan.getCost();
+//        DayInfo dayInfo = userPlan.getDayInfo();
+//
+//        GenerateReportOutputData outputData = new GenerateReportOutputData(activities, totalCost, dayInfo);
+//        outputBoundary.prepareSuccessView(outputData);
+//
+//    }
+
