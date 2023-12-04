@@ -1,5 +1,14 @@
 package view;
 
+import plan.entity.address.Address;
+import plan.entity.address.CanadaAddress;
+import plan.entity.address.InvalidProvinceException;
+import plan.entity.day_info.Date;
+import plan.entity.day_info.DayInfo;
+import plan.service.create_plan.CreatePlanInteractor;
+import plan.service.create_plan.interface_adapter.CreatePlanController;
+import plan.service.create_plan.interface_adapter.CreatePlanState;
+import plan.service.load_plan.interface_adapter.LoadPlanController;
 import plan.service.main_view_models.StartUpState;
 import plan.service.main_view_models.StartUpViewModel;
 import user.service.logged_in.interface_adaper.*;
@@ -21,6 +30,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     private final ViewManagerModel viewManagerModel;
     private final StartUpViewModel startupViewModel;
 
+    private CreatePlanController createPlanController;
+    private LoadPlanController loadPlanController;
+
     JLabel username;
 
     private final JTextField dateInputField = new JTextField(10);
@@ -34,11 +46,13 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     /**
      * A window with a title and a JButton.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel, ViewManagerModel vMM, StartUpViewModel suVM) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, ViewManagerModel vMM, StartUpViewModel suVM, CreatePlanController createPlanController, LoadPlanController loadPlanController) {
         this.loggedInViewModel = loggedInViewModel;
         this.loggedInViewModel.addPropertyChangeListener(this);
         this.viewManagerModel = vMM;
         this.startupViewModel = suVM;
+        this.createPlanController = createPlanController;
+        this.loadPlanController = loadPlanController;
 
         JLabel title = new JLabel(loggedInViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -67,11 +81,21 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createPlan)) {
-//                            CreatePlanState createPlanState = createPlanViewModel.getState();
-//                            createPlanViewModel.setState(createPlanState);
-//                            createPlanViewModel.firePropertyChanged();
-//
-//                            createPlanController.execute();
+                            LoggedInState loggedinState = LoggedInViewModel.getState();
+                            DayInfo dayInfo = new Date();
+                            dayInfo.setYear(Integer.parseInt(loggedinState.getDate().split("-")[2]));
+                            dayInfo.setMonth(Integer.parseInt(loggedinState.getDate().split("-")[1]));
+                            dayInfo.setDay(Integer.parseInt(loggedinState.getDate().split("-")[0]));
+                            dayInfo.setHour(12);
+                            Address address = new CanadaAddress();
+                            address.setCountry(loggedinState.getCountry());
+                            try {
+                                address.setProvince("ON");
+                            } catch (InvalidProvinceException e) {
+                                throw new RuntimeException(e);
+                            }
+                            address.setCity(loggedinState.getCity());
+                            createPlanController.execute(dayInfo, address, loggedinState.getUser());
                         }
                     }
                 }
@@ -184,6 +208,6 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         LoggedInState state = (LoggedInState) evt.getNewValue();
-        username.setText(state.getUsername());
+        username.setText(state.getUser().getName());
     }
 }

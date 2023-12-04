@@ -15,15 +15,16 @@ import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
+import user.entity.User;
 
 
 public class TicketmasterAPI implements ActivitiesFetchInterface {
 
-    private static final String API_TOKEN = System.getenv("TICKETMASTER_API_TOKEN"); // "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL"
+    private static String API_TOKEN;
 
     @Override
-    public ArrayList<Activity> getEvents(String city, DayInfo date) throws JSONException {
-        final String API_TOKEN = System.getenv("TICKETMASTER_API_TOKEN");
+    public ArrayList<Activity> getEvents(String city, DayInfo date, String apiToken) throws JSONException {
+        setApiToken(apiToken);
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
                 .addQueryParameter("apikey", API_TOKEN)
@@ -51,8 +52,8 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         event.setAddress(address);
                         event.setDescription(membersArray.getJSONObject(i).getString("info"));
 
-                        String localDate = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localDate"); // 2023-12-01
-                        String localTime = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localTime"); // 19:30:00
+                        String localDate = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localDate");
+                        String localTime = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localTime");
                         eventDate.setYear(Integer.parseInt(localDate.substring(0, 4)));
                         eventDate.setMonth(Integer.parseInt(localDate.substring(5, 7)));
                         eventDate.setDay(Integer.parseInt(localDate.substring(8)));
@@ -62,7 +63,7 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         address.setProvince(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("state").getString("name"));
                         address.setCity(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("city").getString("name"));
                         address.setBusinessName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("name"));
-                        address.setPostCode(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("postalCode"));
+                        address.setPostalCode(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("postalCode"));
                         address.setStreetNumber(Integer.parseInt(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("address").getString("line1").split(" ", 2)[0]));
                         address.setStreetName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("address").getString("line1").split(" ", 2)[1]);
                         address.setLatitude(Double.parseDouble(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("location").getString("latitude")));
@@ -72,7 +73,12 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         event.setDayInfo(eventDate);
                         activities.add(event);
                     } catch (Exception ignored) {
-
+                        try {
+                            event.getDayInfo();
+                            activities.add(event);
+                        } catch (Exception e){
+                            System.out.println("Event does not has a time associated");
+                        }
                     }
                 }
                 return activities;
@@ -84,5 +90,13 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void setApiToken(String  apiToken){
+        API_TOKEN = apiToken;
+    }
+
+    @Override
+    public User.API_TOKEN getApi() {
+        return User.API_TOKEN.Ticketmaster;
     }
 }

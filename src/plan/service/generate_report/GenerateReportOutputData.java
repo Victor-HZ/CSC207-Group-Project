@@ -16,16 +16,16 @@ public class GenerateReportOutputData {
         this.dayInfo = dayInfo;
     }
 
-    public List<Activity> getActivities() {
-        return activities;
+    public ArrayList<Activity> getActivities() {
+        return (ArrayList<Activity>) activities;
     }
 
     public double getTotalCost() {
         return totalCost;
     }
 
-    public DayInfo getDayInfo() {
-        return dayInfo;
+    public String getDayInfo() {
+        return String.valueOf(dayInfo);
     }
 }
 

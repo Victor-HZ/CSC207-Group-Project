@@ -3,7 +3,7 @@ package plan.entity.address;
 import java.io.IOException;
 
 public interface Address {
-    String getPostCode();
+    String getPostalCode();
     String getBusinessName();
     String getStreetName();
     String getStreetNumber();
@@ -12,13 +12,13 @@ public interface Address {
     String getCountry();
 
     String getCoordinates();
-    Double getLongtitude();
+    Double getLongitude();
     Double getLatitude();
 
     void setLatitude(Double latitude);
     void setLongitude(Double longtitude);
 
-    void setPostCode(String postCode);
+    void setPostalCode(String postalCode);
     void setBusinessName(String businessName);
     void setStreetName(String streetName);
     void setStreetNumber(Integer streetNumber);

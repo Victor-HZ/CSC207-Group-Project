@@ -1,5 +1,10 @@
 package app;
 
+import apis.ActivitiesFetchInterface;
+import apis.ticketmaster.TicketmasterAPI;
+import apis.tripAdvisor.TripAdvisorAPI;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
+import plan.service.main_view_models.EditorViewModel;
 import plan.service.main_view_models.StartUpViewModel;
 import user.data_access.FileUserDataAccessObject;
 import user.entity.CommonUserFactory;
@@ -13,8 +18,10 @@ import view.interface_adapter.ViewManagerModel;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
+    private static JPanel views;
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
@@ -26,7 +33,7 @@ public class Main {
         CardLayout cardLayout = new CardLayout();
 
         // The various View objects. Only one view is visible at a time.
-        JPanel views = new JPanel(cardLayout);
+        views = new JPanel(cardLayout);
         application.add(views);
 
         // This keeps track of and manages which view is currently showing.
@@ -38,11 +45,12 @@ public class Main {
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
 
-        StartUpViewModel startupViewModel = new StartUpViewModel();
+        StartUpViewModel startUpViewModel = new StartUpViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
         ClearViewModel clearViewModel = new ClearViewModel();
+        EditorViewModel editorViewModel = new EditorViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -51,16 +59,16 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        StartUpView startupView = new StartUpView(viewManagerModel, startupViewModel, loginViewModel, signupViewModel);
+        StartUpView startupView = new StartUpView(viewManagerModel, startUpViewModel, loginViewModel, signupViewModel);
         views.add(startupView, startupView.viewName);
 
-        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, userDataAccessObject, clearViewModel, startupViewModel);
+        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, userDataAccessObject, clearViewModel, startUpViewModel);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, startupViewModel);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject, startUpViewModel);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel, startupViewModel);
+        LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel, startUpViewModel, editorViewModel);
         views.add(loggedInView, loggedInView.viewName);
 
         viewManagerModel.setActiveView(startupView.viewName);
@@ -68,5 +76,9 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
+    }
+
+    public static void addNewView(JPanel view, String viewName){
+        views.add(view, viewName);
     }
 }

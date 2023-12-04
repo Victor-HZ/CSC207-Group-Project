@@ -1,4 +1,5 @@
 package plan.service.generate_report.interface_adapter;
+
 import view.interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -6,15 +7,21 @@ import java.beans.PropertyChangeSupport;
 
 public class GenerateReportViewModel extends ViewModel {
 
-    public final String TITLE_LABEL = "Generate Report View";
-    public final String ACTIVITIES_LABEL = "Activities:";
-    public final String TOTAL_COST_LABEL = "Total Cost:";
-    public final String DAY_INFO_LABEL = "Day Info:";
+    public static final String TITLE_LABEL = "Generate Report View";
+    public static final String ACTIVITIES_LABEL = "Activities:";
+    public static final String TOTAL_COST_LABEL = "Total Cost:";
+    public static final String DAY_INFO_LABEL = "Day Info:";
 
     private GenerateReportState state = new GenerateReportState();
+    private static final String VIEW_NAME = "generate report";
 
     public GenerateReportViewModel() {
-        super("generate report");
+        super(VIEW_NAME);
+    }
+
+    @Override
+    public String getViewName() {
+        return VIEW_NAME;
     }
 
     public void setState(GenerateReportState state) {
@@ -30,6 +37,7 @@ public class GenerateReportViewModel extends ViewModel {
         support.firePropertyChange("state", null, this.state);
     }
 
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

@@ -1,14 +1,16 @@
 package user.service.logged_in.interface_adaper;
 
+import user.entity.User;
+
 public class LoggedInState {
-    private String username = "";
+    private User user = null;
     private String date = "";
     private String city = "";
     private String country = "";
     private String createPlanError = null;
 
     public LoggedInState(LoggedInState copy) {
-        username = copy.username;
+        user = copy.user;
         date = copy.date;
         city = copy.city;
         country = copy.country;
@@ -17,11 +19,11 @@ public class LoggedInState {
     // Because of the previous copy constructor, the default constructor must be explicit.
     public LoggedInState() {}
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDate() {

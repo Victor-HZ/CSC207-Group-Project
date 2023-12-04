@@ -1,6 +1,8 @@
 package app;
 
 import apis.ActivitiesFetchInterface;
+import plan.entity.address.Address;
+import plan.entity.plan.Plan;
 import plan.service.add_activity.AddActivityInputBoundary;
 import plan.service.add_activity.AddActivityInteractor;
 import plan.service.add_activity.AddActivityOutputBoundary;
@@ -16,14 +18,22 @@ import plan.service.fetch_activities.FetchActivitiesInteractor;
 import plan.service.fetch_activities.FetchActivitiesOutputBoundary;
 import plan.service.fetch_activities.interface_adapter.FetchActivitiesController;
 import plan.service.fetch_activities.interface_adapter.FetchActivitiesPresenter;
+import plan.service.generate_report.GenerateReportInputBoundary;
+import plan.service.generate_report.GenerateReportInteractor;
+import plan.service.generate_report.GenerateReportOutputBoundary;
+import plan.service.generate_report.interface_adapter.GenerateReportController;
+import plan.service.generate_report.interface_adapter.GenerateReportPresenter;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
 import plan.service.main_view_models.EditorViewModel;
 import plan.service.save_plan.SavePlanInputBoundary;
 import plan.service.save_plan.SavePlanInteractor;
 import plan.service.save_plan.SavePlanOutputBoundary;
 import plan.service.save_plan.interface_adapter.SavePlanController;
 import plan.service.save_plan.interface_adapter.SavePlanPresenter;
+import user.entity.User;
 import view.EditorView;
 import view.interface_adapter.ViewManagerModel;
+import view.interface_adapter.ViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,12 +45,18 @@ public class EditorUseCaseFactory {
     public static EditorView create(
             ViewManagerModel viewManagerModel,
             EditorViewModel editorViewModel,
-            ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces){
+            GenerateReportViewModel generateReportViewModel,
+            ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces,
+            Plan plan,
+            Address address,
+            User user){
         try {
             FetchActivitiesController fetchActivitiesController = createFetchActivitiesUseCase(activitiesFetchInterfaces);
             AddActivityController addActivityController = createAddActivityController(viewManagerModel, editorViewModel);
             DeleteActivityController deleteActivityController = createDeleteActivityController(viewManagerModel, editorViewModel);
-            return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController);
+            GenerateReportController generateReportController = createGenerateReportController(viewManagerModel, generateReportViewModel);
+            SavePlanController savePlanController = createSavePlanUseCase(editorViewModel);
+            return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan, address, user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -69,5 +85,11 @@ public class EditorUseCaseFactory {
         SavePlanOutputBoundary savePlanOutputBoundary = new SavePlanPresenter(editorViewModel);
         SavePlanInputBoundary savePlanInteractor = new SavePlanInteractor(savePlanOutputBoundary);
         return new SavePlanController(savePlanInteractor);
+    }
+
+    private static GenerateReportController createGenerateReportController(ViewManagerModel viewManagerModel, GenerateReportViewModel generateReportViewModel){
+        GenerateReportOutputBoundary generateReportOutputBoundary = new GenerateReportPresenter(viewManagerModel, generateReportViewModel);
+        GenerateReportInputBoundary generateReportInteractor = new GenerateReportInteractor(generateReportOutputBoundary);
+        return new GenerateReportController(generateReportInteractor);
     }
 }

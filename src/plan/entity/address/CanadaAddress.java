@@ -3,8 +3,6 @@ package plan.entity.address;
 import apis.weather.Coordinate;
 
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 enum Province {
@@ -17,32 +15,32 @@ enum Province {
     PE,
     SK,
     AB,
-    NL;
+    NL
 }
 
 public class CanadaAddress implements Address{
-    String postCode;
-    String businessName;
-    String streetName;
-    Integer streetNumber;
-    String city;
-    Province province;
+    String postalCode = "";
+    String businessName = "";
+    String streetName = "";
+    Integer streetNumber = 0;
+    String city = "";
+    Province province = Province.ON;
     String country = "Canada";
 
-    Double latitude;
-    Double longtitude;
+    Double latitude = 0.0;
+    Double longitude = 0.0;
 
     public CanadaAddress(){}
 
-    public CanadaAddress(String postCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country, Double longtitude, Double latitude) throws InvalidProvinceException{
-        this.postCode = postCode;
+    public CanadaAddress(String postalCode, String businessName, String streetName, Integer streetNumber, String city, String province, String country, Double longtitude, Double latitude) throws InvalidProvinceException{
+        this.postalCode = postalCode;
         this.businessName = businessName;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.city = city;
         this.country = country;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longtitude;
         boolean f = true;
         for(Province pro: Province.values()) {
             if (province.equalsIgnoreCase(pro.name())) {
@@ -56,8 +54,8 @@ public class CanadaAddress implements Address{
         }
     }
 
-    public String getPostCode() {
-        return postCode;
+    public String getPostalCode() {
+        return postalCode;
     }
     public String getBusinessName(){
         return businessName;
@@ -81,13 +79,13 @@ public class CanadaAddress implements Address{
     }
 
     @Override
-    public Double getLongtitude() {
-        return longtitude;
+    public Double getLongitude() {
+        return longitude;
     }
 
     @Override
     public String getCoordinates() {
-        return latitude.toString() + ',' + longtitude.toString();
+        return latitude.toString() + ',' + longitude.toString();
     }
 
     @Override
@@ -102,12 +100,12 @@ public class CanadaAddress implements Address{
 
     @Override
     public void setLongitude(Double longtitude) {
-        this.longtitude = longtitude;
+        this.longitude = longtitude;
     }
 
     @Override
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     @Override
@@ -150,8 +148,8 @@ public class CanadaAddress implements Address{
     public void updateCoordinates() throws IOException {
         Coordinate coordinate = new Coordinate();
         HashMap<String,Double> result = coordinate.updateCoordinates(this);
-        this.longtitude = result.get("Longtitude");
-        this.longtitude = result.get("Latitude");
+        this.longitude = result.get("Longtitude");
+        this.longitude = result.get("Latitude");
     }
 
 
@@ -162,13 +160,13 @@ public class CanadaAddress implements Address{
                 this.streetNumber.toString().equals(other.getStreetNumber()) &&
                 this.streetName.equals(other.getStreetName()) &&
                 this.businessName.equals(other.getBusinessName()) &&
-                this.postCode.equals(other.getPostCode()) &&
+                this.postalCode.equals(other.getPostalCode()) &&
                 this.province.name().equals(other.getProvince()) &&
                 this.latitude.equals(other.getLatitude()) &&
-                this.longtitude.equals(other.getLongtitude());
+                this.longitude.equals(other.getLongitude());
     }
 
-//    public String getString(){
-//        return
-//    }
+    public String toString(){
+        return country + " " + city + " " + province.name() + " " + streetNumber.toString() + " " + streetName + " " + postalCode;
+    }
 }

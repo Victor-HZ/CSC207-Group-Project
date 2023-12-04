@@ -1,16 +1,18 @@
 package view;
 
-import apis.ActivitiesFetchInterface;
 import plan.entity.activity.Activity;
+import plan.entity.address.Address;
 import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
-import plan.entity.day_info.ToStringType;
+import plan.entity.plan.Plan;
 import plan.service.add_activity.interface_adapter.AddActivityController;
 import plan.service.delete_activity.interface_adapter.DeleteActivityController;
 import plan.service.fetch_activities.interface_adapter.FetchActivitiesController;
+import plan.service.generate_report.interface_adapter.GenerateReportController;
 import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.EditorViewModel;
-import user.service.signup.interface_adapter.SignupState;
+import plan.service.save_plan.interface_adapter.SavePlanController;
+import user.entity.User;
 
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EditorView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "editor";
+    public final String viewName = "plan editor";
 
     private final EditorViewModel editorViewModel;
     private final JTable availableActivities;
@@ -33,35 +35,51 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
     private final AddActivityController addActivityController;
     private final DeleteActivityController deleteActivityController;
     private final FetchActivitiesController fetchActivitiesController;
+    private final GenerateReportController generateReportController;
+    private final SavePlanController savePlanController;
 
     private final JButton addActivity;
     private final JButton deleteActivity;
     private final JButton savePlan;
     private final JButton generateReport;
 
-    public EditorView(EditorViewModel editorViewModel, AddActivityController addActivityController, DeleteActivityController deleteActivityController, FetchActivitiesController fetchActivitiesController){
+    public EditorView(EditorViewModel editorViewModel,
+                      AddActivityController addActivityController,
+                      DeleteActivityController deleteActivityController,
+                      FetchActivitiesController fetchActivitiesController,
+                      GenerateReportController generateReportController,
+                      SavePlanController savePlanController,
+                      Plan plan,
+                      Address address,
+                      User user){
         this.editorViewModel = editorViewModel;
         this.addActivityController = addActivityController;
         this.deleteActivityController = deleteActivityController;
         this.fetchActivitiesController = fetchActivitiesController;
+        this.generateReportController = generateReportController;
+        this.savePlanController = savePlanController;
+
         editorViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(EditorViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-//        Temp helper code
-        Date date = new Date();
-        date.setYear(2023);
-        date.setMonth(12);
-        date.setDay(5);
-        date.setHour(12);
-        CanadaAddress address = new CanadaAddress();
-        address.setCity("Toronto");
-        address.setCountry("Canada");
-        address.setPostCode("M6K, 3C3");
-        address.setStreetNumber(170);
-        address.setStreetName("Princes' Blvd");
-        ArrayList<Activity> activities = this.fetchActivitiesController.execute(date, address);
+        EditorState state = editorViewModel.getState();
+        state.setPlan(plan);
+        state.setAddress(address);
+        state.setUser(user);
+        state.setDayInfo(plan.getDayInfo());
+
+
+        state.setApiTokens(User.API_TOKEN.Ticketmaster, state.getUser().getAPIToken(User.API_TOKEN.Ticketmaster));
+        state.setApiTokens(User.API_TOKEN.TripAdvisor, state.getUser().getAPIToken(User.API_TOKEN.TripAdvisor));
+        state.setApiTokens(User.API_TOKEN.Coordinate, state.getUser().getAPIToken(User.API_TOKEN.Coordinate));
+
+        editorViewModel.setState(state);
+
+        state = editorViewModel.getState();
+
+        ArrayList<Activity> activities = this.fetchActivitiesController.execute(state.getDayInfo(), state.getAddress(), state.getApiTokens());
         HashMap<Integer, Activity> hashActivities = new HashMap<>();
         Integer i = 0;
         for (Activity activity: activities){
@@ -71,24 +89,27 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         ArrayList<String[]> displayActivities = new ArrayList<>();
 
         for (Integer index : hashActivities.keySet()){
-            String[] item = {index.toString(), hashActivities.get(index).getName(), hashActivities.get(index).getCost().toString(), hashActivities.get(index).getAddress().toString(), hashActivities.get(index).getDayInfo().toString()};
+            String[] item = {index.toString(), hashActivities.get(index).getName(), hashActivities.get(index).getCost().toString(), hashActivities.get(index).getAddress().toString()};
             displayActivities.add(item);
         }
 
         // Initialization of JTable
-        String[] columnNames = {"Index", "Name", "Cost", "Address", "Time"};
-        String[][] displayActivitiesArray = new String[displayActivities.size()][100];
-        String[][] selectedActivitiesArray = new String[displayActivities.size()][100];
+        String[] columnNames = {"Index", "Name", "Cost", "Address"};
+        String[][] displayActivitiesArray = new String[displayActivities.size() + 1][100];
+        String[][] selectedActivitiesArray = new String[displayActivities.size() + 1][100];
         displayActivities.toArray(displayActivitiesArray);
         availableActivities = new JTable(displayActivitiesArray, columnNames);
         availableActivities.setCellSelectionEnabled(true);
+        JScrollPane scrollPaneAvailableActivities = new JScrollPane(availableActivities);
         selectedActivities = new JTable(selectedActivitiesArray, columnNames);
         selectedActivities.setCellSelectionEnabled(true);
+        JScrollPane scrollPaneSelectedActivities = new JScrollPane(selectedActivities);
 
         LabelTablePanel availableActivitiesTable = new LabelTablePanel(
-                new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), availableActivities);
+                new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), scrollPaneAvailableActivities);
         LabelTablePanel selectedActivitiesTable = new LabelTablePanel(
-                new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), selectedActivities);
+                new JLabel(EditorViewModel.SELECTED_ACTIVITIES_LABEL), scrollPaneSelectedActivities);
+
 
         JPanel buttons = new JPanel();
         addActivity = new JButton(EditorViewModel.ADD_ACTIVITY_BUTTON_LABEL);
@@ -105,6 +126,7 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(addActivity)) {
                             EditorState currentState = editorViewModel.getState();
+//                            addActivityController.execute()
                         }
                     }
                 }

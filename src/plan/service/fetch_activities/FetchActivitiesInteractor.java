@@ -4,9 +4,11 @@ import apis.ActivitiesFetchInterface;
 import plan.entity.activity.Activity;
 import plan.entity.address.Address;
 import plan.entity.day_info.DayInfo;
+import user.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
     final FetchActivitiesOutputBoundary fetchActivitiesPresenter;
@@ -18,10 +20,10 @@ public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
     }
 
     @Override
-    public ArrayList<Activity> execute(DayInfo date, Address addresss) {
+    public ArrayList<Activity> execute(DayInfo date, Address addresss, HashMap<User.API_TOKEN, String> apiTokens) {
         ArrayList<Activity> activities = new ArrayList<>();
         for(ActivitiesFetchInterface fetcher : activitiesFetchInterfacesCollections){
-            activities.addAll(fetcher.getEvents(addresss.getCity(), date));
+            activities.addAll(fetcher.getEvents(addresss.getCity(), date, apiTokens.get(fetcher.getApi())));
         }
         if(!activities.isEmpty()){
             LocalDateTime time = LocalDateTime.now();
