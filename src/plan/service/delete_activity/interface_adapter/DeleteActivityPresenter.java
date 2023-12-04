@@ -16,7 +16,7 @@ public class DeleteActivityPresenter implements DeleteActivityOutputBoundary {
     }
     @Override
     public void prepareSuccessView() {
-        // on success, switch back to plan editor view!
+        // on success, reapply editor view to show updated plan!
         EditorState editorState = editorScreen.getState();
         this.editorScreen.setState(editorState);
         this.editorScreen.firePropertyChanged();
@@ -28,7 +28,7 @@ public class DeleteActivityPresenter implements DeleteActivityOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         EditorState editorState = editorScreen.getState();
-        editorState.deleteActivityError(error);
+        editorState.setDeleteActivityError(error);
         editorScreen.firePropertyChanged();
     }
 }

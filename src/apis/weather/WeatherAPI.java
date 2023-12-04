@@ -46,7 +46,7 @@ public class WeatherAPI {
 
     }
 
-    public void setRain() { // will this method be called individually? Otherwise could be included in the updateWeather.
+    public void setRain() {
         JSONArray rainArray = weather.getJSONArray("rain");
         for (int i = 0; i < rainArray.length(); i++ ) {
             float rainMeter = rainArray.getFloat(i);

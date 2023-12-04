@@ -4,6 +4,8 @@ import user.service.logged_in.interface_adaper.*;
 import user.service.login.*;
 import view.interface_adapter.ViewManagerModel;
 
+import javax.swing.*;
+
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
@@ -23,7 +25,7 @@ public class LoginPresenter implements LoginOutputBoundary {
         // On success, switch to the logged in view.
 
         LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
+        loggedInState.setUser(response.getUser());
         this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
 
@@ -35,6 +37,7 @@ public class LoginPresenter implements LoginOutputBoundary {
     public void prepareFailView(String error) {
         LoginState loginState = loginViewModel.getState();
         loginState.setUsernameError(error);
+        JOptionPane.showMessageDialog(null, error);
         loginViewModel.firePropertyChanged();
     }
 }

@@ -16,15 +16,17 @@ import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
+import user.entity.User;
 
 
 public class TripAdvisorAPI implements ActivitiesFetchInterface {
 
-    private static final String API_TOKEN = System.getenv("TRIPADVISOR_API_TOKEN"); // "6F44BDF370124DB2BF884B9B21666F43"
+    private static String API_TOKEN;
 
 
     @Override
-    public ArrayList<Activity> getEvents(String city, DayInfo date) throws JSONException {
+    public ArrayList<Activity> getEvents(String city, DayInfo date, String apiToken) throws JSONException {
+        setApiToken(apiToken);
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
                 .addQueryParameter("apikey", API_TOKEN)
@@ -64,5 +66,15 @@ public class TripAdvisorAPI implements ActivitiesFetchInterface {
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void setApiToken(String apiToken) {
+        API_TOKEN = apiToken;
+    }
+
+    @Override
+    public User.API_TOKEN getApi() {
+        return User.API_TOKEN.TripAdvisor;
     }
 }

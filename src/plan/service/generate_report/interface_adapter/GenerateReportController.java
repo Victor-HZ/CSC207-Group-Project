@@ -1,4 +1,5 @@
 package plan.service.generate_report.interface_adapter;
+import plan.entity.plan.DatePlan;
 import plan.service.generate_report.GenerateReportInputBoundary;
 import plan.service.generate_report.GenerateReportInputData;
 import user.entity.CommonUser;

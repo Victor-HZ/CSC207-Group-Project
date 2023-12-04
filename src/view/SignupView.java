@@ -1,5 +1,6 @@
 package view;
 
+import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.StartUpState;
 import plan.service.main_view_models.StartUpViewModel;
 import user.entity.User;
@@ -159,7 +160,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                             StartUpState startupState = startupViewModel.getState();
                             startupViewModel.setState(startupState);
                             startupViewModel.firePropertyChanged();
-
                             viewManagerModel.setActiveView(startupViewModel.getViewName());
                             viewManagerModel.firePropertyChanged();
                         }
@@ -167,10 +167,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-        //
-        // Notice how it has access to instance variables in the enclosing class!
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override

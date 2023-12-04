@@ -35,6 +35,10 @@ public class GenerateReportView extends JPanel implements PropertyChangeListener
         add(new JScrollPane(activitiesTextArea), BorderLayout.CENTER);
         add(totalCostLabel, BorderLayout.SOUTH);
 
+        updateUI();
+    }
+
+    public void updateUI() {
         GenerateReportState state = viewModel.getState();
 
         if (state != null) {

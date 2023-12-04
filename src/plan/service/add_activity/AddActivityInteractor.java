@@ -15,6 +15,7 @@ public class AddActivityInteractor implements AddActivityInputBoundary {
         Plan plan = addActivityInputData.getPlan();
         Activity activity = addActivityInputData.getActivity();
 
+        // Cycles through activities in plan to make sure activity isn't already added.
         for (Activity this_activity : plan.getActivities()) {
             if (this_activity.equals(activity)) {
                 addActivityPresenter.prepareFailView("This activity is already in your planner.");

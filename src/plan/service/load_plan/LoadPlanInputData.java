@@ -12,7 +12,7 @@ public class LoadPlanInputData {
         this.datePlan = datePlan;
     }
 
-    public DatePlan getDatePlan() {
+    public DatePlan getPlan() {
         return datePlan;
     }
 

@@ -2,6 +2,8 @@ package plan.service.generate_report.interface_adapter;
 
 import plan.service.generate_report.GenerateReportOutputBoundary;
 import plan.service.generate_report.GenerateReportOutputData;
+import plan.service.generate_report.interface_adapter.GenerateReportState;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
 import view.interface_adapter.ViewManagerModel;
 
 public class GenerateReportPresenter implements GenerateReportOutputBoundary {
@@ -20,9 +22,9 @@ public class GenerateReportPresenter implements GenerateReportOutputBoundary {
         GenerateReportState reportState = generateReportViewModel.getState();
 
 
-        reportState.setActivities(outputData.getActivities());
-        reportState.setTotalCost(outputData.getTotalCost());
-        reportState.setDayInfo(outputData.getDayInfo());
+//        reportState.setActivities(outputData.getActivities());
+//        reportState.setTotalCost(outputData.getTotalCost());
+//        reportState.setDayInfo(outputData.getDayInfo());
 
         // Update the view model state
         generateReportViewModel.setState(reportState);

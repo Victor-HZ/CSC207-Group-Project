@@ -2,15 +2,23 @@ package plan.entity.activity;
 
 
 import plan.entity.address.Address;
+import plan.entity.day_info.DayInfo;
 
 public class Event implements Activity {
     String name;
     Address address;
     Double cost;
     String description;
+    DayInfo date;
 
     public Event() {
 
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %f, %s, %s", getName(), getAddress().toString(), getCost(),
+                getDescription(), getDayInfo().stringInfo());
     }
 
     @Override
@@ -51,6 +59,16 @@ public class Event implements Activity {
     @Override
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public void setDayInfo(DayInfo date) {
+        this.date = date;
+    }
+
+    @Override
+    public DayInfo getDayInfo() {
+        return date;
     }
 
     @Override

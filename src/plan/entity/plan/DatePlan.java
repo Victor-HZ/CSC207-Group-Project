@@ -10,7 +10,7 @@ public class DatePlan implements Plan{
     ArrayList<Activity> activites;
     Double totalCost;
 
-    DatePlan(DayInfo dayInfo){
+    public DatePlan(DayInfo dayInfo){
         this.dayInfo = dayInfo;
         this.activites = new ArrayList<>();
         this.totalCost = 0.0;
@@ -35,11 +35,11 @@ public class DatePlan implements Plan{
 
     @Override
     public ArrayList<Activity> getActivities() {
-        return null;
+        return activites;
     }
 
     @Override
     public DayInfo getDayInfo() {
-        return null;
+        return dayInfo;
     }
 }

@@ -1,5 +1,10 @@
 package app;
 
+import apis.ActivitiesFetchInterface;
+import apis.ticketmaster.TicketmasterAPI;
+import apis.tripAdvisor.TripAdvisorAPI;
+import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
+import plan.service.main_view_models.EditorViewModel;
 import plan.service.main_view_models.StartUpViewModel;
 import user.data_access.FileUserDataAccessObject;
 import user.entity.CommonUserFactory;
@@ -13,8 +18,10 @@ import view.interface_adapter.ViewManagerModel;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
+    private static JPanel views;
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
@@ -26,7 +33,7 @@ public class Main {
         CardLayout cardLayout = new CardLayout();
 
         // The various View objects. Only one view is visible at a time.
-        JPanel views = new JPanel(cardLayout);
+        views = new JPanel(cardLayout);
         application.add(views);
 
         // This keeps track of and manages which view is currently showing.
@@ -43,6 +50,7 @@ public class Main {
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
         ClearViewModel clearViewModel = new ClearViewModel();
+        EditorViewModel editorViewModel = new EditorViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -68,5 +76,9 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
+    }
+
+    public static void addNewView(JPanel view, String viewName){
+        views.add(view, viewName);
     }
 }

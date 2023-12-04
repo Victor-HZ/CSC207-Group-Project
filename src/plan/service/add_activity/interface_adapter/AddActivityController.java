@@ -13,6 +13,7 @@ public class AddActivityController {
 
     public void execute(Plan plan, Activity activity) {
         AddActivityInputData addActivityInputData = new AddActivityInputData(plan, activity);
+        // plan taken from editor view!
 
         addActivityInteractor.execute(addActivityInputData);
     }

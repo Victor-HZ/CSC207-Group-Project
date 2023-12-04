@@ -13,9 +13,9 @@ public class AddActivityInputData {
 
     Plan getPlan() {
         return plan;
-    }
+    } // get plan from editor view
 
     Activity getActivity() {
         return activity;
-    }
+    } // activity is selected
 }
