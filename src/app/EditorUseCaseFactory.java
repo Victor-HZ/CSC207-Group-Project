@@ -51,7 +51,7 @@ public class EditorUseCaseFactory {
             AddActivityController addActivityController = createAddActivityController(viewManagerModel, editorViewModel);
             DeleteActivityController deleteActivityController = createDeleteActivityController(viewManagerModel, editorViewModel);
             GenerateReportController generateReportController = createGenerateReportController(viewManagerModel, generateReportViewModel);
-            SavePlanController savePlanController = createSavePlanUseCase();
+            SavePlanController savePlanController = createSavePlanUseCase(editorViewModel);
             return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -77,9 +77,9 @@ public class EditorUseCaseFactory {
         return new FetchActivitiesController(fetchActivitiesInteractor);
     }
 
-    private static SavePlanController createSavePlanUseCase(){
-        SavePlanOutputBoundary savePlanOutputBoundary = new SavePlanPresenter();
-        SavePlanInputBoundary savePlanInteractor = new SavePlanInteractor();
+    private static SavePlanController createSavePlanUseCase(EditorViewModel editorViewModel){
+        SavePlanOutputBoundary savePlanOutputBoundary = new SavePlanPresenter(editorViewModel);
+        SavePlanInputBoundary savePlanInteractor = new SavePlanInteractor(savePlanOutputBoundary);
         return new SavePlanController();
     }
 
