@@ -1,5 +1,9 @@
 package view;
 
+import plan.service.create_plan.CreatePlanInteractor;
+import plan.service.create_plan.interface_adapter.CreatePlanController;
+import plan.service.create_plan.interface_adapter.CreatePlanState;
+import plan.service.load_plan.interface_adapter.LoadPlanController;
 import plan.service.main_view_models.StartUpState;
 import plan.service.main_view_models.StartUpViewModel;
 import user.service.logged_in.interface_adaper.*;
@@ -20,6 +24,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
     private final StartUpViewModel startupViewModel;
+
+    private CreatePlanController createPlanController;
+    private LoadPlanController loadPlanController;
 
     JLabel username;
 
@@ -67,11 +74,14 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createPlan)) {
+                            LoggedInState loggedinState = LoggedInViewModel.getState();
+
 //                            CreatePlanState createPlanState = createPlanViewModel.getState();
 //                            createPlanViewModel.setState(createPlanState);
 //                            createPlanViewModel.firePropertyChanged();
 //
 //                            createPlanController.execute();
+
                         }
                     }
                 }
@@ -184,6 +194,6 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         LoggedInState state = (LoggedInState) evt.getNewValue();
-        username.setText(state.getUsername());
+        username.setText(state.getUser().getName());
     }
 }

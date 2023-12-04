@@ -8,7 +8,7 @@ import java.beans.PropertyChangeSupport;
 public class LoggedInViewModel extends ViewModel {
     public final String TITLE_LABEL = "User Home";
 
-    private LoggedInState state = new LoggedInState();
+    private static LoggedInState state = new LoggedInState();
 
     public static final String DATE_INPUT_LABEL = "Date (DD-MM-YYYY):";
     public static final String CITY_INPUT_LABEL = "City:";
@@ -44,7 +44,7 @@ public class LoggedInViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public LoggedInState getState() {
+    public static LoggedInState getState() {
         return state;
     }
 
@@ -56,4 +56,5 @@ public class LoggedInViewModel extends ViewModel {
     public void setLoggedInUser(String loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
+
 }
