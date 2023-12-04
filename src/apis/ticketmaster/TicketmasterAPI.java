@@ -15,6 +15,7 @@ import plan.entity.address.CanadaAddress;
 import plan.entity.day_info.Date;
 import plan.entity.day_info.DayInfo;
 import plan.entity.day_info.ToStringType;
+import user.entity.User;
 
 
 public class TicketmasterAPI implements ActivitiesFetchInterface {
@@ -22,7 +23,8 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
     private static String API_TOKEN; // "xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL"
 
     @Override
-    public ArrayList<Activity> getEvents(String city, DayInfo date) throws JSONException {
+    public ArrayList<Activity> getEvents(String city, DayInfo date, String apiToken) throws JSONException {
+        setApiToken(apiToken);
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
                 .addQueryParameter("apikey", API_TOKEN)
@@ -86,5 +88,10 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
     }
     public void setApiToken(String  apiToken){
         API_TOKEN = apiToken;
+    }
+
+    @Override
+    public User.API_TOKEN getApi() {
+        return User.API_TOKEN.Ticketmaster;
     }
 }
