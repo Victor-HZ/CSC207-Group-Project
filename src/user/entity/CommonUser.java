@@ -48,5 +48,9 @@ class CommonUser implements User {
         return apiTokens.getOrDefault(apiToken, "No Such Key");
     }
 
+    @Override
+    public Plan getPlan() {
+        return plan;
+    }
 
 }
