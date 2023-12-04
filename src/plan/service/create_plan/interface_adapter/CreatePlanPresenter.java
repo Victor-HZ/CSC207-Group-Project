@@ -12,6 +12,7 @@ import plan.service.create_plan.CreatePlanOutputBoundary;
 import plan.service.create_plan.CreatePlanOutputData;
 import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
 import plan.service.main_view_models.EditorViewModel;
+import user.entity.User;
 import user.service.logged_in.interface_adaper.LoggedInState;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
 import view.EditorView;
@@ -41,12 +42,12 @@ public class CreatePlanPresenter implements CreatePlanOutputBoundary {
 
         Plan plan = result.getPlan();
         Address address = result.getAddress();
-
+        User user = result.getUser();
 
         ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
         activitiesFetchInterfaces.add(new TicketmasterAPI());
         activitiesFetchInterfaces.add(new TripAdvisorAPI());
-        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces, plan, address);
+        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces, plan, address, user);
         Main.addNewView(editorView, editorView.viewName);
 
         this.viewManagerModel.setActiveView(editorViewModel.getViewName());

@@ -13,11 +13,12 @@ public class CreatePlanOutputData {
     private Address address;
     public User user;
 
-    public CreatePlanOutputData(String creationTime, boolean useCaseFailed, DayInfo dayInfo){
+    public CreatePlanOutputData(String creationTime, boolean useCaseFailed, DayInfo dayInfo, Address address, User user){
         this.plan = new DatePlan(dayInfo);
         this.creationTime = creationTime;
         this.useCaseFailed = useCaseFailed;
         this.address = address;
+        this.user = user;
     }
 
     public User getUser() {return user;}
