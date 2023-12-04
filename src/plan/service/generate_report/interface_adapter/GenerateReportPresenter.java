@@ -2,8 +2,6 @@ package plan.service.generate_report.interface_adapter;
 
 import plan.service.generate_report.GenerateReportOutputBoundary;
 import plan.service.generate_report.GenerateReportOutputData;
-import plan.service.generate_report.GenerateReportGenerateReportState;
-import plan.service.generate_report.GenerateReportViewModel;
 import view.interface_adapter.ViewManagerModel;
 
 public class GenerateReportPresenter implements GenerateReportOutputBoundary {
@@ -37,7 +35,7 @@ public class GenerateReportPresenter implements GenerateReportOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        generateReportViewModel.setErrorMessage(error);
-        generateReportViewModel.firePropertyChanged();
+
     }
+
 }

@@ -1,4 +1,8 @@
 package plan.service.generate_report;
+import plan.entity.activity.Activity;
+import plan.entity.day_info.DayInfo;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateReportOutputData {
@@ -12,16 +16,16 @@ public class GenerateReportOutputData {
         this.dayInfo = dayInfo;
     }
 
-    public List<Activity> getActivities() {
-        return activities;
+    public ArrayList<Activity> getActivities() {
+        return (ArrayList<Activity>) activities;
     }
 
     public double getTotalCost() {
         return totalCost;
     }
 
-    public DayInfo getDayInfo() {
-        return dayInfo;
+    public String getDayInfo() {
+        return String.valueOf(dayInfo);
     }
 }
 
