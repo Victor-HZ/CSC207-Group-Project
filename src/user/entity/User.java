@@ -23,5 +23,4 @@ public interface User {
 
     String getAPIToken(API_TOKEN apiToken);
 
-    Plan getPlan();
 }
