@@ -122,6 +122,11 @@ public class Date implements DayInfo {
         return weather;
     }
 
+    @Override
+    public String getPlanDate(){
+        return String.format("%1$d-%2$d-%3$d", this.getDayOfMonth(), this.getMonth(), this.getYear());
+    }
+
     public static void main(String[] args) throws DateTimeException {
         DayInfo day = new Date();
         day.setYear(2023);

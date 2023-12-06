@@ -31,4 +31,6 @@ public interface DayInfo{
 
     void setWeather(Weather weather);
     Weather getWeather();
+
+    public String getPlanDate();
 }

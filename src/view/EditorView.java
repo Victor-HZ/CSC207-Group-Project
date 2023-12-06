@@ -47,7 +47,7 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
     private final JButton addActivity;
     private final JButton deleteActivity;
     private final JButton savePlan;
-//    private final JButton generateReport;
+    private final JButton generateReport;
 
     public EditorView(EditorViewModel editorViewModel,
                       AddActivityController addActivityController,
@@ -116,8 +116,8 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         buttons.add(deleteActivity);
         savePlan = new JButton(EditorViewModel.SAVE_PLAN_BUTTON_LABEL);
         buttons.add(savePlan);
-//        generateReport = new JButton(EditorViewModel.GENERATE_REPORT_LABEL);
-//        buttons.add(generateReport);
+        generateReport = new JButton(EditorViewModel.GENERATE_REPORT_LABEL);
+        buttons.add(generateReport);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         buttons.setBackground(Color.PINK);
@@ -202,15 +202,17 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-//        generateReport.addActionListener(
-//                new ActionListener() {
-//                    public void actionPerformed(ActionEvent evt) {
-//                        if (evt.getSource().equals(generateReport)) {
-//                            EditorState currentState = editorViewModel.getState();
-//                        }
-//                    }
-//                }
-//        );
+        generateReport.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(generateReport)) {
+                            EditorState currentState = editorViewModel.getState();
+
+                            generateReportController.execute(currentState.getPlan());
+                        }
+                    }
+                }
+        );
 
         selectionInputField.addKeyListener(
                 new KeyListener() {
