@@ -79,6 +79,10 @@ public class signupViewTest {
 
         signup.doClick();
 
+        /*
+        BOUNDARY OF WHERE WE LEFT OFF
+         */
+
         JPanel panel1 = (JPanel) signupView.getComponent(7);
         JButton loadEnv = (JButton) panel1.getComponent(2);
 

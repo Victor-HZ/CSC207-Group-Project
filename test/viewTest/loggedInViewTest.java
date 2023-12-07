@@ -21,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 
 public class loggedInViewTest {
@@ -124,7 +125,43 @@ public class loggedInViewTest {
 
         signupViewSign.doClick();
 
-        assertEquals(viewManagerModel.getActiveView(), loginView.viewName);
+        /*
+        BOUNDARY OF WHERE WE LEFT OFF
+         */
+
+        LabelTextPanel panel5 = (LabelTextPanel) loginView.getComponent(3);
+        JPasswordField loginPassword = (JPasswordField) panel5.getComponent(1);
+
+        KeyEvent loginPass = new KeyEvent(
+                loginPassword,
+                KeyEvent.KEY_TYPED,
+                System.currentTimeMillis(),
+                0,
+                KeyEvent.VK_UNDEFINED,
+                'y');
+        panel5.dispatchEvent(loginPass);
+
+        JPanel panel6 = (JPanel) loginView.getComponent(5);
+        JButton login = (JButton) panel6.getComponent(0);
+
+        login.doClick();
+
+        LabelTextPanel panel7 = (LabelTextPanel) loggedInView.getComponent(3);
+        JTextField date = (JTextField) panel7.getComponent(1);
+
+        date.setText("14-12-2023");
+
+        LabelTextPanel panel8 = (LabelTextPanel) loggedInView.getComponent(4);
+        JTextField city = (JTextField) panel8.getComponent(1);
+
+        city.setText("Toronto");
+
+        LabelTextPanel panel9 = (LabelTextPanel) loggedInView.getComponent(5);
+        JTextField province = (JTextField) panel9.getComponent(1);
+
+        province.setText("ON");
+
+        assertEquals(viewManagerModel.getActiveView(), loggedInView.viewName);
 
         File csvFile = new File("./temp.csv");
         csvFile.delete();

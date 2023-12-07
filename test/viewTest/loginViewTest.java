@@ -96,6 +96,10 @@ public class loginViewTest {
                 'y');
         panel2.dispatchEvent(eventRight);
 
+        /*
+        BOUNDARY OF WHERE WE LEFT OFF
+         */
+
         LabelTextPanel panel3 = (LabelTextPanel) signupView.getComponent(2);
         JPasswordField passwordField = (JPasswordField) panel3.getComponent(1);
 
