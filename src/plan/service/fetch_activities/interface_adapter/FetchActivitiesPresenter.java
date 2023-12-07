@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FetchActivitiesPresenter implements FetchActivitiesOutputBoundary {
-    // TODO implement this.
+
     @Override
     public void prepareSuccessView(FetchActivitiesOutputData response) {
         LocalDateTime currentTime = LocalDateTime.now();
