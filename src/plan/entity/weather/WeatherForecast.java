@@ -3,6 +3,7 @@ package plan.entity.weather;
 import apis.weather.WeatherAPI;
 import plan.entity.address.Address;
 import plan.entity.day_info.Date;
+import plan.entity.day_info.DayInfo;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class WeatherForecast extends WeatherAPI implements Weather {
     }
 
     @Override
-    public void setWeather(Date day, Address address) throws IOException {
+    public void setWeather(DayInfo day, Address address) throws IOException {
         updateWeather(day, address);
     }
 }

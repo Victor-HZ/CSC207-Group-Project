@@ -1,7 +1,7 @@
 package plan.entity.weather;
 
 import plan.entity.address.Address;
-import plan.entity.day_info.Date;
+import plan.entity.day_info.DayInfo;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ public interface Weather {
     // and address of the first or last activity (it shouldn't matter as it is city based)
 
     String toString();
-    void setWeather(Date day, Address address) throws IOException;
+    void setWeather(DayInfo day, Address address) throws IOException;
     String getRain();
     String getTemp();
 }
