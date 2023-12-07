@@ -75,7 +75,8 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
                     description = activity.getDescription();
                 }
 
-                String body = String.format("%1$s\nCost: $%2$s",
+                String body = String.format("Address: %1$s\n%2$s\nCost: $%3$s",
+                        activity.getAddress().getAddressText(),
                         description,
                         activity.getCost().toString());
                 Paragraph activityText = new Paragraph(body, textFont);

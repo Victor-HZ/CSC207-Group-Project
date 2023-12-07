@@ -80,7 +80,14 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         try {
                             description = membersArray.getJSONObject(i).getString("info");
                         } catch (Exception E){
-                            description = "Event Name: " + event.getName() + "Minimal Cost: " + event.getCost() + "Location: " + event.getAddress().toString();
+
+                            description = description + "Segment: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("segment").getString("name") + "\n";
+                            description = description + "Event Genre: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("genre").getString("name") + "\n";
+                            description = description + "Sub Genre: " +  membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("subGenre").getString("name") + "\n";
+                            description = description + "Type: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("type").getString("name") + "\n";
+                            description = description + "Sub Type: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("subType").getString("name") + "\n";
+                            description = description + "Family Style: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("family").getBoolean("legalAgeEnforced") + "\n";
+                            description = description + "Age Restrictions: " + membersArray.getJSONObject(i).getJSONObject("ageRestrictions").getBoolean("legalAgeEnforced");
                         } finally {
                             event.setDescription(description);
                         }
