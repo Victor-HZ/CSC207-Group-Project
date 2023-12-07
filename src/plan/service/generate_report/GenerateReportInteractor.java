@@ -42,7 +42,6 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
             document.add(title);
 
 //            String weatherFormat = String.format("Weather: %s", weather.toString());
-//
 //            Paragraph weatherText = new Paragraph(weatherFormat);
 //            weatherText.setFont(weatherFont);
 //            document.add(weatherText);
