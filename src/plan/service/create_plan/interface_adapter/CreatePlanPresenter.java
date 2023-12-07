@@ -47,7 +47,7 @@ public class CreatePlanPresenter implements CreatePlanOutputBoundary {
         ArrayList<ActivitiesFetchInterface> activitiesFetchInterfaces = new ArrayList<>();
         activitiesFetchInterfaces.add(new TicketmasterAPI());
         activitiesFetchInterfaces.add(new TripAdvisorAPI());
-        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), activitiesFetchInterfaces, plan, address, user);
+        EditorView editorView = EditorUseCaseFactory.create(viewManagerModel, editorViewModel, new GenerateReportViewModel(), loggedInViewModel, activitiesFetchInterfaces, plan, address, user);
         Main.addNewView(editorView, editorView.viewName);
 
         this.viewManagerModel.setActiveView(editorViewModel.getViewName());

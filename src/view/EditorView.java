@@ -11,10 +11,12 @@ import plan.service.fetch_activities.interface_adapter.FetchActivitiesController
 import plan.service.generate_report.interface_adapter.GenerateReportController;
 import plan.service.main_view_models.EditorState;
 import plan.service.main_view_models.EditorViewModel;
+import plan.service.main_view_models.StartUpState;
 import plan.service.save_plan.interface_adapter.SavePlanController;
 import user.entity.User;
 import user.service.logged_in.interface_adaper.LoggedInState;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
+import view.interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
@@ -40,16 +42,20 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
     private final FetchActivitiesController fetchActivitiesController;
     private final GenerateReportController generateReportController;
     private final SavePlanController savePlanController;
+    private final ViewManagerModel viewManagerModel;
+    private final LoggedInViewModel loggedinViewModel;
 
     JLabel selected;
     private final JTextField selectionInputField = new JTextField(3);
 
     private final JButton addActivity;
     private final JButton deleteActivity;
-    private final JButton savePlan;
+//    private final JButton savePlan;
     private final JButton generateReport;
+    private final JButton home;
 
-    public EditorView(EditorViewModel editorViewModel,
+    public EditorView(ViewManagerModel viewManager, EditorViewModel editorViewModel,
+                      LoggedInViewModel loggedinModel,
                       AddActivityController addActivityController,
                       DeleteActivityController deleteActivityController,
                       FetchActivitiesController fetchActivitiesController,
@@ -58,7 +64,9 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                       Plan plan,
                       Address address,
                       User user){
+        this.viewManagerModel = viewManager;
         this.editorViewModel = editorViewModel;
+        this.loggedinViewModel = loggedinModel;
         this.addActivityController = addActivityController;
         this.deleteActivityController = deleteActivityController;
         this.fetchActivitiesController = fetchActivitiesController;
@@ -110,12 +118,14 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                 new JLabel("Activity Id"), selectionInputField);
 
         JPanel buttons = new JPanel();
+        home = new JButton(EditorViewModel.HOME_BUTTON_LABEL);
+        buttons.add(home);
         addActivity = new JButton(EditorViewModel.ADD_ACTIVITY_BUTTON_LABEL);
         buttons.add(addActivity);
         deleteActivity = new JButton(EditorViewModel.DELETE_ACTIVITY_BUTTON_LABEL);
         buttons.add(deleteActivity);
-        savePlan = new JButton(EditorViewModel.SAVE_PLAN_BUTTON_LABEL);
-        buttons.add(savePlan);
+//        savePlan = new JButton(EditorViewModel.SAVE_PLAN_BUTTON_LABEL);
+//        buttons.add(savePlan);
         generateReport = new JButton(EditorViewModel.GENERATE_REPORT_LABEL);
         buttons.add(generateReport);
 
@@ -162,6 +172,20 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         });
 
 
+        home.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(home)) {
+                            LoggedInState loggedinState = loggedinViewModel.getState();
+                            loggedinViewModel.setState(loggedinState);
+                            loggedinViewModel.firePropertyChanged();
+
+                            viewManagerModel.setActiveView(loggedinViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
+                        }
+                    }
+                }
+        );
 
         addActivity.addActionListener(
                 new ActionListener() {
@@ -191,16 +215,16 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        savePlan.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-//                        if (evt.getSource().equals(savePlan)) {
-//                            EditorState currentState = editorViewModel.getState();
-//                        }
-
-                    }
-                }
-        );
+//        savePlan.addActionListener(
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+////                        if (evt.getSource().equals(savePlan)) {
+////                            EditorState currentState = editorViewModel.getState();
+////                        }
+//
+//                    }
+//                }
+//        );
 
         generateReport.addActionListener(
                 new ActionListener() {
