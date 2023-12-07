@@ -3,7 +3,9 @@ package viewTest;
 import app.LoggedInUseCaseFactory;
 import app.LoginUseCaseFactory;
 import app.SignupUseCaseFactory;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import plan.service.main_view_models.EditorViewModel;
 import plan.service.main_view_models.StartUpViewModel;
 import user.data_access.FileUserDataAccessObject;
@@ -23,9 +25,11 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 
 import static java.lang.Thread.sleep;
+import static org.junit.Assert.assertEquals;
 
 public class startupViewTest {
     private static JPanel views;
@@ -53,7 +57,7 @@ public class startupViewTest {
 
         FileUserDataAccessObject userDataAccessObject;
         try {
-            userDataAccessObject = new FileUserDataAccessObject("./testusers.csv", new CommonUserFactory());
+            userDataAccessObject = new FileUserDataAccessObject("./temp.csv", new CommonUserFactory());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -83,7 +87,21 @@ public class startupViewTest {
             throw new RuntimeException(e);
         }
 
+        JPanel panel = (JPanel) startupView.getComponent(1);
+        JButton signup = (JButton) panel.getComponent(1);
 
+        signup.doClick();
+
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        assertEquals(viewManagerModel.getActiveView(), signupView.viewName);
+
+        File csvFile = new File("./temp.csv");
+        csvFile.delete();
 
     }
 }
