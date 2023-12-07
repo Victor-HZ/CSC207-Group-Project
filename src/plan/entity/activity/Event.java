@@ -80,8 +80,7 @@ public class Event implements Activity {
 
     @Override
     public boolean equals(Activity other) {
-        return this.description.equals(other.getDescription()) &&
-                this.name.equals(other.getName()) &&
+        return this.name.equals(other.getName()) &&
                 this.cost.equals(other.getCost()) &&
                 this.address.equals(other.getAddress());
     }

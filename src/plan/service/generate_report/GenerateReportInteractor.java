@@ -33,8 +33,8 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
             document.open();
             Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 26, BaseColor.BLACK);
 //            Font weatherFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 20, BaseColor.BLACK);
-            Font activityFont = FontFactory.getFont(FontFactory.HELVETICA, 20, BaseColor.PINK);
-            Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK);
+            Font activityFont = FontFactory.getFont(FontFactory.HELVETICA_BOLDOBLIQUE, 18, BaseColor.PINK);
+            Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
 
             String titleFormat = String.format("Plan for %s", dayInfo.getPlanDate());
 
