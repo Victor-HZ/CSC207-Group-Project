@@ -25,7 +25,7 @@ public class TripAdvisorAPI implements ActivitiesFetchInterface {
 
 
     @Override
-    public ArrayList<Activity> getEvents(String city, DayInfo date, String apiToken) throws JSONException {
+    public ArrayList<Activity> getEvents(Address address, DayInfo date, String apiToken) throws JSONException {
         setApiToken(apiToken);
 //        OkHttpClient client = new OkHttpClient().newBuilder().build();
 //        HttpUrl.Builder httpBuilder = HttpUrl.parse("https://app.ticketmaster.com/discovery/v2/events").newBuilder()
