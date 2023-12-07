@@ -3,20 +3,14 @@ package viewTest;
 import app.LoggedInUseCaseFactory;
 import app.LoginUseCaseFactory;
 import app.SignupUseCaseFactory;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import plan.service.main_view_models.EditorViewModel;
 import plan.service.main_view_models.StartUpViewModel;
 import user.data_access.FileUserDataAccessObject;
 import user.entity.CommonUserFactory;
-import user.service.clear_users.ClearInputBoundary;
-import user.service.clear_users.interface_adapter.ClearController;
 import user.service.clear_users.interface_adapter.ClearViewModel;
 import user.service.logged_in.interface_adaper.LoggedInViewModel;
 import user.service.login.interface_adapter.LoginViewModel;
-import user.service.signup.SignupInputBoundary;
-import user.service.signup.interface_adapter.SignupController;
 import user.service.signup.interface_adapter.SignupViewModel;
 import view.*;
 import view.interface_adapter.ViewManagerModel;
@@ -24,11 +18,9 @@ import view.interface_adapter.ViewManagerModel;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 
 public class startupViewTest {
