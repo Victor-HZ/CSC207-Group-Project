@@ -81,22 +81,10 @@ public class startupViewTest {
         application.setSize(1000, 700);
         application.setVisible(true);
 
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
         JPanel panel = (JPanel) startupView.getComponent(1);
         JButton signup = (JButton) panel.getComponent(1);
 
         signup.doClick();
-
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         assertEquals(viewManagerModel.getActiveView(), signupView.viewName);
 

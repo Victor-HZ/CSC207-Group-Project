@@ -24,7 +24,7 @@ import java.io.IOException;
 import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 
-public class signupViewTest {
+public class loginViewTest {
     private static JPanel views;
 
     @Test
@@ -84,11 +84,6 @@ public class signupViewTest {
 
         loadEnv.doClick();
 
-        LabelTextPanel labelTextPanel = (LabelTextPanel) signupView.getComponent(4);
-        JPasswordField ticketmasterField = (JPasswordField) labelTextPanel.getComponent(1);
-
-        assertEquals("xbsv7k979hAXbFcLNdLoUTHBdQwQYPBL", new String(ticketmasterField.getPassword()));
-
         LabelTextPanel panel2 = (LabelTextPanel) signupView.getComponent(1);
         JTextField usernameField = (JTextField) panel2.getComponent(1);
 
@@ -101,9 +96,38 @@ public class signupViewTest {
                 'y');
         panel2.dispatchEvent(eventRight);
 
-        assertEquals("y", usernameField.getText());
+        LabelTextPanel panel3 = (LabelTextPanel) signupView.getComponent(2);
+        JPasswordField passwordField = (JPasswordField) panel3.getComponent(1);
+
+        KeyEvent eventP = new KeyEvent(
+                passwordField,
+                KeyEvent.KEY_TYPED,
+                System.currentTimeMillis(),
+                0,
+                KeyEvent.VK_UNDEFINED,
+                'y');
+        panel3.dispatchEvent(eventP);
+
+        LabelTextPanel panel4 = (LabelTextPanel) signupView.getComponent(3);
+        JPasswordField repeatPasswordField = (JPasswordField) panel4.getComponent(1);
+
+        KeyEvent eventPP = new KeyEvent(
+                repeatPasswordField,
+                KeyEvent.KEY_TYPED,
+                System.currentTimeMillis(),
+                0,
+                KeyEvent.VK_UNDEFINED,
+                'y');
+        panel4.dispatchEvent(eventPP);
+
+        JButton signupViewSign = (JButton) panel1.getComponent(0);
+
+        signupViewSign.doClick();
+
+        assertEquals(viewManagerModel.getActiveView(), loginView.viewName);
 
         File csvFile = new File("./temp.csv");
         csvFile.delete();
     }
+
 }
