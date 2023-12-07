@@ -33,7 +33,7 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
 
             document.open();
             Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 26, BaseColor.BLACK);
-            Font weatherFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 18, BaseColor.BLACK);
+            Font weatherFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 15, BaseColor.BLACK);
             Font activityFont = FontFactory.getFont(FontFactory.HELVETICA_BOLDOBLIQUE, 18, BaseColor.PINK);
             Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
 
@@ -42,18 +42,20 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
             Paragraph title = new Paragraph(titleFormat, titleFont);
             document.add(title);
 
-//            String weatherBody;
-//            try {
-//                weather.setWeather(dayInfo, plan.getAddress());
-//                weatherBody = weather.toString();
-//            } catch (IOException e) {
-//                weatherBody = "[Weather not available for this date]";
-//            }
-//
-//            String weatherFormat = String.format("Weather: %s", weatherBody);
-//            Paragraph weatherText = new Paragraph(weatherFormat);
-//            weatherText.setFont(weatherFont);
-//            document.add(weatherText);
+            String weatherBody1;
+            String weatherBody2;
+            try {
+                weather.setWeather(dayInfo, plan.getAddress());
+                weatherBody1 = weather.getTemp();
+                weatherBody2 = weather.getRain();
+            } catch (IOException e) {
+                weatherBody1 = "[Weather not available for this date]";
+                weatherBody2 = "[Weather not available for this date]";
+            }
+
+            String weatherFormat = String.format("Average Temperature: %1$s\nRain: %2$s", weatherBody1, weatherBody2);
+            Paragraph weatherText = new Paragraph(weatherFormat, weatherFont);
+            document.add(weatherText);
 
             System.out.println(activities);
             for (Activity activity : activities) {
