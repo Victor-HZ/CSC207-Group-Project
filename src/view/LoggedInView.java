@@ -91,11 +91,6 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                             } catch (InvalidProvinceException e) {
                                 throw new RuntimeException(e);
                             }
-                            try {
-                                address.setProvince("ON");
-                            } catch (InvalidProvinceException e) {
-                                throw new RuntimeException(e);
-                            }
                             address.setCity(loggedinState.getCity());
                             createPlanController.execute(dayInfo, address, loggedinState.getUser());
                         }

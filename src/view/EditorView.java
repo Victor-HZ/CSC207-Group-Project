@@ -23,6 +23,8 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -103,9 +105,24 @@ public class EditorView extends JPanel implements ActionListener, PropertyChange
         availableActivities.setCellSelectionEnabled(true);
         availableActivities.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         availableActivities.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//        Dimension dimension = new Dimension(800, 500);
+//        availableActivities.setPreferredSize(dimension);
+//        availableActivitiesTable.setMinimumSize(dimension);
+        TableColumnModel columnModel = availableActivities.getColumnModel();
+        for (int column = 0; column < availableActivities.getColumnCount(); column++){
+            int width = 15;
+            for (int row = 0; row < availableActivities.getRowCount(); row++){
+                TableCellRenderer renderer = availableActivities.getCellRenderer(row, column);
+                Component comp = availableActivities.prepareRenderer(renderer, row, column);
+                width = Math.max(comp.getPreferredSize().width +1 , width);
+            }
+            if (width > 300){
+                width = 300;
+            }
+            columnModel.getColumn(column).setPreferredWidth(width + 30);
+        }
         LabelTablePanel availableActivitiesTable = new LabelTablePanel(
                 new JLabel(EditorViewModel.AVAILABLE_ACTIVITIES_LABEL), new JScrollPane(availableActivities));
-
         selectedActivities = new JTable(state.getDisplaySlectedActivitiesArray(), columnNames);
         selectedActivities.setCellSelectionEnabled(true);
         selectedActivities.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
