@@ -26,7 +26,7 @@ public class Date implements DayInfo {
     @Override
     public String stringInfo() {
         String time = toString();
-        String weather = getWeather().toString();
+//        String weather = getWeather().toString();
         return String.format("%s, %s", time, weather);
     }
 
