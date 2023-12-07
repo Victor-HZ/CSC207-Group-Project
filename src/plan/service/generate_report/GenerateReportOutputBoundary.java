@@ -1,7 +1,7 @@
 package plan.service.generate_report;
 
 public interface GenerateReportOutputBoundary {
-    void prepareSuccessView(GenerateReportOutputData outputData);
+    void prepareSuccessView();
 
     void prepareFailView(String error);
 }

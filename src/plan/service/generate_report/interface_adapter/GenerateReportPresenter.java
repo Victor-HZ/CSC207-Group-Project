@@ -17,7 +17,7 @@ public class GenerateReportPresenter implements GenerateReportOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(GenerateReportOutputData outputData) {
+    public void prepareSuccessView() {
 
         GenerateReportState reportState = generateReportViewModel.getState();
 

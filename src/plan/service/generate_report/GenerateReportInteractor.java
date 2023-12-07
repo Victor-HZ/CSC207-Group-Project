@@ -43,19 +43,32 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
             title.setFont(titleFont);
             document.add(title);
 
-            Paragraph weatherText = new Paragraph(weather.toString());
+            String weatherFormat = String.format("Weather: %s", weather.toString());
+
+            Paragraph weatherText = new Paragraph(weatherFormat);
             weatherText.setFont(weatherFont);
             document.add(weatherText);
 
             for (Activity activity : activities) {
+                Paragraph activityTitle = new Paragraph(activity.getName());
+                activityTitle.setFont(activityFont);
+                document.add(activityTitle);
 
+                String body = String.format("Address: %1$s\n%2$s\nCost: %3$s",
+                        activity.getAddress().getAddressText(),
+                        activity.getDescription(),
+                        activity.getCost().toString());
+                Paragraph activityText = new Paragraph(body);
+                activityText.setFont(textFont);
+                document.add(activityText);
             }
 
             document.close();
+            generateReportPresenter.prepareSuccessView();
         } catch (FileNotFoundException e) {
-
+            generateReportPresenter.prepareFailView("Unable to create PDF.");
         } catch (DocumentException f) {
-
+            generateReportPresenter.prepareFailView("Error while generating PDF.");
         }
     }
 }
