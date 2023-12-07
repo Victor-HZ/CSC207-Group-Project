@@ -53,14 +53,20 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
                 weatherBody2 = "[Weather not available for this date]";
             }
 
+
             String weatherFormat = String.format("Average Temperature: %1$s\nRain: %2$s", weatherBody1, weatherBody2);
             Paragraph weatherText = new Paragraph(weatherFormat, weatherFont);
             document.add(weatherText);
+
+
 
             System.out.println(activities);
             for (Activity activity : activities) {
                 Paragraph activityTitle = new Paragraph(activity.getName(), activityFont);
                 document.add(activityTitle);
+
+
+
 
                 String description;
                 if (activity.getDescription() == null) {

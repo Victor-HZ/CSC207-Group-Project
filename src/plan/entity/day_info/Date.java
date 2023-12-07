@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Date implements DayInfo {
     private ZonedDateTime time;
-    private Weather weather;
+    private Weather weather = new WeatherForecast();
 
     public Date(){
         time = ZonedDateTime.now();
@@ -27,7 +27,7 @@ public class Date implements DayInfo {
     public String stringInfo() {
         String time = toString();
 //        String weather = getWeather().toString();
-        return String.format("%s, %s", time, weather);
+        return String.format("%s", time);
     }
 
     public String toString(ToStringType type){

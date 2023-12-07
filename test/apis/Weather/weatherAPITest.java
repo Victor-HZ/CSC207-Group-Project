@@ -33,7 +33,6 @@ public class weatherAPITest {
         weather = new WeatherForecast();
         Date date = new Date();
         weather.setWeather(date, address);
-        rain = weather.getRain();
     }
 
     @Test
