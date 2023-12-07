@@ -52,7 +52,6 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         event.setName(membersArray.getJSONObject(i).getString("name"));
                         event.setCost(membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("min"));
                         event.setAddress(tempAddress);
-                        event.setDescription(membersArray.getJSONObject(i).getString("info"));
 
                         String localDate = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localDate");
                         String localTime = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localTime");
@@ -61,19 +60,33 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                         eventDate.setDay(Integer.parseInt(localDate.substring(8)));
                         eventDate.setHour(Integer.parseInt(localTime.substring(0, 2)));
 
-                        tempAddress.setCountry(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("country").getString("name"));
-                        tempAddress.setProvince(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("state").getString("name"));
-                        tempAddress.setCity(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("city").getString("name"));
-                        tempAddress.setBusinessName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("name"));
-                        tempAddress.setPostalCode(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getString("postalCode"));
-                        tempAddress.setStreetNumber(Integer.parseInt(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("address").getString("line1").split(" ", 2)[0]));
-                        tempAddress.setStreetName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("address").getString("line1").split(" ", 2)[1]);
-                        tempAddress.setLatitude(Double.parseDouble(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("location").getString("latitude")));
-                        tempAddress.setLongitude(Double.parseDouble(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONObject("venues").getJSONObject("location").getString("longitude")));
-
-                        event.setAddress(tempAddress);
+                        try {
+                            tempAddress.setCountry(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("country").getString("name"));
+                            tempAddress.setProvince(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("state").getString("name"));
+                            tempAddress.setCity(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("city").getString("name"));
+                            tempAddress.setBusinessName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getString("name"));
+                            tempAddress.setPostalCode(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getString("postalCode"));
+                            tempAddress.setStreetNumber(Integer.parseInt(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("address").getString("line1").split(" ", 2)[0]));
+                            tempAddress.setStreetName(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("address").getString("line1").split(" ", 2)[1]);
+                            tempAddress.setLatitude(Double.parseDouble(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("location").getString("latitude")));
+                            tempAddress.setLongitude(Double.parseDouble(membersArray.getJSONObject(i).getJSONObject("_embedded").getJSONArray("venues").getJSONObject(0).getJSONObject("location").getString("longitude")));
+                        } catch (JSONException e){
+                            System.out.println("The address is captured unsuccessfully, the address fetched is: " + address.toString());
+                        } finally {
+                            event.setAddress(tempAddress);
+                        }
                         event.setDayInfo(eventDate);
+                        String description = new String();
+                        try {
+                            description = membersArray.getJSONObject(i).getString("info");
+                        } catch (Exception E){
+                            description = "Event Name: " + event.getName() + "Minimal Cost: " + event.getCost() + "Location: " + event.getAddress().toString();
+                        } finally {
+                            event.setDescription(description);
+                        }
                         activities.add(event);
+
+
                     } catch (Exception ignored) {
                         try {
                             event.getDayInfo();
