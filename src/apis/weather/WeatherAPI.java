@@ -11,6 +11,7 @@ import java.util.Objects;
 
 public class WeatherAPI {
     public String rain;
+    public String temp;
     public JSONObject weather;
 
     // Must be within 14 days
@@ -41,13 +42,25 @@ public class WeatherAPI {
 
         weather = jsonObject.getJSONObject("hourly");
 
+        setTemp();
         setRain();
 
     }
 
+    public void setTemp() {
+        JSONArray tempArray = weather.getJSONArray("temperature_2m");
+        float hourCounter = 0;
+        float tempHolder = 0;
+        for (int i = 0; i < tempArray.length(); i++) {
+            hourCounter = hourCounter + 1;
+            tempHolder = tempHolder + tempArray.getFloat(i);
+        }
+        temp = String.format("%.1f °C", tempHolder / hourCounter);
+    }
+
     public void setRain() {
         JSONArray rainArray = weather.getJSONArray("rain");
-        for (int i = 0; i < rainArray.length(); i++ ) {
+        for (int i = 0; i < rainArray.length(); i++) {
             float rainMeter = rainArray.getFloat(i);
             if (2.5 >= rainMeter && rainMeter > 0) {
                 if (!Objects.equals(rain, "Moderate Rain") | !Objects.equals(rain, "Heavy Rain")) {
@@ -66,5 +79,7 @@ public class WeatherAPI {
     public String getRain() {
         return rain;
     }
+
+    public String getTemp() {return temp;}
 }
 
