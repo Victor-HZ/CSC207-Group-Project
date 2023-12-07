@@ -21,6 +21,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 
 public class startupViewTest {
@@ -79,6 +80,22 @@ public class startupViewTest {
         signup.doClick();
 
         assertEquals(viewManagerModel.getActiveView(), signupView.viewName);
+
+        JPanel panel2 = (JPanel) signupView.getComponent(7);
+        JButton cancel = (JButton) panel2.getComponent(1);
+
+        cancel.doClick();
+
+        JButton login = (JButton) panel.getComponent(0);
+
+        login.doClick();
+
+        assertEquals(viewManagerModel.getActiveView(), loginView.viewName);
+
+        JPanel panel3 = (JPanel) loginView.getComponent(5);
+        JButton cancelLogin = (JButton) panel3.getComponent(1);
+
+        cancelLogin.doClick();
 
         File csvFile = new File("./temp.csv");
         csvFile.delete();
