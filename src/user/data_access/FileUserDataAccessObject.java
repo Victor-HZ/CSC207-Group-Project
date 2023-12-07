@@ -1,5 +1,6 @@
 package user.data_access;
 
+import plan.service.generate_report.GenerateReportDataAccessInterface;
 import user.entity.*;
 import user.service.clear_users.*;
 import user.service.login.*;

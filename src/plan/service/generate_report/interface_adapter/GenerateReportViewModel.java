@@ -8,9 +8,6 @@ import java.beans.PropertyChangeSupport;
 public class GenerateReportViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Generate Report View";
-    public static final String ACTIVITIES_LABEL = "Activities:";
-    public static final String TOTAL_COST_LABEL = "Total Cost:";
-    public static final String DAY_INFO_LABEL = "Day Info:";
 
     private GenerateReportState state = new GenerateReportState();
     private static final String VIEW_NAME = "generate report";

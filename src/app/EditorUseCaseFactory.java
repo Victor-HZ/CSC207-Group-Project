@@ -54,7 +54,7 @@ public class EditorUseCaseFactory {
             FetchActivitiesController fetchActivitiesController = createFetchActivitiesUseCase(activitiesFetchInterfaces);
             AddActivityController addActivityController = createAddActivityController(viewManagerModel, editorViewModel);
             DeleteActivityController deleteActivityController = createDeleteActivityController(viewManagerModel, editorViewModel);
-            GenerateReportController generateReportController = createGenerateReportController(viewManagerModel, generateReportViewModel);
+            GenerateReportController generateReportController = createGenerateReportController(generateReportViewModel);
             SavePlanController savePlanController = createSavePlanUseCase(editorViewModel);
             return new EditorView(editorViewModel, addActivityController, deleteActivityController, fetchActivitiesController, generateReportController, savePlanController, plan, address, user);
         } catch (IOException e) {
@@ -87,8 +87,8 @@ public class EditorUseCaseFactory {
         return new SavePlanController(savePlanInteractor);
     }
 
-    private static GenerateReportController createGenerateReportController(ViewManagerModel viewManagerModel, GenerateReportViewModel generateReportViewModel){
-        GenerateReportOutputBoundary generateReportOutputBoundary = new GenerateReportPresenter(viewManagerModel, generateReportViewModel);
+    private static GenerateReportController createGenerateReportController(GenerateReportViewModel generateReportViewModel){
+        GenerateReportOutputBoundary generateReportOutputBoundary = new GenerateReportPresenter(generateReportViewModel);
         GenerateReportInputBoundary generateReportInteractor = new GenerateReportInteractor(generateReportOutputBoundary);
         return new GenerateReportController(generateReportInteractor);
     }

@@ -29,4 +29,6 @@ public interface Address {
     void updateCoordinates() throws IOException;
 
     boolean equals(Address other);
+
+    public String getAddressText();
 }

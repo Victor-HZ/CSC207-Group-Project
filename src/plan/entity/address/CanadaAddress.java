@@ -166,6 +166,12 @@ public class CanadaAddress implements Address{
                 this.longitude.equals(other.getLongitude());
     }
 
+    @Override
+    public String getAddressText() {
+        return String.format("%1$s %2$s, %3$s, %4$s, %5$s", this.getStreetNumber(),
+                this.getStreetName(), this.getCity(), this.getProvince(), this.getCountry());
+    }
+
     public String toString(){
         return country + " " + city + " " + province.name() + " " + streetNumber.toString() + " " + streetName + " " + postalCode;
     }

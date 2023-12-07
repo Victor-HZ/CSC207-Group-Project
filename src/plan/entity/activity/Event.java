@@ -17,8 +17,15 @@ public class Event implements Activity {
 
     @Override
     public String toString() {
+        String dayInfoString;
+        if (getDayInfo() == null) {
+            dayInfoString = "N/A";
+        } else {
+            dayInfoString = getDayInfo().stringInfo();
+        }
+
         return String.format("%s, %s, %f, %s, %s", getName(), getAddress().toString(), getCost(),
-                getDescription(), getDayInfo().stringInfo());
+                getDescription(), dayInfoString);
     }
 
     @Override
@@ -73,8 +80,7 @@ public class Event implements Activity {
 
     @Override
     public boolean equals(Activity other) {
-        return this.description.equals(other.getDescription()) &&
-                this.name.equals(other.getName()) &&
+        return this.name.equals(other.getName()) &&
                 this.cost.equals(other.getCost()) &&
                 this.address.equals(other.getAddress());
     }

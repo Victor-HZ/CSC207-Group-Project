@@ -1,8 +1,8 @@
 package plan.service.generate_report.interface_adapter;
 import plan.entity.plan.DatePlan;
+import plan.entity.plan.Plan;
 import plan.service.generate_report.GenerateReportInputBoundary;
 import plan.service.generate_report.GenerateReportInputData;
-import user.entity.User;
 
 public class GenerateReportController {
     private final GenerateReportInputBoundary generateReportInteractor;
@@ -11,11 +11,10 @@ public class GenerateReportController {
         this.generateReportInteractor = generateReportInteractor;
     }
 
-    public void execute(User user) {
+    public void execute(Plan plan) {
 
-        GenerateReportInputData inputData = new GenerateReportInputData(user);
+        GenerateReportInputData inputData = new GenerateReportInputData(plan);
 
         generateReportInteractor.execute(inputData);
-
     }
 }
