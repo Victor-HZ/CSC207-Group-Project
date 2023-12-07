@@ -1,6 +1,7 @@
 package plan.entity.plan;
 
 import plan.entity.activity.Activity;
+import plan.entity.address.Address;
 import plan.entity.day_info.DayInfo;
 
 import java.util.ArrayList;
@@ -11,4 +12,5 @@ public interface Plan {
     double getCost();
     ArrayList<Activity> getActivities();
     DayInfo getDayInfo();
+    Address getAddress();
 }
