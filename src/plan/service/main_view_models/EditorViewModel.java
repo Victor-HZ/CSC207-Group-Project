@@ -14,6 +14,7 @@ public class EditorViewModel extends ViewModel {
     public static final String AVAILABLE_ACTIVITIES_LABEL = "Available Activities";
     public static final String SELECTED_ACTIVITIES_LABEL = "Selected Activities";
     public static final String GENERATE_REPORT_LABEL = "Generate Report";
+    public static final String HOME_BUTTON_LABEL = "Home";
 
     private EditorState state = new EditorState();
 

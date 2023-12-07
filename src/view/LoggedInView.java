@@ -38,7 +38,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     private final JTextField countryInputField = new JTextField(15);
 
     final JButton createPlan;
-    final JButton loadPlan;
+//    final JButton loadPlan;
     final JButton logOut;
 
     /**
@@ -70,8 +70,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         JPanel buttons = new JPanel();
         createPlan = new JButton(loggedInViewModel.CREATE_PLAN_BUTTON_LABEL);
         buttons.add(createPlan);
-        loadPlan = new JButton(loggedInViewModel.LOAD_PLAN_BUTTON_LABEL);
-        buttons.add(loadPlan);
+//        loadPlan = new JButton(loggedInViewModel.LOAD_PLAN_BUTTON_LABEL);
+//        buttons.add(loadPlan);
         logOut = new JButton(loggedInViewModel.LOGOUT_BUTTON_LABEL);
         buttons.add(logOut);
 
@@ -103,19 +103,19 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 }
         );
 
-        loadPlan.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(loadPlan)) {
-//                            LoadPlanState loadPlanState = loadPlanViewModel.getState();
-//                            loadPlanViewModel.setState(loadPlanState);
-//                            loadPlanViewModel.firePropertyChanged();
-//
-//                            loadPlanController.execute();
-                        }
-                    }
-                }
-        );
+//        loadPlan.addActionListener(
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+//                        if (evt.getSource().equals(loadPlan)) {
+////                            LoadPlanState loadPlanState = loadPlanViewModel.getState();
+////                            loadPlanViewModel.setState(loadPlanState);
+////                            loadPlanViewModel.firePropertyChanged();
+////
+////                            loadPlanController.execute();
+//                        }
+//                    }
+//                }
+//        );
 
         logOut.addActionListener(
                 new ActionListener() {
