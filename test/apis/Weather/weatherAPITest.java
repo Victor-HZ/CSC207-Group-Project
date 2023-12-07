@@ -49,6 +49,14 @@ public class weatherAPITest {
     }
 
     @Test
+    public void tempTest() {
+        // TEST IS SUBJECT TO CHANGE AS THE WEATHER FORECAST IS ALWAYS CHANGING
+        // THEREFORE IT IS ONLY TO SEE IF A STRING IS PRODUCED WITH THE CORRECT
+        // SUBSTRINGS AND THROUGH THE PRINT WE CAN SEE IF IT IS CORRECT
+        System.out.println(weather.getTemp());
+    }
+
+    @Test
     public void rainTest() {
         System.out.println(weather.getRain());
         assertEquals(weather.getRain(), "Moderate Rain");
