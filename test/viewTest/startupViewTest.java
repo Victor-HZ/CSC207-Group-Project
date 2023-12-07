@@ -78,10 +78,12 @@ public class startupViewTest {
         application.setVisible(true);
 
         try {
-            sleep(5000);
+            sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+
 
     }
 }
