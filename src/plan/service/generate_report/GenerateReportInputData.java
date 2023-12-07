@@ -1,15 +1,15 @@
 package plan.service.generate_report;
 
-import user.entity.User;
+import plan.entity.plan.Plan;
 
 public class GenerateReportInputData {
-    private final User user;
+    private final Plan plan;
 
-    public GenerateReportInputData(User user) {
-        this.user = user;
+    public GenerateReportInputData(Plan plan) {
+        this.plan = plan;
     }
 
-    public User getUser() {
-        return user;
-    }
+    Plan getPlan() {
+        return plan;
+    } // get plan from editor state
 }

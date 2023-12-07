@@ -27,8 +27,34 @@ public class EditorState {
     private DayInfo dayInfo;
     private Address address;
     private User user;
+    private String selection;
+    private ArrayList<String> selected = new ArrayList<String>();
 
     public EditorState() {
+    }
+
+    public Activity getActivity(String text) {
+        Integer key = Integer.parseInt(text);
+        return this.availableActivities.get(key);
+    }
+
+    public void setSelection(String text) {
+        this.selection = text;
+    }
+    public String getSelection() {
+        return this.selection;
+    }
+
+    public void addSelected(String text) {
+        if (!this.selected.contains(text)) {
+            this.selected.add(text);
+        }
+    }
+    public void deleteSelected(String text) {
+        this.selected.remove(text);
+    }
+    public String getSelected() {
+        return this.selected.toString();
     }
 
     public void addAvailableActivity(Integer activityID, Activity activity){
