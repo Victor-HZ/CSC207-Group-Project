@@ -1,6 +1,6 @@
 package plan.entity.address;
 
-import apis.weather.Coordinate;
+import apis.weather.CoordinateAPI;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -146,7 +146,7 @@ public class CanadaAddress implements Address{
 
     @Override
     public void updateCoordinates() throws IOException {
-        Coordinate coordinate = new Coordinate();
+        CoordinateAPI coordinate = new CoordinateAPI();
         HashMap<String,Double> result = coordinate.updateCoordinates(this);
         this.longitude = result.get("Longitude");
         this.longitude = result.get("Latitude");

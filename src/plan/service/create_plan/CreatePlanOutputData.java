@@ -14,6 +14,7 @@ public class CreatePlanOutputData {
     public User user;
 
     public CreatePlanOutputData(String creationTime, boolean useCaseFailed, DayInfo dayInfo, Address address, User user){
+        dayInfo.newWeather();
         this.plan = new DatePlan(dayInfo);
         this.creationTime = creationTime;
         this.useCaseFailed = useCaseFailed;

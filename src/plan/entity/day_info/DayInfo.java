@@ -28,7 +28,7 @@ public interface DayInfo{
     Integer getMonth();
     Integer getDayOfMonth();
     DayOfWeek getDayofWeek();
-
+    void newWeather();
     void setWeather(Weather weather);
     Weather getWeather();
 

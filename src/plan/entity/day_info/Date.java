@@ -1,6 +1,7 @@
 package plan.entity.day_info;
 
 import plan.entity.weather.Weather;
+import plan.entity.weather.WeatherForecast;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -114,6 +115,11 @@ public class Date implements DayInfo {
     @Override
     public void setWeather(Weather weather) {
         this.weather = weather;
+    }
+
+    @Override
+    public void newWeather() {
+        this.weather = new WeatherForecast();
     }
 
     @Override
