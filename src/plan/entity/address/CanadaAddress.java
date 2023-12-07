@@ -25,7 +25,7 @@ public class CanadaAddress implements Address{
     Integer streetNumber = 0;
     String city = "";
     Province province = Province.ON;
-    String country = "Canada";
+    String country = "CA";
 
     Double latitude = 0.0;
     Double longitude = 0.0;

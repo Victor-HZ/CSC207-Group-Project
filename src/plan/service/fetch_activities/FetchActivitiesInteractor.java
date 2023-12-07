@@ -23,7 +23,7 @@ public class FetchActivitiesInteractor implements FetchActivitiesInputBoundary {
     public ArrayList<Activity> execute(DayInfo date, Address addresss, HashMap<User.API_TOKEN, String> apiTokens) {
         ArrayList<Activity> activities = new ArrayList<>();
         for(ActivitiesFetchInterface fetcher : activitiesFetchInterfacesCollections){
-            activities.addAll(fetcher.getEvents(addresss.getCity(), date, apiTokens.get(fetcher.getApi())));
+            activities.addAll(fetcher.getEvents(addresss, date, apiTokens.get(fetcher.getApi())));
         }
         if(!activities.isEmpty()){
             LocalDateTime time = LocalDateTime.now();
