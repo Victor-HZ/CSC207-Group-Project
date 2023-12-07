@@ -17,6 +17,7 @@ public class WeatherAPI {
     // Must be within 14 days
     public void updateWeather(DayInfo day, Address address) throws IOException {
         //initialize the url
+        address.updateCoordinates();
         String coordinates = address.getCoordinates();
         Integer divider = coordinates.indexOf(',');
         String longitude = coordinates.substring(0, divider);
