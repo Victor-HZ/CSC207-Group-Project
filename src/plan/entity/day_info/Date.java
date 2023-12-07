@@ -11,7 +11,7 @@ public class Date implements DayInfo {
 
     public Date(){
         time = ZonedDateTime.now();
-        time = time.withHour(0);
+        time = time.withHour(12);
         time = time.withMinute(0);
         time = time.withSecond(0);
         time = time.withNano(0);
