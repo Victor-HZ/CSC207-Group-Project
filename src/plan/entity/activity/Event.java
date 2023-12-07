@@ -17,8 +17,15 @@ public class Event implements Activity {
 
     @Override
     public String toString() {
+        String dayInfoString;
+        if (getDayInfo() == null) {
+            dayInfoString = "N/A";
+        } else {
+            dayInfoString = getDayInfo().stringInfo();
+        }
+
         return String.format("%s, %s, %f, %s, %s", getName(), getAddress().toString(), getCost(),
-                getDescription(), getDayInfo().stringInfo());
+                getDescription(), dayInfoString);
     }
 
     @Override

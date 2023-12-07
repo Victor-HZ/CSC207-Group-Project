@@ -31,9 +31,9 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
             PdfWriter.getInstance(document, new FileOutputStream("PlanReport.pdf"));
 
             document.open();
-            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 26, BaseColor.BLUE);
+            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 26, BaseColor.BLACK);
 //            Font weatherFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 20, BaseColor.BLACK);
-            Font activityFont = FontFactory.getFont(FontFactory.HELVETICA, 20, BaseColor.GREEN);
+            Font activityFont = FontFactory.getFont(FontFactory.HELVETICA, 20, BaseColor.PINK);
             Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK);
 
             String titleFormat = String.format("Plan for %s", dayInfo.getPlanDate());
@@ -58,7 +58,7 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
                     description = activity.getDescription();
                 }
 
-                String body = String.format("%2$s\nCost: $%3$s",
+                String body = String.format("%1$s\nCost: $%2$s",
                         description,
                         activity.getCost().toString());
                 Paragraph activityText = new Paragraph(body, textFont);
