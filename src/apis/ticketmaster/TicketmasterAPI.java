@@ -50,7 +50,10 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                     DayInfo eventDate = new Date();
                     try {
                         event.setName(membersArray.getJSONObject(i).getString("name"));
-                        event.setCost(membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("min"));
+                        event.setCost(
+                                (membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("min")
+                                        + membersArray.getJSONObject(1).getJSONArray("priceRanges").getJSONObject(0).getDouble("max")
+                                ) / 2);
                         event.setAddress(tempAddress);
 
                         String localDate = membersArray.getJSONObject(i).getJSONObject("dates").getJSONObject("start").getString("localDate");
@@ -86,7 +89,7 @@ public class TicketmasterAPI implements ActivitiesFetchInterface {
                             description = description + "Sub Genre: " +  membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("subGenre").getString("name") + "\n";
                             description = description + "Type: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("type").getString("name") + "\n";
                             description = description + "Sub Type: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("subType").getString("name") + "\n";
-                            description = description + "Family Style: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getJSONObject("family").getBoolean("legalAgeEnforced") + "\n";
+                            description = description + "Family Style: " + membersArray.getJSONObject(i).getJSONArray("classifications").getJSONObject(0).getBoolean("family") + "\n";
                             description = description + "Age Restrictions: " + membersArray.getJSONObject(i).getJSONObject("ageRestrictions").getBoolean("legalAgeEnforced");
                         } finally {
                             event.setDescription(description);
