@@ -1,6 +1,6 @@
 package apis.Weather;
 
-import apis.weather.Coordinate;
+import apis.weather.CoordinateAPI;
 import org.junit.Before;
 import org.junit.Test;
 import plan.entity.address.Address;
@@ -38,7 +38,7 @@ public class coordinateAPITest {
 
     @Test
     public void testHome() throws IOException {
-        Coordinate coor = new Coordinate();
+        CoordinateAPI coor = new CoordinateAPI();
         HashMap<String, Double> update = coor.updateCoordinates(address);
         assertEquals(update.get("Latitude"), (Double) 43.3248);
         assertEquals((Object) update.get("Longitude"), -79.796);
@@ -46,7 +46,7 @@ public class coordinateAPITest {
 
     @Test
     public void testToronto() throws IOException {
-        Coordinate coor = new Coordinate();
+        CoordinateAPI coor = new CoordinateAPI();
         HashMap<String, Double> update = coor.updateCoordinates(toronto);
         assertEquals(update.get("Latitude"), toronto.getLatitude());
         assertEquals(update.get("Longitude"), toronto.getLongitude());

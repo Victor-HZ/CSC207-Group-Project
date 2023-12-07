@@ -9,7 +9,7 @@ import plan.entity.address.Address;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class Coordinate {
+public class CoordinateAPI {
     static Dotenv dotenv = Dotenv.load();
     private static final String key = dotenv.get("COORDINATE_API_TOKEN");
     private Double longitude;
