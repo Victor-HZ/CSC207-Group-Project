@@ -11,6 +11,7 @@ public class WeatherForecast extends WeatherAPI implements Weather {
         return weather.toString();
     }
 
+    // Use this instead of weatherToString, it was a little buggy for some reason
     @Override
     public String toString() {
         return weatherToString();
