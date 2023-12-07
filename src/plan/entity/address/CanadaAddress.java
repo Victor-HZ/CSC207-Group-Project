@@ -3,6 +3,7 @@ package plan.entity.address;
 import apis.weather.Coordinate;
 
 import java.io.IOException;
+import java.util.Dictionary;
 import java.util.HashMap;
 
 enum Province {
@@ -29,6 +30,7 @@ public class CanadaAddress implements Address{
 
     Double latitude = 0.0;
     Double longitude = 0.0;
+    HashMap<String, String> stateAbbreviationDictionary = new HashMap<>();
 
     public CanadaAddress(){}
 
@@ -130,8 +132,22 @@ public class CanadaAddress implements Address{
 
     @Override
     public void setProvince(String province) throws InvalidProvinceException {
+        stateAbbreviationDictionary.put("AB", "Alberta");
+        stateAbbreviationDictionary.put("BC", "British Columbia");
+        stateAbbreviationDictionary.put("MB", "Manitoba");
+        stateAbbreviationDictionary.put("NB", "New Brunswick");
+        stateAbbreviationDictionary.put("NL", "Newfoundland and Labrador");
+        stateAbbreviationDictionary.put("NS", "Nova Scotia");
+        stateAbbreviationDictionary.put("NT", "Northwest Territories");
+        stateAbbreviationDictionary.put("NU", "Nunavut");
+        stateAbbreviationDictionary.put("ON", "Ontario");
+        stateAbbreviationDictionary.put("PE", "Prince Edward Island");
+        stateAbbreviationDictionary.put("QC", "Quebec");
+        stateAbbreviationDictionary.put("SK", "Saskatchewan");
+        stateAbbreviationDictionary.put("YT", "Yukon");
+
         for(Province pro: Province.values()) {
-            if (province.equalsIgnoreCase(pro.name())) {
+            if (province.equalsIgnoreCase(pro.name()) || province.equalsIgnoreCase(stateAbbreviationDictionary.get(pro.name()))) {
                 this.province = pro;
                 return;
             }
