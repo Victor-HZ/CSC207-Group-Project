@@ -1,9 +1,6 @@
 package plan.service.generate_report.interface_adapter;
 
 import plan.service.generate_report.GenerateReportOutputBoundary;
-import plan.service.generate_report.interface_adapter.GenerateReportState;
-import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
-import view.interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 
