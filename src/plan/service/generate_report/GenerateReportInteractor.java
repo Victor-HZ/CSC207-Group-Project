@@ -24,7 +24,7 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
         Plan plan = inputData.getPlan();
         ArrayList<Activity> activities = plan.getActivities();
         DayInfo dayInfo = plan.getDayInfo();
-        Weather weather = dayInfo.getWeather();;
+//        Weather weather = dayInfo.getWeather();
 
         try {
             Document document = new Document();
@@ -32,33 +32,37 @@ public class GenerateReportInteractor implements GenerateReportInputBoundary {
 
             document.open();
             Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 26, BaseColor.BLUE);
-            Font weatherFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 20, BaseColor.BLACK);
+//            Font weatherFont = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 20, BaseColor.BLACK);
             Font activityFont = FontFactory.getFont(FontFactory.HELVETICA, 20, BaseColor.GREEN);
             Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK);
 
             String titleFormat = String.format("Plan for %s", dayInfo.getPlanDate());
 
-            Paragraph title = new Paragraph(titleFormat);
-            title.setFont(titleFont);
+            Paragraph title = new Paragraph(titleFormat, titleFont);
             document.add(title);
 
-            String weatherFormat = String.format("Weather: %s", weather.toString());
+//            String weatherFormat = String.format("Weather: %s", weather.toString());
+//
+//            Paragraph weatherText = new Paragraph(weatherFormat);
+//            weatherText.setFont(weatherFont);
+//            document.add(weatherText);
 
-            Paragraph weatherText = new Paragraph(weatherFormat);
-            weatherText.setFont(weatherFont);
-            document.add(weatherText);
-
+            System.out.println(activities);
             for (Activity activity : activities) {
-                Paragraph activityTitle = new Paragraph(activity.getName());
-                activityTitle.setFont(activityFont);
+                Paragraph activityTitle = new Paragraph(activity.getName(), activityFont);
                 document.add(activityTitle);
 
-                String body = String.format("Address: %1$s\n%2$s\nCost: %3$s",
-                        activity.getAddress().getAddressText(),
-                        activity.getDescription(),
+                String description;
+                if (activity.getDescription() == null) {
+                    description = "No description available.";
+                } else {
+                    description = activity.getDescription();
+                }
+
+                String body = String.format("%2$s\nCost: $%3$s",
+                        description,
                         activity.getCost().toString());
-                Paragraph activityText = new Paragraph(body);
-                activityText.setFont(textFont);
+                Paragraph activityText = new Paragraph(body, textFont);
                 document.add(activityText);
             }
 
