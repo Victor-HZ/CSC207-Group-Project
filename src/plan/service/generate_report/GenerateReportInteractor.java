@@ -10,7 +10,6 @@ import plan.entity.weather.Weather;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class GenerateReportInteractor implements GenerateReportInputBoundary {

@@ -6,38 +6,28 @@ import plan.service.generate_report.interface_adapter.GenerateReportState;
 import plan.service.generate_report.interface_adapter.GenerateReportViewModel;
 import view.interface_adapter.ViewManagerModel;
 
+import javax.swing.*;
+
 public class GenerateReportPresenter implements GenerateReportOutputBoundary {
 
     private final GenerateReportViewModel generateReportViewModel;
-    private final ViewManagerModel viewManagerModel;
 
-    public GenerateReportPresenter(ViewManagerModel viewManagerModel, GenerateReportViewModel generateReportViewModel) {
-        this.viewManagerModel = viewManagerModel;
+    public GenerateReportPresenter(GenerateReportViewModel generateReportViewModel) {
         this.generateReportViewModel = generateReportViewModel;
     }
 
     @Override
     public void prepareSuccessView() {
-
         GenerateReportState reportState = generateReportViewModel.getState();
 
-
-//        reportState.setActivities(outputData.getActivities());
-//        reportState.setTotalCost(outputData.getTotalCost());
-//        reportState.setDayInfo(outputData.getDayInfo());
-
-        // Update the view model state
-        generateReportViewModel.setState(reportState);
-        generateReportViewModel.firePropertyChanged();
-
-        // Switch to the generate report view
-        viewManagerModel.setActiveView(generateReportViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+        JOptionPane.showMessageDialog(null, reportState.getSuccessMessage());
     }
 
     @Override
     public void prepareFailView(String error) {
+        GenerateReportState reportState = generateReportViewModel.getState();
 
+        JOptionPane.showMessageDialog(null, reportState.getErrorMessage());
     }
 
 }
